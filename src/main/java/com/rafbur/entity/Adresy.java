@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -51,7 +52,7 @@ public class Adresy {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idAdresy;
 	
 	private String ulica;
@@ -63,13 +64,13 @@ public class Adresy {
 	private String miasto;
 	
 	@ManyToMany(mappedBy="adresy")
-	private List<User> uzytkownicy;
+	private List<Uzytkownicy> uzytkownicy;
 
-	public List<User> getUzytkownicy() {
+	public List<Uzytkownicy> getUzytkownicy() {
 		return uzytkownicy;
 	}
 
-	public void setUzytkownicy(List<User> uzytkownicy) {
+	public void setUzytkownicy(List<Uzytkownicy> uzytkownicy) {
 		this.uzytkownicy = uzytkownicy;
 	}
 }

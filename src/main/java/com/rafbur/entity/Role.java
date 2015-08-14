@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -11,7 +12,7 @@ import javax.persistence.ManyToMany;
 public class Role {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idRoli;
 	
 	private String typRoli;
@@ -25,7 +26,7 @@ public class Role {
 	}
 
 	@ManyToMany(mappedBy="role")
-	private List<User> uzytkownicy;
+	private List<Uzytkownicy> uzytkownicy;
 
 	public Integer getIdRoli() {
 		return idRoli;
@@ -35,11 +36,11 @@ public class Role {
 		this.idRoli = idRoli;
 	}
 
-	public List<User> getUzytkownicy() {
+	public List<Uzytkownicy> getUzytkownicy() {
 		return uzytkownicy;
 	}
 
-	public void setUzytkownicy(List<User> uzytkownicy) {
+	public void setUzytkownicy(List<Uzytkownicy> uzytkownicy) {
 		this.uzytkownicy = uzytkownicy;
 	}
 	

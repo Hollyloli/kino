@@ -50,7 +50,7 @@
 		
 		
 		
-	<!-- 	<jpa:repositories base-package="com.repository" entity-manager-factory-ref="entityManagerFactory"  />
- -->
+	 	<jpa:repositories base-package="com.rafbur.repository" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager" />
+ 
 		<!-- <import resource="security.xml"/>  -->
 </beans>

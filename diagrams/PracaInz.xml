@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>com.rafbur.entity.User</entity-name>
+		<entity-name>com.rafbur.entity.Kontakty</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>266</entity-height>
-		<entity-X-Coordinate>50</entity-X-Coordinate>
-		<entity-Y-Coordinate>50</entity-Y-Coordinate>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>25</entity-X-Coordinate>
+		<entity-Y-Coordinate>320</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
 	</entity>
 
 	<entity>
-		<entity-name>com.rafbur.entity.Kontakty</entity-name>
+		<entity-name>com.rafbur.entity.Uzytkownicy</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
-		<entity-X-Coordinate>220</entity-X-Coordinate>
-		<entity-Y-Coordinate>320</entity-Y-Coordinate>
+		<entity-height>266</entity-height>
+		<entity-X-Coordinate>7</entity-X-Coordinate>
+		<entity-Y-Coordinate>30</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.rafbur.entity.Opiekunowie</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>146</entity-height>
+		<entity-X-Coordinate>646</entity-X-Coordinate>
+		<entity-Y-Coordinate>187</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -24,9 +35,9 @@
 	<entity>
 		<entity-name>com.rafbur.entity.Adresy</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>168</entity-height>
-		<entity-X-Coordinate>600</entity-X-Coordinate>
-		<entity-Y-Coordinate>180</entity-Y-Coordinate>
+		<entity-height>206</entity-height>
+		<entity-X-Coordinate>240</entity-X-Coordinate>
+		<entity-Y-Coordinate>295</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -38,6 +49,39 @@
 		<entity-height>146</entity-height>
 		<entity-X-Coordinate>380</entity-X-Coordinate>
 		<entity-Y-Coordinate>35</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.rafbur.entity.Uczniowie</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>186</entity-height>
+		<entity-X-Coordinate>450</entity-X-Coordinate>
+		<entity-Y-Coordinate>325</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.rafbur.entity.Przedmioty</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>146</entity-height>
+		<entity-X-Coordinate>290</entity-X-Coordinate>
+		<entity-Y-Coordinate>620</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.rafbur.entity.Oceny</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>206</entity-height>
+		<entity-X-Coordinate>550</entity-X-Coordinate>
+		<entity-Y-Coordinate>601</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
