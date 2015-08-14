@@ -1,10 +1,13 @@
 package com.rafbur.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,11 +22,47 @@ public class User {
 	
 	private String nazwisko;
 
+	public List<Kontakty> getKontakty() {
+		return kontakty;
+	}
+
+	public void setKontakty(List<Kontakty> kontakty) {
+		this.kontakty = kontakty;
+	}
+
+	public List<Adresy> getAdresy() {
+		return adresy;
+	}
+
+	public void setAdresy(List<Adresy> adresy) {
+		this.adresy = adresy;
+	}
+
 	private String login;
 	
 	private String haslo;
 	
 	private Date dataUrodzenia;
+	
+	@ManyToMany
+	@JoinTable
+	private List<Role> role;
+	
+	@ManyToMany
+	@JoinTable
+	private List<Kontakty> kontakty;
+
+	@ManyToMany
+	@JoinTable
+	private List<Adresy> adresy;
+	
+	public List<Role> getRole() {
+		return role;
+	}
+
+	public void setRole(List<Role> role) {
+		this.role = role;
+	}
 
 	public Integer getIdUzytkownika() {
 		return idUzytkownika;
