@@ -9,6 +9,8 @@ public class IndexControler {
 	@RequestMapping("/index")
 	public String index() {
 		System.out.println("dupa");
-		return "/WEB-INF/jsp/index.jsp";
+		return "index";
 	}
+	
+
 }
