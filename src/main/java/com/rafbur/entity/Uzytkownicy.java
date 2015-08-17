@@ -96,6 +96,8 @@ public class Uzytkownicy {
 		this.login = login;
 	}
 
+
+
 	public String getHaslo() {
 		return haslo;
 	}

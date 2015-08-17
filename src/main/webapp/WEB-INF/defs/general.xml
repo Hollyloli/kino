@@ -16,11 +16,13 @@
     <put-attribute name="title" value="Dzienniczek" />
     <put-attribute name="slider" value="/WEB-INF/basic/slider.jsp" />
     <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+    <put-attribute name="current" value="index" />
   </definition>
 
   <definition name="rejestracja" extends="wspolne">
    <put-attribute name="title" value="Rejestracja" />
    <put-attribute name="body" value="/WEB-INF/jsp/rejestracja.jsp" />
+    <put-attribute name="current" value="rejestracja" />
  </definition>
 
 

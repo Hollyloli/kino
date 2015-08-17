@@ -8,12 +8,24 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title><tiles:getAsString name="title" /></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-
-		<link href="<c:url value="/resources/scripts/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" />
-		<link href="<c:url value="/resources/scripts/bootstrap/css/bootstrap-responsive.min.css" />" rel="stylesheet" />
+ 
 		
+	
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+		
+		
+		
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		
+		
+		<!-- <link href="scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		 -->
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -44,16 +56,17 @@
     <link href="<c:url value="/resources/styles/custom.css" />" rel="stylesheet" type="text/css" />
 </head>
 
-<body id="pageBody">
-
+<body>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+<tilesx:useAttribute name="current"/>
 
 <div id="divBoxed" class="container">
 
     <div class="transparent-bg" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;zoom: 1;"></div>
 
     <div class="divPanel notop nobottom">
-            <div class="row-fluid">
-                <div class="span12">
+            <div class="row">
+              
 
                     <div id="divLogo" class="pull-left">
                         <a href="index.php" id="divSiteTitle">Dziennik</a><br />
@@ -61,6 +74,47 @@
                     </div>
 
                     <div id="divMenuRight" class="pull-right">
+                    
+	                    <nav class="navbar ">
+					        <div class="container-fluid">
+					          <div class="navbar-header">
+					            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					              <span class="sr-only">Toggle navigation</span>
+					            </button>
+					            
+					          </div>
+					          <div id="navbar" class="navbar-collapse collapse">
+					          
+					            <ul class="nav nav-pills ddmenu">
+					              <li class="${current=='index' ? 'active' : ''} "><a href='<spring2:url value="/" />'>Home</a></li>
+					             
+					              <li class="${current=='users' ? 'active' : ''}"><a href='<spring2:url value="/users.html" />'>Users</a></li>
+					             
+					      
+					             
+								 	 <li class="dropdown">
+						                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						                <ul class="dropdown-menu">
+						                  <li><a href="#">Action</a></li>
+						                  <li><a href="#">Another action</a></li>
+						                  <li><a href="#">Something else here</a></li>
+						                  <li role="separator" class="divider"></li>
+						                  <li class="dropdown-header">Nav header</li>
+						                  <li><a href="#">Separated link</a></li>
+						                  <li><a href="#">One more separated link</a></li>
+						                </ul>
+						              </li>
+									
+									<li><a href='<spring:url value="/rejestracja.html" />'>Rejestracja</a></li>
+									<li><a href="#">Wyloguj</a></li>
+					            </ul>
+					
+					          </div><!--/.nav-collapse -->
+					        </div><!--/.container-fluid -->
+					    </nav>
+                    
+                    
+                    <!--  
                     <div class="navbar">
                         <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
                             NAVIGATION <span class="icon-chevron-down icon-white"></span>
@@ -81,42 +135,7 @@
                                                 
 						                </ul>
 		                        	</li>
-                                    <li class="dropdown">
-    					                <a href="#" class="dropdown-toggle">Oceny uczniow &nbsp;&raquo;</a>
-						                <ul class="dropdown-menu sub-menu">
-								                <?php
-                                                
-                                                $result = mysql_query("SELECT nazwa FROM przedmioty");
-    						
-                                                while( $przedmioty = mysql_fetch_array($result) )
-                                                { 	
-                                                 //   echo $przedmioty['nazwa'];
-                                                ?>
-                                                <li><a href="Przedmiot.php?przedmiot=<?php echo $przedmioty['nazwa']?>"><?php echo $przedmioty['nazwa']?></a></li>
-                                                <?php
-                                                }
-                                                ?>
-                                            
-						                </ul>
-		                        	</li>
-                                           <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle">Obecności uczniow &nbsp;&raquo;</a>
-                                                <ul class="dropdown-menu sub-menu">
-								                <?php
-                                                
-                                                $result = mysql_query("SELECT nazwa FROM przedmioty");
-    						
-                                                while( $przedmioty = mysql_fetch_array($result) )
-                                                { 	
-                                                 //   echo $przedmioty['nazwa'];
-                                                ?>
-                                                <li><a href="Przedmiot.php?przedmiot=<?php echo $przedmioty['nazwa']?>"><?php echo $przedmioty['nazwa']?></a></li>
-                                                <?php
-                                                }
-                                                ?>
-                                            
-                                                </ul>
-                                            </li>     
+                                       
                                     <li><a href="full.html">Kontakt z opiekunem</a></li>
                                     <li><a href="full.html">kontakt z uczniem</a></li>
 		                        </ul>
@@ -149,32 +168,43 @@
                                          </ul>
                             </li>
 						    <li><a href="services.html">Kontakt</a></li>
-						    <li><a href="logowanie/logowanie.php" >Rejestracja</a></li>
+						    <li><a href='<spring:url value="/rejestracja.html" />' >Rejestracja</a></li>
                             <li><a href="logowanie/logowanie.php" >Logowanie</a></li>
                             <li><a href="EdycjaKonta.php" class="nav">Edycja konta</a></li>
                             <li><a href="logout.php" class="nav">Wyloguj</a></li>
                             </ul>
                             </div>
-                    </div>
+                    </div> -->
+                    
                     </div>
 
-                </div>
+                
             </div>
+           
             
-			 <tiles:insertAttribute name="slider"/>
+            
+            <c:if test="${current=='index'}">
+            	 <tiles:insertAttribute name="slider"/>
+            </c:if>
+			
     </div>
 
     <div class="contentArea">
 
         <div class="divPanel notop page-content">
             
+            <c:if test="${current!='index'}">
+            	<div class="breadcrumbs">
+                	<a href="index.php">Home</a> &nbsp;/&nbsp; <span>${current}</span>
+            	</div>
+            </c:if>
             <!-- dodac w dziedziczonych 
             <div class="breadcrumbs">
                 <a href="index.php">Home</a> &nbsp;/&nbsp; <span>Edycja konta</span>
             </div>
 			 -->
             
-            <div class="row-fluid">
+            <div class="row">
             
             	<tiles:insertAttribute name="body"/>
             </div>
@@ -187,9 +217,7 @@
 </div>
 <br /><br /><br />
 
-<script src="<c:url value="/resources/scripts/jquery.min.js" />" type="text/javascript"></script> 
-<script src="<c:url value="/resources/scripts/bootstrap/js/bootstrap.min.js" />" type="text/javascript"></script>
-<script src="<c:url value="/resources/scripts/default.js" />" type="text/javascript"></script>
+
 
 
 <script src="<c:url value="/resources/scripts/carousel/jquery.carouFredSel-6.2.0-packed.js" />" type="text/javascript"></script>
