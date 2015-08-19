@@ -26,5 +26,13 @@
  </definition>
 
 
+	  <definition name="edycjaKonta" extends="wspolne">
+   <put-attribute name="title" value="edycja konta" />
+   <put-attribute name="body" value="/WEB-INF/jsp/edycjaKonta.jsp" />
+    <put-attribute name="current" value="edycjaKonta" />
+ </definition>
+	
+
+
 </tiles-definitions>
 

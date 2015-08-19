@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Adresy {
@@ -61,6 +63,7 @@ public class Adresy {
 	
 	private String kodPocztowy;
 	
+	@Size(min=3, message="dupa blada")
 	private String miasto;
 	
 	@ManyToMany(mappedBy="adresy")

@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Uzytkownicy {
@@ -18,7 +22,9 @@ public class Uzytkownicy {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idUzytkownika;
 	
+	
 	private String imie;
+	
 	
 	private String nazwisko;
 
@@ -37,7 +43,7 @@ public class Uzytkownicy {
 	public void setAdresy(List<Adresy> adresy) {
 		this.adresy = adresy;
 	}
-
+	@NotEmpty(message="nie moze byc puste")
 	private String login;
 	
 	private String haslo;

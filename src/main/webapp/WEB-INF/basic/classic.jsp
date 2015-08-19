@@ -104,7 +104,7 @@
 						                  <li><a href="#">One more separated link</a></li>
 						                </ul>
 						              </li>
-									
+									<li><a href='<spring:url value="/edycjaKonta.html" />'>Edycja Konta</a></li>
 									<li><a href='<spring:url value="/rejestracja.html" />'>Rejestracja</a></li>
 									<li><a href="#">Wyloguj</a></li>
 					            </ul>
@@ -112,83 +112,12 @@
 					          </div><!--/.nav-collapse -->
 					        </div><!--/.container-fluid -->
 					    </nav>
-                    
-                    
-                    <!--  
-                    <div class="navbar">
-                        <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
-                            NAVIGATION <span class="icon-chevron-down icon-white"></span>
-                        </button>
-                        <div class="nav-collapse collapse">
-                            <ul class="nav nav-pills ddmenu">
-                            <li class="active"><a href="index.php">Home</a></li>
-                             
-							<li class="dropdown">
-		                        <a href="page.html" class="dropdown-toggle">Nauczyciel <b class="caret"></b></a>
-		                        <ul class="dropdown-menu">
-                                            <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle">Prowadzone zajecia &nbsp;&raquo;</a>
-                                            <ul class="dropdown-menu sub-menu">
-                                            
-                                                    
-                                                    <li><a href="prowadzoneZajecia.php?przedmiot=<?php echo $przedmioty['nazwa']?>"><?php echo $przedmioty['nazwa']?></a></li>
-                                                
-						                </ul>
-		                        	</li>
-                                       
-                                    <li><a href="full.html">Kontakt z opiekunem</a></li>
-                                    <li><a href="full.html">kontakt z uczniem</a></li>
-		                        </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle">Uczen <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="full.html">Obecnosci</a></li>
-                                    <li><a href="OcenyUczniow.php">Oceny</a></li>
-                                    <li><a href="3-column.html">Kontakt z nauczycielem</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-    	                        <a href="page.html" class="dropdown-toggle">Opiekun <b class="caret"></b></a>
-		                        <ul class="dropdown-menu">
-                                    <li><a href="full.html">Obecnosci ucznia</a></li>
-				                    <li><a href="2-column.html">Oceny ucznia</a></li>
-				                    <li><a href="3-column.html">Kontakt z nauczycielem</a></li>
-
-		                        </ul>
-                            </li>
-							<li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sekretariat <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#tab_d1" data-toggle="tab">Informacje o szkole</a></li>
-                                            <li><a href="#tab_d1" data-toggle="tab">Uczniowie</a></li>
-                                            <li><a href="#tab_d2" data-toggle="tab">Klasy</a></li>
-                                            <li><a href="#tab_d2" data-toggle="tab">Nauczyciele</a></li>
-                                            
-                                         </ul>
-                            </li>
-						    <li><a href="services.html">Kontakt</a></li>
-						    <li><a href='<spring:url value="/rejestracja.html" />' >Rejestracja</a></li>
-                            <li><a href="logowanie/logowanie.php" >Logowanie</a></li>
-                            <li><a href="EdycjaKonta.php" class="nav">Edycja konta</a></li>
-                            <li><a href="logout.php" class="nav">Wyloguj</a></li>
-                            </ul>
-                            </div>
-                    </div> -->
-                    
                     </div>
-
-                
             </div>
-           
-            
-            
             <c:if test="${current=='index'}">
             	 <tiles:insertAttribute name="slider"/>
             </c:if>
-			
     </div>
-
     <div class="contentArea">
 
         <div class="divPanel notop page-content">

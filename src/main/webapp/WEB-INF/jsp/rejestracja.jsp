@@ -8,136 +8,79 @@
 
     
       
-    <form:form commandName="uzytkownik" cssClass="form-horizontal registrationForm">
-    
-		<div class="form-group">
-			 <label for="login" class="col-sm-2 control-label" >Login</label>
-				 <div class="col-sm-10">
-	  			    <form:input path="login" cssClass="form-control" />
-	  			    <form:errors path="login"/>
-	 			 </div>
-		</div>
-		<div class="form-group">
-		 	<label for="imie" class="col-sm-2 control-label" >Imie</label>
-				 <div class="col-sm-10">
-	 			    <form:input path="imie" cssClass="form-control" />
-	 			    <form:errors path="imie" />
-				 </div>
-		</div>
-		<div class="form-group">
-		 	<label for="nazwisko" class="col-sm-2 control-label" >Nazwisko</label>
-			 	<div class="col-sm-10">
-  			    	<form:input path="nazwisko" cssClass="form-control" />
- 			 		<form:errors path="nazwisko" />
- 			 	</div>
-		</div>
-		<div class="form-group lol">
-		 	<label for="haslo" class="col-sm-2 control-label" >Hasło</label>
-			 	<div class="col-sm-2">
-  			    	<form:input name="book[0].title"  path="haslo" value="" cssClass="form-control" placeholder="Title"/>
- 			 	</div>
- 			 	<div class="col-sm-3">
-  			    	<input name="book[0].isbn" class="form-control" placeholder="ISBN"/>
- 			 	</div>
- 			 	<div class="col-sm-2">
-  			    	<input name="book[0].price" class="form-control" placeholder="Price"/>
- 			 	</div>
- 			 	<div class="col-sm-2">
-            		<button type="button" class="btn btn-default addButton">dupa</button>
-        		</div>
-		</div>
-		<div class="form-group hide" id="optionTemplate">
-			<label for="haslo" class="col-sm-2 control-label" >Hasło</label>
-	        
-	        <div class="col-sm-2">
-  			    	<form:input name="title" path="haslo" class="form-control" placeholder="Title" />
- 			 	</div>
- 			 	<div class="col-sm-3">
-  			    	<input name="isbn" class="form-control" />
- 			 	</div>
- 			 	<div class="col-sm-2">
-  			    	<input name="price" class="form-control" />
-		 	</div>
-	        
-	        <div class="col-sm-2">
-	            <button type="button" class="btn btn-default removeButton">dupa2</button>
-	        </div>
-	        
-	
-   		</div>
-		
-   		
-		<div class="form-group">
-			<div class="col-sm-2">
-				<input type="submit" value="Zarejestruj" class="btn btn-lg btn-primary" />
+    <form:form commandName="polaczone" cssClass="form-horizontal">
+    	
+    	<div class="form-group">
+		 <label for="login" class="col-sm-2 control-label">Login</label>
+			 <div class="col-sm-10">
+  			    <form:input path="uzytkownicy.login" cssClass="form-control" />
+  			    <form:errors path="uzytkownicy.login"/>
  			 </div>
 		</div>
-</form:form>
+		<div class="form-group">
+		 <label for="imie" class="col-sm-2 control-label">Imię</label>
+			 <div class="col-sm-10">
+  			    <form:input path="uzytkownicy.imie" cssClass="form-control" />
+  			    <form:errors path="uzytkownicy.imie"/>
+ 			 </div>
+		</div>
+		<div class="form-group">
+		 <label for="nazwisko" class="col-sm-2 control-label">Name</label>
+			 <div class="col-sm-10">
+  			    <form:input path="uzytkownicy.nazwisko" cssClass="form-control" />
+ 			 	<form:errors path="uzytkownicy.nazwisko"/>
+ 			 </div>
+		</div>
+		<div class="form-group">
+		 <label for="nazwisko" class="col-sm-2 control-label">Hasło</label>
+			 <div class="col-sm-10">
+  			    <form:input path="uzytkownicy.haslo" cssClass="form-control" />
+  			    <form:errors path="uzytkownicy.haslo"/>
+ 			 </div>
+		</div>
+		<div class="form-group">
+		 <label for="nazwisko" class="col-sm-2 control-label">Adres</label>
+			 <div class="col-sm-3">
+  			    <form:input path="adresy.miasto" cssClass="form-control" placeholder="Miasto" />
+  			    <form:errors path="adresy.miasto"/>
+ 			 </div>
+ 			 <div class="col-sm-3">
+  			    <form:input path="adresy.ulica" cssClass="form-control" placeholder="ulica"/>
+ 			 </div>
+ 			 <div class="col-sm-2">
+  			    <form:input path="adresy.numerMieszkania" cssClass="form-control" placeholder="nr mieszkania"/>
+ 			 </div>
+ 			 <div class="col-sm-2">
+  			    <form:input path="adresy.kodPocztowy" cssClass="form-control" placeholder="kod pocztowy"/>
+ 			 </div>
+ 			  			 
+		</div>
+		<div class="form-group">
+		 	<label for="nazwisko" class="col-sm-2 control-label">Dane kontaktowe</label>
+			 	<div class="col-sm-5">
+  			    	<form:input path="kontakty.email" cssClass="form-control" placeholder="adres email" />
+ 			 	</div>
+ 			 	<div class="col-sm-5">
+  			    	<form:input path="kontakty.telefon" cssClass="form-control" placeholder="numer telefonu"/>
+ 			 	</div>
+		</div>
+		<div class="form-group">
+		
+			 <div class="col-sm-2">
+				<input type="submit" value="Save" class="btn btn-lg btn-primary" />
+ 			 </div>
+	</div>
+		
+		
 
-<p>To jest paragraf.</p>
+	</form:form>
 
-
-
-
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
-	bookIndex = 0;
-	var rowNum = 0;
-	$(".registrationForm").validate(
-		{
-			rules: {
-				login: {
-					required : true,
-					minlength : 1 
-				},
-				imie: {
-					required : true,
-					minlength : 3 
-				},
-				nazwisko: {
-					required : true,
-					minlength : 3 
-				},
-				haslo: {
-					required : true,
-					minlength : 5 
-				}
-					
-			},
+	$(".registrationForm").validate( {
 
-		}
-	
-	)
-		$(".addButton").click(function() { 	
-    	//$('.lol').append('lol');
-
-	    bookIndex++;
-        var $template = $('#optionTemplate'),
-            $clone    = $template
-                            .clone()
-                            .removeClass('hide')
-                            .removeAttr('id')
-                            .attr('data-book-index', bookIndex)
-                            .insertBefore($template);
-
-        // Update the name attributes
-        $clone
-            .find('[name="title"]').attr('name', 'book[' + bookIndex + '].title').end()
-            .find('[name="isbn"]').attr('name', 'book[' + bookIndex + '].isbn').end()
-            .find('[name="price"]').attr('name', 'book[' + bookIndex + '].price').end();
-
-        // Add new fields
-        // Note that we also pass the validator rules for new field as the third parameter
-        $('.registrationForm')
-            .formValidation('addField', 'book[' + bookIndex + '].title', titleValidators)
-            .formValidation('addField', 'book[' + bookIndex + '].isbn', isbnValidators)
-            .formValidation('addField', 'book[' + bookIndex + '].price', priceValidators);
-	})
-	;
+		
+	});
 });
-
-
-
-
 
 </script>
