@@ -11,8 +11,13 @@
 	 <form:form commandName="polaczone" class="form-horizontal">
     	
 		 	<label for="labelImie"><strong>Imie:</strong></label>
-            ${uzytkownik.imie}
-            <br>
+            
+            
+            <!-- <div class="col-sm-2">
+  			    <form:input path="adresy[0].miasto" cssClass="form-control" />
+ 			 </div>  -->
+            
+            ${uzytkownik.imie}<br>
             <label for="labelImie"><strong>Nazwisko:</strong></label>
             ${uzytkownik.nazwisko}
             <br>
@@ -20,10 +25,11 @@
             ${uzytkownik.dataUrodzenia}
            	<br>
            	<label for="labelImie"><strong>Zmiana hasla:</strong></label>
+           	
              <br>
                 
             <label for="labelImie"><strong>Adresy:</strong></label>    
-            <c:forEach items="${uzytkownik.adresy}" var="adres">
+           
           		<!-- <label for="labelImie"><strong>Miasto</strong></label>
             	${adres.miasto}<br>
             	<label for="labelImie"><strong>Ulica</strong></label>
@@ -32,30 +38,35 @@
             	${adres.numerMieszkania}<br>
             	<label for="labelImie"><strong>KodPocztowy</strong></label>
             	${adres.kodPocztowy}<br>  -->
-            	<div class="form-group">
+            	
+            	 <div class="form-group">
 					 <label for="adres" class="col-sm-2 control-label">Adres</label>
 						 <div class="col-sm-3">
-			  			    <form:input path="adresy.miasto" cssClass="form-control" value="${adres.miasto}" />
+			  			    <form:input path="adresy[0].miasto" cssClass="form-control" value="${adres.miasto}" />
+			  			    <form:errors path="adresy[0].miasto" />
 			 			 </div>
 			 			 <div class="col-sm-3">
-			  			    <form:input path="adresy.ulica" cssClass="form-control" value="${adres.ulica}"/>
+			  			    <form:input path="adresy[0].ulica" cssClass="form-control" value="${adres.ulica}"/>
 			 			 </div>
 			 			 <div class="col-sm-2">
-			  			    <form:input path="adresy.numerMieszkania" cssClass="form-control" value="${adres.numerMieszkania}"/>
+			  			    <form:input path="adresy[0].numerMieszkania" cssClass="form-control" value="${adres.numerMieszkania}"/>
 			 			 </div>
 			 			 <div class="col-sm-2">
-			  			    <form:input path="adresy.uzytkownicy[0].imie" cssClass="form-control" value="${adres.kodPocztowy}"/>
+			  			    <form:input path="adresy[0].kodPocztowy" cssClass="form-control" value="${adres.kodPocztowy}"/>
 			 			 </div>
 				</div>
-            </c:forEach>
-
+				
+				
+				
+				
+				
 			<label for="labelImie"><strong>Kontakty:</strong></label>    
-            <c:forEach items="${uzytkownik.kontakty}" var="kontakt">
+            <c:forEach items="${uzytkownicy.kontakty}" var="kontakt">
          <!--  		<label for="labelImie"><strong>Email:</strong></label>
             	${kontakt.email}<br>
             	<label for="labelImie"><strong>Telefon:</strong></label>
             	${kontakt.telefon}<br>  -->
-        	 	<div class="form-group">
+        	 <!-- 	<div class="form-group">
 				 	<label for="nazwisko" class="col-sm-2 control-label">Dane kontaktowe</label>
 					 	<div class="col-sm-5">
 		  			    	<input class="form-control" placeholder="${kontakt.email}" />
@@ -63,7 +74,7 @@
 		 			 	<div class="col-sm-5">
 		  			    	<input class="form-control" placeholder="${kontakt.telefon}"/>
 		 			 	</div>
-				</div>
+				</div> -->
             	
             </c:forEach>      
             

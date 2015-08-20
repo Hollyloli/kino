@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -43,7 +44,6 @@ public class Uzytkownicy {
 	public void setAdresy(List<Adresy> adresy) {
 		this.adresy = adresy;
 	}
-	@NotEmpty(message="nie moze byc puste")
 	private String login;
 	
 	private String haslo;
@@ -60,6 +60,7 @@ public class Uzytkownicy {
 
 	@ManyToMany
 	@JoinTable
+	@Valid
 	private List<Adresy> adresy;
 	
 	public List<Role> getRole() {

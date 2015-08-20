@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Adresy {
 	
@@ -61,6 +63,7 @@ public class Adresy {
 	
 	private String numerMieszkania;
 	
+	@NotEmpty(message="nie moze byc puste")
 	private String kodPocztowy;
 	
 	@Size(min=3, message="dupa blada")
