@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	
+	<http use-expressions="true">
+		<intercept-url pattern="/edycjaKonta**" access="hasRole('ROLE_NAUCZYCIEL')" />
+		<form-login />  
+		<logout />
+	</http>
+	
+	<authentication-manager>
+	
+		<authentication-provider>
+	
+	
+	  		<user-service>
+				<user name="admin" password="admin" authorities="ROLE_UCZEN, ROLE_NAUCZYCIEL" />
+			</user-service> 
+<!-- 			<jdbc-user-service data-source-ref="DataSource"
+				authorities-by-username-query="select uzytkownicy.name, role.name from uzytkownicy 
+				join uzytkownicy_role on uzytkownicy.id=uzytkownicy_role.users_id 
+				join role on uzytkownicy_role.roles_id=role.id where uzytkownicy.name = ?"
+				users-by-username-query="select name, password,enabled from uzytkownicy where name = ?"/>  -->
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

@@ -18,12 +18,16 @@ import org.springframework.stereotype.Service;
 
 
 
+
+
 import com.rafbur.entity.Adresy;
+import com.rafbur.entity.Kontakty;
 import com.rafbur.entity.Oceny;
 import com.rafbur.entity.Role;
 import com.rafbur.entity.Uczniowie;
 import com.rafbur.entity.Uzytkownicy;
 import com.rafbur.repository.AdresyRepository;
+import com.rafbur.repository.KontaktyRepository;
 import com.rafbur.repository.OcenyRepository;
 import com.rafbur.repository.RoleRepository;
 import com.rafbur.repository.UczniowieRepository;
@@ -39,7 +43,8 @@ public class InitDbService {
 	@Autowired
 	private UzytkownicyRepository uzytkownicyRepository;	
 	
-	
+	@Autowired
+	private KontaktyRepository KontaktyRepository;
 	
 	@Autowired
 	private AdresyRepository adresyRepository;
@@ -62,7 +67,9 @@ public class InitDbService {
 		
 		Uzytkownicy uzytkwonikUczen = new Uzytkownicy();
 		uzytkwonikUczen.setImie("Rafal");
-		uzytkwonikUczen.setLogin("erafbur");
+		uzytkwonikUczen.setNazwisko("Be");
+		uzytkwonikUczen.setLogin("admin");
+		uzytkwonikUczen.setHaslo("admin");
 		List<Role> role = new ArrayList<Role>();
 		role.add(roleUser);
 		role.add(roleUser2);
@@ -84,10 +91,21 @@ public class InitDbService {
 		adres2.setNumerMieszkania("17");
 		adresyRepository.save(adres2);
 		
+		
+		Kontakty kontakt1 = new Kontakty();
+		kontakt1.setEmail("lol@lol.pl");
+		kontakt1.setTelefon("510389421");
+		KontaktyRepository.save(kontakt1);
+		
+		
 		List<Adresy> adresy= new ArrayList<Adresy>();
 		adresy.add(adres1);
 		adresy.add(adres2);
 		uzytkwonikUczen.setAdresy(adresy);
+		
+		List<Kontakty> kontakty = new ArrayList<Kontakty>();
+		kontakty.add(kontakt1);
+		uzytkwonikUczen.setKontakty(kontakty);
 		
 		uzytkownicyRepository.save(uzytkwonikUczen);
 		
@@ -102,8 +120,6 @@ public class InitDbService {
 		ocenyUzytkow.add(ocena1);
 		
 		uczniowieRepository.save(uczen);
-		
-		
 	}
 	
 }
