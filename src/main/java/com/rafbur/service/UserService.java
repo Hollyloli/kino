@@ -77,25 +77,17 @@ public class UserService {
 //		adresyRepository.saveAndFlush(polaczeone.getAdresy());
 //	}
 
-	public void aktualizuj(Polaczone polaczeone, String login) {
-		String[] miasta = polaczeone.getAdresy().getMiasto().split(",");
-		String[] ulica = polaczeone.getAdresy().getUlica().split(",");
-		String[] numerMieszkania = polaczeone.getAdresy().getNumerMieszkania().split(",");
-		String[] kodPocztowy = polaczeone.getAdresy().getKodPocztowy().split(",");
-		
-		
+	public void aktualizuj(Uzytkownicy uzytkownikDane, String login) {
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
-		
 		List<Adresy> adresy = adresyRepository.findByUzytkownicy(uzytkownik);
-		for(int i = 0; i<miasta.length; i++)
+		for(int i = 0; i<uzytkownikDane.getAdresy().size(); i++)
 		{
-			adresy.get(i).setMiasto(miasta[i]);
-			adresy.get(i).setUlica(ulica[i]);
-			adresy.get(i).setNumerMieszkania(numerMieszkania[i]);
-			adresy.get(i).setKodPocztowy(kodPocztowy[i]);
+			adresy.get(i).setMiasto(uzytkownikDane.getAdresy().get(i).getMiasto());
+//			adresy.get(i).setUlica(ulica[i]);
+//			adresy.get(i).setNumerMieszkania(numerMieszkania[i]);
+//			adresy.get(i).setKodPocztowy(kodPocztowy[i]);
 			adresyRepository.saveAndFlush(adresy.get(i));
 		}
-		
 	}
 
 //	
