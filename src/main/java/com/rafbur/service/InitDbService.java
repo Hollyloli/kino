@@ -20,15 +20,27 @@ import org.springframework.stereotype.Service;
 
 
 
+
+
+
+
+
+
 import com.rafbur.entity.Adresy;
+import com.rafbur.entity.Klasa;
 import com.rafbur.entity.Kontakty;
+import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Oceny;
+import com.rafbur.entity.Przedmioty;
 import com.rafbur.entity.Role;
 import com.rafbur.entity.Uczniowie;
 import com.rafbur.entity.Uzytkownicy;
 import com.rafbur.repository.AdresyRepository;
+import com.rafbur.repository.KlasaRepository;
 import com.rafbur.repository.KontaktyRepository;
+import com.rafbur.repository.NauczycieleRepository;
 import com.rafbur.repository.OcenyRepository;
+import com.rafbur.repository.PrzedmiotyRepository;
 import com.rafbur.repository.RoleRepository;
 import com.rafbur.repository.UczniowieRepository;
 import com.rafbur.repository.UzytkownicyRepository;
@@ -54,6 +66,15 @@ public class InitDbService {
 	
 	@Autowired
 	private OcenyRepository ocenyRepository; 
+	
+	@Autowired
+	private PrzedmiotyRepository przedmiotyRepository;
+	
+	@Autowired
+	private KlasaRepository klasaRepository;
+	
+	@Autowired
+	private NauczycieleRepository nauczycieleRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -109,17 +130,119 @@ public class InitDbService {
 		
 		uzytkownicyRepository.save(uzytkwonikUczen);
 		
-		Oceny ocena1 = new Oceny();
-		ocena1.setOcena(5);
-		ocenyRepository.save(ocena1);
+		
+		
+		
+		
+		Uzytkownicy uzytkwonikNauczyciel = new Uzytkownicy();
+		uzytkwonikNauczyciel.setImie("Ann");
+		uzytkwonikNauczyciel.setNazwisko("Kon");
+		uzytkwonikNauczyciel.setLogin("Akon");
+		uzytkwonikNauczyciel.setHaslo("1234");
+		List<Role> role2 = new ArrayList<Role>();
+		role.add(roleUser2);
+		uzytkwonikNauczyciel.setRole(role2);
+		uzytkownicyRepository.save(uzytkwonikNauczyciel);
+		
+		
+		Oceny ocena = new Oceny();
+		ocena.setOcena(3);
+		ocena.setWagaOceny(1);
+		ocena.setRokNauki(1);
+		ocena.setSemestr(1);
+		ocena.setTyp("czastkowa");
+		ocenyRepository.save(ocena);
+		
+		Oceny ocena2 = new Oceny();
+		ocena2.setOcena(2);
+		ocena2.setWagaOceny(2);
+		ocena2.setRokNauki(1);
+		ocena2.setSemestr(1);
+		ocena2.setTyp("ukonczono");
+		ocenyRepository.save(ocena2);
+		
+		Oceny ocena3 = new Oceny();
+		ocena3.setOcena(4);
+		ocena3.setWagaOceny(3);
+		ocena3.setRokNauki(1);
+		ocena3.setSemestr(1);
+		ocena3.setTyp("czastkowa");
+		ocenyRepository.save(ocena3);
+		
+		Oceny ocena5 = new Oceny();
+		ocena5.setOcena(3);
+		ocena5.setWagaOceny(1);
+		ocena5.setRokNauki(1);
+		ocena5.setSemestr(2);
+		ocena5.setTyp("czastkowa");
+		ocenyRepository.save(ocena5);
+		
+		Oceny ocena4 = new Oceny();
+		ocena4.setOcena(6);
+		ocena4.setWagaOceny(1);
+		ocena4.setRokNauki(1);
+		ocena4.setSemestr(1);
+		ocena4.setTyp("ukonczono");
+		ocenyRepository.save(ocena4);
+		
+		List<Oceny> oceny = new ArrayList<Oceny>();
+		oceny.add(ocena);
+		oceny.add(ocena2);
+		oceny.add(ocena3);
+		oceny.add(ocena5);
+		
+		List<Oceny> oceny2 = new ArrayList<Oceny>();
+		oceny2.add(ocena4);
+		
+		List<Oceny> wszystkieOceny = new ArrayList<Oceny>();
+		wszystkieOceny.addAll(oceny);
+		wszystkieOceny.addAll(oceny2);
+		Przedmioty przedmiot = new Przedmioty();
+		przedmiot.setNazwa("polski");
+		przedmiot.setOceny(wszystkieOceny);
+		List<Przedmioty> przedmioty = new ArrayList<Przedmioty>();
+		przedmioty.add(przedmiot);
+		przedmiotyRepository.save(przedmiot);
+		
+		
+		Klasa pierwszaKlasa = new Klasa();
+		pierwszaKlasa.setRok(1);
+		pierwszaKlasa.setSymbol("A");
+		List<Klasa> klasy = new ArrayList<Klasa>();
+		klasy.add(pierwszaKlasa);
+		klasaRepository.save(pierwszaKlasa);
+		
+		Klasa pierwszaKlasa2 = new Klasa();
+		pierwszaKlasa2.setRok(2);
+		pierwszaKlasa2.setSymbol("B");
+		klasy.add(pierwszaKlasa2);
+		klasaRepository.save(pierwszaKlasa2);
 		
 		
 		Uczniowie uczen = new Uczniowie();
-		uczen.setLogin("erafbur");
-		List<Oceny> ocenyUzytkow = new ArrayList<Oceny>();
-		ocenyUzytkow.add(ocena1);
-		
+		uczen.setLogin(uzytkwonikUczen.getLogin());
+		uczen.setImie(uzytkwonikUczen.getImie());
+		uczen.setNazwisko(uzytkwonikUczen.getNazwisko());
+		uczen.setPrzedmioty(przedmioty);
+		uczen.setKlasa(pierwszaKlasa);
+		uczen.setOceny(oceny);
 		uczniowieRepository.save(uczen);
+		
+		Uczniowie uczen2 = new Uczniowie();
+		uczen2.setLogin("erafbur'");
+		uczen2.setImie("Raf");
+		uczen2.setNazwisko("Burnej");
+		uczen2.setPrzedmioty(przedmioty);
+		uczen2.setKlasa(pierwszaKlasa);
+		uczen2.setOceny(oceny2);
+		uczniowieRepository.save(uczen2);
+		
+		Nauczyciele nauczyciel = new Nauczyciele();
+		nauczyciel.setLogin(uzytkwonikUczen.getLogin());
+		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
+		nauczyciel.setKlasaNauczyciel(klasy);
+		nauczycieleRepository.save(nauczyciel);
+		
 	}
 	
 }

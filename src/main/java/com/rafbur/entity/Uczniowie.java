@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /*musze rozpoznawac po typie roli jestli typ roli jest ROLE_UCZEN to wspisuje login to tabeli 
  *  uczen jesli jest ROLE_nauczyciel wpisuje do tabeli nauczycielale
@@ -23,7 +25,35 @@ public class Uczniowie {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idUcznia;
 	
+	public String getImie() {
+		return imie;
+	}
+
+	public void setImie(String imie) {
+		this.imie = imie;
+	}
+
+	public String getNazwisko() {
+		return nazwisko;
+	}
+
+	public void setNazwisko(String nazwisko) {
+		this.nazwisko = nazwisko;
+	}
+
 	private String login;
+	
+	public List<Oceny> getOceny() {
+		return oceny;
+	}
+
+	public void setOceny(List<Oceny> oceny) {
+		this.oceny = oceny;
+	}
+
+	private String imie;
+	
+	private String nazwisko;
 	
 	@ManyToMany
 	@JoinTable
@@ -37,6 +67,18 @@ public class Uczniowie {
 	@JoinTable
 	private List<Przedmioty> przedmioty;
 	
+	@ManyToOne
+	@JoinColumn(name="klasa_id")
+	private Klasa klasa;
+	
+
+	public Klasa getKlasa() {
+		return klasa;
+	}
+
+	public void setKlasa(Klasa klasa) {
+		this.klasa = klasa;
+	}
 
 	public List<Opiekunowie> getOpiekunowie() {
 		return opiekunowie;
@@ -44,14 +86,6 @@ public class Uczniowie {
 
 	public void setOpiekunowie(List<Opiekunowie> opiekunowie) {
 		this.opiekunowie = opiekunowie;
-	}
-
-	public List<Oceny> getOceny() {
-		return oceny;
-	}
-
-	public void setOceny(List<Oceny> oceny) {
-		this.oceny = oceny;
 	}
 
 	public List<Przedmioty> getPrzedmioty() {

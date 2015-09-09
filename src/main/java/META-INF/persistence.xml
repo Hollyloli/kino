@@ -9,5 +9,7 @@
 		<class>com.rafbur.entity.Uzytkownicy</class>
 		<class>com.rafbur.entity.Przedmioty</class>
 		<class>com.rafbur.entity.Oceny</class>
+		<class>com.rafbur.entity.Klasa</class>
+		<class>com.rafbur.entity.Nauczyciele</class>
 	</persistence-unit>
 </persistence>

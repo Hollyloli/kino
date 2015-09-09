@@ -8,8 +8,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title><tiles:getAsString name="title" /></title>
- 
-		
 	
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		
@@ -19,11 +17,7 @@
 	
 		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 		
-		
-		
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		
-		
 		<!-- <link href="scripts/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 		 -->
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -66,7 +60,7 @@
 
     <div class="divPanel notop nobottom">
             <div class="row">
-              
+              		
 
                     <div id="divLogo" class="pull-left">
                         <a href="index.php" id="divSiteTitle">Dziennik</a><br />
@@ -86,22 +80,23 @@
 					          <div id="navbar" class="navbar-collapse collapse">
 					          
 					            <ul class="nav nav-pills ddmenu">
-					              <li class="${current=='index' ? 'active' : ''} "><a href='<spring2:url value="/" />'>Home</a></li>
+					              <li class="${current=='index' ? 'active' : ''} "><a href='<spring:url value="/" />'>Home</a></li>
 					             
-					              <li class="${current=='users' ? 'active' : ''}"><a href='<spring2:url value="/users.html" />'>Users</a></li>
+					              <li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Users</a></li>
 					             
 					      
 					             
 							 	 <li class="dropdown">
-					                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+					                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nauczyciel<span class="caret"></span></a>
 					                <ul class="dropdown-menu">
-					                  <li><a href="#">Action</a></li>
+					                  <li><a href="#">Prowadzone zajęcia</a></li>
 					                  <li><a href="#">Another action</a></li>
 					                  <li><a href="#">Something else here</a></li>
 					                  <li role="separator" class="divider"></li>
-					                  <li class="dropdown-header">Nav header</li>
-					                  <li><a href="#">Separated link</a></li>
-					                  <li><a href="#">One more separated link</a></li>
+					                  <li class="dropdown-header">Prowadzone zajecia</li>
+					                  <c:forEach items="${nauczyciel.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
+            							<li class="${current=='index' ? 'active' : ''}"><a href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
+           							 </c:forEach>
 					                </ul>
 					              </li>
 									<li><a href='<spring:url value="/edycjaKonta.html" />'>Edycja Konta</a></li>
@@ -127,6 +122,9 @@
                 	<a href="index.php">Home</a> &nbsp;/&nbsp; <span>${current}</span>
             	</div>
             </c:if>
+            <c:forEach items="${nauczyciel.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
+            	${przedmiot.nazwa}
+            </c:forEach>
             <!-- dodac w dziedziczonych 
             <div class="breadcrumbs">
                 <a href="index.php">Home</a> &nbsp;/&nbsp; <span>Edycja konta</span>

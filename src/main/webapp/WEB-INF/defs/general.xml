@@ -33,6 +33,24 @@
  </definition>
 	
 
+	  <definition name="wpisywanieOcen" extends="wspolne">
+   <put-attribute name="title" value="wpisywanie ocen" />
+   <put-attribute name="body" value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot.jsp" />
+   <put-attribute name="current" value="edycjaKonta" />
+ </definition>
+ 
+ <definition name="wpisywanieOcen2" extends="wspolne">
+   <put-attribute name="title" value="wpisywanie ocen" />
+   <put-attribute name="body" value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot2.jsp" />
+   <put-attribute name="current" value="edycjaKonta" />
+ </definition>
+
+ <definition name="wpisywanieOcen3" extends="wspolne">
+   <put-attribute name="title" value="wpisywanie ocen" />
+   <put-attribute name="body" value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot3.jsp" />
+   <put-attribute name="current" value="edycjaKonta" />
+ </definition>
+
 
 </tiles-definitions>
 

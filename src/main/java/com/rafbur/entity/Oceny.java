@@ -23,6 +23,16 @@ public class Oceny {
 	
 	private Integer semestr;
 	
+	private String typ;
+	
+	public String getTyp() {
+		return typ;
+	}
+
+	public void setTyp(String typ) {
+		this.typ = typ;
+	}
+
 	@ManyToMany(mappedBy="oceny")
 	private List<Uczniowie> uczniowie;
 
@@ -32,6 +42,17 @@ public class Oceny {
 
 	public void setUczniowie(List<Uczniowie> uczniowie) {
 		this.uczniowie = uczniowie;
+	}
+
+	@ManyToMany(mappedBy="oceny")
+	private List<Przedmioty> przedmioty;
+
+	public List<Przedmioty> getPrzedmioty() {
+		return przedmioty;
+	}
+
+	public void setPrzedmioty(List<Przedmioty> przedmioty) {
+		this.przedmioty = przedmioty;
 	}
 
 	public Integer getIdOceny() {

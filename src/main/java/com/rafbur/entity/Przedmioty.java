@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -19,8 +20,34 @@ public class Przedmioty {
 	
 	@ManyToMany(mappedBy="przedmioty")
 	private List<Uczniowie> uczniowie;
-
 	
+	@ManyToMany(mappedBy="przedmiotyNauczycieli")
+	private List<Nauczyciele> nauczyciele;
+	
+	@ManyToMany
+	@JoinTable
+	private List<Oceny> oceny;
+	
+	public List<Oceny> getOceny() {
+		return oceny;
+	}
+
+
+	public void setOceny(List<Oceny> oceny) {
+		this.oceny = oceny;
+	}
+
+
+	public List<Nauczyciele> getNauczyciele() {
+		return nauczyciele;
+	}
+
+
+	public void setNauczyciele(List<Nauczyciele> nauczyciele) {
+		this.nauczyciele = nauczyciele;
+	}
+
+
 	public List<Uczniowie> getUczniowie() {
 		return uczniowie;
 	}

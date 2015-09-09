@@ -1,7 +1,6 @@
 package com.rafbur.contoler;
 
 import java.security.Principal;
-import java.sql.Blob;
 
 import javax.validation.Valid;
 
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.rafbur.entity.Adresy;
 import com.rafbur.entity.Uzytkownicy;
-import com.rafbur.repository.KontaktyRepository;
 import com.rafbur.service.AdresService;
 import com.rafbur.service.KontaktyService;
 import com.rafbur.service.UserService;

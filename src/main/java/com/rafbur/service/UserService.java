@@ -12,9 +12,11 @@ import javax.transaction.Transactional;
 import com.rafbur.contoler.Polaczone;
 import com.rafbur.entity.Adresy;
 import com.rafbur.entity.Kontakty;
+import com.rafbur.entity.Role;
 import com.rafbur.entity.Uzytkownicy;
 import com.rafbur.repository.AdresyRepository;
 import com.rafbur.repository.KontaktyRepository;
+import com.rafbur.repository.RoleRepository;
 import com.rafbur.repository.UzytkownicyRepository;
 
 @Service
@@ -29,6 +31,9 @@ public class UserService {
 	
 	@Autowired
 	private KontaktyRepository kontaktyRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	
 	public void save(Polaczone polaczeone) {
@@ -90,6 +95,15 @@ public class UserService {
 		}
 	}
 
+	public List<Role> znajdzTypRoliUzytkownika(String login) {
+		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
+		List<Role> role = roleRepository.findByUzytkownicy(uzytkownik);
+		
+		return role;
+	}
+
+
+	
 //	
 //	public User findOne(int id) {
 //		return userRepository.findOne(id);
