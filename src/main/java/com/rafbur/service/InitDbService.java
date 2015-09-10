@@ -146,19 +146,18 @@ public class InitDbService {
 		
 		
 		Oceny ocena = new Oceny();
-		ocena.setOcena(3);
+		ocena.setOcena(4);
 		ocena.setWagaOceny(1);
 		ocena.setRokNauki(1);
-		ocena.setSemestr(1);
-		ocena.setTyp("czastkowa");
+		ocena.setSemestr(2);
+		ocena.setTyp("koncowa");
 		ocenyRepository.save(ocena);
 		
 		Oceny ocena2 = new Oceny();
 		ocena2.setOcena(2);
-		ocena2.setWagaOceny(2);
 		ocena2.setRokNauki(1);
 		ocena2.setSemestr(1);
-		ocena2.setTyp("ukonczono");
+		ocena2.setTyp("semestralna");
 		ocenyRepository.save(ocena2);
 		
 		Oceny ocena3 = new Oceny();
@@ -179,11 +178,17 @@ public class InitDbService {
 		
 		Oceny ocena4 = new Oceny();
 		ocena4.setOcena(6);
-		ocena4.setWagaOceny(1);
 		ocena4.setRokNauki(1);
-		ocena4.setSemestr(1);
-		ocena4.setTyp("ukonczono");
+		ocena4.setSemestr(2);
+		ocena4.setTyp("semestralna");
 		ocenyRepository.save(ocena4);
+		
+		Oceny ocena6 = new Oceny();
+		ocena6.setOcena(6);
+		ocena6.setRokNauki(1);
+		ocena6.setSemestr(2);
+		ocena6.setTyp("koncowa");
+		ocenyRepository.save(ocena6);
 		
 		List<Oceny> oceny = new ArrayList<Oceny>();
 		oceny.add(ocena);
@@ -191,8 +196,10 @@ public class InitDbService {
 		oceny.add(ocena3);
 		oceny.add(ocena5);
 		
+		
 		List<Oceny> oceny2 = new ArrayList<Oceny>();
 		oceny2.add(ocena4);
+		oceny2.add(ocena6);
 		
 		List<Oceny> wszystkieOceny = new ArrayList<Oceny>();
 		wszystkieOceny.addAll(oceny);

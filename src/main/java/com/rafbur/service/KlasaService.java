@@ -3,6 +3,7 @@ package com.rafbur.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class KlasaService {
 		List<Uczniowie> uczniowie2 = uczniowieRepository.findByKlasa(klasa2);
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		for(int i=0; i<uczniowie2.size(); i++) {
-			List<Oceny> oceny2 = ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(przedmiot, uczniowie2.get(i),klasa.getRok(), semestr,"czastkowa");
+			List<Oceny> oceny2 = ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestr(przedmiot, uczniowie2.get(i),klasa.getRok(), semestr);
 			System.out.println("wypisuje rozmiar listy ocen " + oceny2.size());
 			uczniowie2.get(i).setOceny(oceny2);
 		}
@@ -68,6 +69,19 @@ public class KlasaService {
 		klasa.setUczniowie(uczniowie);
 		
 		return klasa;
+	}
+	public boolean czyWszyscyMajaOcKoncowa(String nazwaPrzedmiotu, Integer rok, String symbol,String typOceny) {
+		Klasa klasa = klasaRepository.findByRokAndSymbol(rok,symbol);
+		List<Uczniowie> uczniowie = uczniowieRepository.findByKlasa(klasa);
+		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
+		boolean  czyWszyscyMajaOcenyKoncowe = true;
+		for (Uczniowie uczen : uczniowie) {
+			Oceny ocenaKoncowa = ocenyRepository.findByUczniowieAndPrzedmiotyAndRokNaukiAndTyp(uczen,przedmiot,rok,typOceny);
+			if(ocenaKoncowa==null) { //czyli ktos nie ma oceny
+				czyWszyscyMajaOcenyKoncowe = false;
+			}
+		}
+		return czyWszyscyMajaOcenyKoncowe;
 	}
 
 	

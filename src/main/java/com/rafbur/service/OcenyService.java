@@ -81,7 +81,7 @@ public class OcenyService {
 		return czyWszyscyMajaOceneSemestralna;
 	}
 
-	public void zaaktualizujOCene(Uczniowie uczen, Oceny ocena,String nazwaPrzedmiotu) {
+	public void zaaktualizujOCene(Oceny ocena) {
 		Oceny ocenaZBazy = ocenyRepository.findOne(ocena.getIdOceny());
 		
 		ocenaZBazy.setOcena(ocena.getOcena());
@@ -89,6 +89,68 @@ public class OcenyService {
 		
 		ocenyRepository.saveAndFlush(ocenaZBazy);
 		
+		
+	}
+
+	public void usunOcene(Integer idOceny,Uczniowie uczen, String nazwaPrzedmiotu) {
+		Uczniowie uczenBaza = uczniowieRepository.findByImieAndNazwisko(uczen.getImie(), uczen.getNazwisko());
+		
+		System.out.println("wypisuje rok i semest " + uczen.getOceny().get(0).getRokNauki()+" " + uczen.getOceny().get(0).getSemestr());
+		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
+		List<Oceny> ocenyZPrzedmiotu = ocenyRepository.findByPrzedmioty(przedmiot);
+		for(int i = 0; i<ocenyZPrzedmiotu.size(); i++) {
+			if(ocenyZPrzedmiotu.get(i).getIdOceny().equals(idOceny)) {
+				ocenyZPrzedmiotu.remove(i);
+			}
+		}
+		przedmiot.setOceny(ocenyZPrzedmiotu);
+		przedmiotyRepository.saveAndFlush(przedmiot);
+		List<Oceny> ocenyUczniow = ocenyRepository.findByUczniowieAndRokNaukiAndSemestr(uczenBaza, 1, 1);
+		System.out.println("wypisuje rozmiar ocen uczniow " + ocenyUczniow.size());
+		for(int i = 0; i<ocenyUczniow.size(); i++) {
+			
+			if(ocenyUczniow.get(i).getIdOceny().equals(idOceny)) {
+				System.out.println("wypisuje id usuwanej oceny " + idOceny);
+				ocenyUczniow.remove(i);
+			}
+		}
+		uczenBaza.setOceny(ocenyUczniow);
+		uczniowieRepository.saveAndFlush(uczenBaza);
+		ocenyRepository.delete(idOceny);
+		
+	}
+
+	public Uczniowie wystawOceneKoncowa(Uczniowie uczen, Oceny ocena,String nazwaPrzedmiotu) {
+		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
+		System.out.println("wypisuje semestr i rok " + uczen.getOceny().get(0).getRokNauki() + " " + uczen.getOceny().get(0).getSemestr());
+
+		Uczniowie uczenBaza = uczniowieRepository.findOne(uczen.getIdUcznia());
+		
+		Oceny ocenaKoncowa = new Oceny();
+		
+		ocenaKoncowa.setOcena(ocena.getOcena());
+		ocenaKoncowa.setRokNauki(uczen.getOceny().get(0).getRokNauki());
+		ocenaKoncowa.setSemestr(uczen.getOceny().get(0).getSemestr());
+		ocenaKoncowa.setTyp("koncowa");
+		ocenyRepository.save(ocenaKoncowa);
+
+		List<Oceny> ocenyUcznia = ocenyRepository.findByUczniowie(uczenBaza);
+		List<Oceny> ocenyZprzedmiotow = ocenyRepository.findByPrzedmioty(przedmiot);
+		System.out.println("wypisuje ilosc ocen  " + ocenyUcznia.size());
+		
+		ocenyUcznia.add(ocenaKoncowa);
+		uczenBaza.setOceny(ocenyUcznia);
+		
+		uczniowieRepository.saveAndFlush(uczenBaza);
+		
+		
+		ocenyZprzedmiotow.add(ocenaKoncowa);
+		przedmiot.setOceny(ocenyZprzedmiotow);	
+		
+		przedmiotyRepository.saveAndFlush(przedmiot);
+		
+		uczen.getOceny().add(ocenaKoncowa);
+		return uczen;
 		
 	}
 	
