@@ -49,15 +49,15 @@ public class EdycjaKontaControler {
 	}
 	
 	@RequestMapping(value="/edycjaKonta", method=RequestMethod.POST)
-	public String rejestrowanie(@Valid @ModelAttribute("polaczone") Uzytkownicy polaczeone, BindingResult result, Model model,Principal principal)
+	public String rejestrowanie(@Valid @ModelAttribute("polaczone") Uzytkownicy uzytkownik, BindingResult result, Model model,Principal principal)
 	{
 		if(result.hasErrors()) {
 			System.out.println("wypisuje error" + result.getFieldError("adresy[0].miasto"));
 			model.addAttribute("uzytkownik",userService.znajdUzytkownika(principal.getName()));
 			return "edycjaKonta";
 		}
-		System.out.println(" wypisuje adres " +polaczeone.getAdresy().get(0).getMiasto());
-		userService.aktualizuj(polaczeone,principal.getName());
+		System.out.println(" wypisuje adres " +uzytkownik.getAdresy().get(0).getMiasto());
+		userService.aktualizuj(uzytkownik,principal.getName());
 		return "redirect:/edycjaKonta.html?success=true";
 	}
 	

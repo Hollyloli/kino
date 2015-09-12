@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -64,61 +65,55 @@ public class UserService {
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findOne(idUzytkownika);
 		List<Adresy> adresy = adresyRepository.findByUzytkownicy(uzytkownik);
 		uzytkownik.setAdresy(adresy);
-		
 		List<Kontakty> kontakty = kontaktyRepository.findByUzytkownicy(uzytkownik);
-		
-		//update danych
-//		kontakty.get(0).setTelefon("1234");
-//		kontaktyRepository.saveAndFlush(kontakty.get(0));
-		
 		uzytkownik.setKontakty(kontakty);
 		return uzytkownik;
 	}
 
-//	public void aktualizuj(Polaczone polaczeone) {
-//		String[] parts = polaczeone.getAdresy().getMiasto().split(",");
-//		System.out.println("wypisuje tablice miast " +parts);
-//		polaczeone.getAdresy().setMiasto(parts[0]);
-//		adresyRepository.saveAndFlush(polaczeone.getAdresy());
-//	}
 
 	public void aktualizuj(Uzytkownicy uzytkownikDane, String login) {
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
 		List<Adresy> adresy = adresyRepository.findByUzytkownicy(uzytkownik);
+		List<Kontakty> kontakty = kontaktyRepository.findByUzytkownicy(uzytkownik);
 		for(int i = 0; i<uzytkownikDane.getAdresy().size(); i++)
 		{
 			adresy.get(i).setMiasto(uzytkownikDane.getAdresy().get(i).getMiasto());
-//			adresy.get(i).setUlica(ulica[i]);
-//			adresy.get(i).setNumerMieszkania(numerMieszkania[i]);
-//			adresy.get(i).setKodPocztowy(kodPocztowy[i]);
+			adresy.get(i).setUlica(uzytkownikDane.getAdresy().get(i).getUlica());
+			adresy.get(i).setNumerMieszkania(uzytkownikDane.getAdresy().get(i).getNumerMieszkania());
+			adresy.get(i).setKodPocztowy(uzytkownikDane.getAdresy().get(i).getKodPocztowy());
 			adresyRepository.saveAndFlush(adresy.get(i));
 		}
+		for (int i = 0; i<uzytkownikDane.getKontakty().size(); i++) {
+			kontakty.get(i).setEmail(uzytkownikDane.getKontakty().get(i).getEmail());
+			kontakty.get(i).setTelefon(uzytkownikDane.getKontakty().get(i).getTelefon());
+			kontaktyRepository.saveAndFlush(kontakty.get(i));
+		}
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		uzytkownik.setHaslo(encoder.encode(uzytkownikDane.getHaslo()));
+		uzytkownicyRepository.saveAndFlush(uzytkownik);
+		
 	}
 
 	public List<Role> znajdzTypRoliUzytkownika(String login) {
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
 		List<Role> role = roleRepository.findByUzytkownicy(uzytkownik);
-		
 		return role;
 	}
 
-
-	
-//	
-//	public User findOne(int id) {
-//		return userRepository.findOne(id);
-//	}
-//
-//	@Transactional
-//	public User findOneWithBlogs(int id) {
-//		User user = findOne(id);
-//		List<Blog> blogs = blogRepository.findByUser(user);
-//		for (Blog blog : blogs) {
-//			List<Item> item = itemRepository.findByBlog(blog, new PageRequest(0, 14, org.springframework.data.domain.Sort.Direction.DESC, "publishedDate"));
-//			blog.setItems(item);
-//		}
-//		user.setBlogs(blogs);
-//		return user;
-//	}
-	
+	public void zarejestruj(Uzytkownicy uzytkownik) {
+		adresyRepository.save(uzytkownik.getAdresy());
+		List<Adresy> adresy= new ArrayList<Adresy>();
+		adresy.add(uzytkownik.getAdresy().get(0));
+		
+		kontaktyRepository.save(uzytkownik.getKontakty());
+		List<Kontakty> kontakty = new ArrayList<Kontakty>();
+		kontakty.add(uzytkownik.getKontakty().get(0));
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		uzytkownik.setHaslo(encoder.encode(uzytkownik.getHaslo()));
+		uzytkownik.setKontakty(kontakty);
+		uzytkownik.setAdresy(adresy);
+		uzytkownicyRepository.save(uzytkownik);
+		
+		
+	}	
 }

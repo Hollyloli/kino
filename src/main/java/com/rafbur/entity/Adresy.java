@@ -2,18 +2,17 @@ package com.rafbur.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Adresy {
@@ -34,11 +33,11 @@ public class Adresy {
 		this.ulica = ulica;
 	}
 
-	public String getNumerMieszkania() {
+	public Integer getNumerMieszkania() {
 		return numerMieszkania;
 	}
 
-	public void setNumerMieszkania(String numerMieszkania) {
+	public void setNumerMieszkania(Integer numerMieszkania) {
 		this.numerMieszkania = numerMieszkania;
 	}
 
@@ -62,14 +61,17 @@ public class Adresy {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idAdresy;
 	
-	@Size(min=3, message="dupa blada")
+	@Size(min=4,max=25, message="D³ugoœæ ulicy jest za któtka")
 	private String ulica;
 	
-	private String numerMieszkania;
+	@NotNull(message="Brak numeru mieszkania")
+	@Min(value=0,message="Numer mieszkania mniejszy od 0")
+	private Integer numerMieszkania;
 	
+	@Pattern(regexp="^([0-9]{2})(-[0-9]{3})", message="Niepoprawny format kodu pocztowego")
 	private String kodPocztowy;
 	
-	@Size(min=3, message="dupa blada")
+	@Size(min=3,max=20, message="d³ugoœc miasta jest za krótka")
 	private String miasto;
 	
 	@ManyToMany(mappedBy="adresy")

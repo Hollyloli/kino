@@ -3,6 +3,9 @@
     <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+    
+    
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -81,27 +84,41 @@
 					          
 					            <ul class="nav nav-pills ddmenu">
 					              <li class="${current=='index' ? 'active' : ''} "><a href='<spring:url value="/" />'>Home</a></li>
-					             
-					              <li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Users</a></li>
+					             <security:authorize access="hasRole('ROLE_UCZEN')">
+					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Uczen</a></li>
+					             </security:authorize>
+			       		        <security:authorize access="hasRole('ROLE_DYREKTOR')">
+					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/dyrektor.html" />'>Dyrektor</a></li>
+					             </security:authorize>
+			                    <security:authorize access="hasRole('ROLE_OPIEKUN')">
+					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/opiekun.html" />'>Dyrektor</a></li>
+					             </security:authorize>
 					             
 					      
-					             
-							 	 <li class="dropdown">
-					                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nauczyciel<span class="caret"></span></a>
-					                <ul class="dropdown-menu">
-					                  <li><a href="#">Prowadzone zajęcia</a></li>
-					                  <li><a href="#">Another action</a></li>
-					                  <li><a href="#">Something else here</a></li>
-					                  <li role="separator" class="divider"></li>
-					                  <li class="dropdown-header">Prowadzone zajecia</li>
-					                  <c:forEach items="${nauczyciel.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
-            							<li class="${current=='index' ? 'active' : ''}"><a href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
-           							 </c:forEach>
-					                </ul>
-					              </li>
+					             <security:authorize access="hasRole('ROLE_NAUCZYCIEL')">
+								 	 <li class="dropdown">
+						                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nauczyciel<span class="caret"></span></a>
+						                <ul class="dropdown-menu">
+						                  <li><a href="#">Prowadzone zajęcia</a></li>
+						                  <li><a href="#">Another action</a></li>
+						                  <li><a href="#">Something else here</a></li>
+						                  <li role="separator" class="divider"></li>
+						                  <li class="dropdown-header">Prowadzone zajecia</li>
+						                  <c:forEach items="${nauczyciel.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
+	            							<li class="${current=='index' ? 'active' : ''}"><a href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
+	           							 </c:forEach>
+						                </ul>
+						              </li>
+					              </security:authorize>
+					              <security:authorize access="!isAuthenticated()">
+					              	<li><a href='<spring:url value="/login.html" />'>Logowanie</a></li>
+					              	<li><a href='<spring:url value="/rejestracja.html" />'>Rejestracja</a></li>
+					              </security:authorize>
+					              <li><a href='<spring:url value="/kontakt.html" />'>Kontakt</a></li>
+					              <security:authorize access="isAuthenticated()">
 									<li><a href='<spring:url value="/edycjaKonta.html" />'>Edycja Konta</a></li>
-									<li><a href='<spring:url value="/rejestracja.html" />'>Rejestracja</a></li>
-									<li><a href="#">Wyloguj</a></li>
+									<li><a href='<spring:url value="/logout" />'>Wyloguj</a></li>
+								  </security:authorize>
 					            </ul>
 					
 					          </div><!--/.nav-collapse -->

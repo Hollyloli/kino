@@ -10,23 +10,28 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	
 	<http use-expressions="true">
 		<intercept-url pattern="/edycjaKonta**" access="hasRole('ROLE_NAUCZYCIEL')" />
+		
+		<form-login  login-page="/login.html"/> 
 		<form-login />  
-		<logout />
+		<logout logout-url="/logout"/>
+		<csrf disabled="true"/>
 	</http>
 	
 	<authentication-manager>
 	
 		<authentication-provider>
+		
+			<password-encoder hash="bcrypt"/>
 	
 	
-	  		<user-service>
-				<user name="admin" password="admin" authorities="ROLE_UCZEN, ROLE_NAUCZYCIEL" />
-			</user-service> 
-<!-- 			<jdbc-user-service data-source-ref="DataSource"
-				authorities-by-username-query="select uzytkownicy.name, role.name from uzytkownicy 
-				join uzytkownicy_role on uzytkownicy.id=uzytkownicy_role.users_id 
-				join role on uzytkownicy_role.roles_id=role.id where uzytkownicy.name = ?"
-				users-by-username-query="select name, password,enabled from uzytkownicy where name = ?"/>  -->
+	  		<!-- <user-service>
+				<user name="admin" password="admin" authorities="ROLE_NAUCZYCIEL" />
+			</user-service> --> 
+ 			<jdbc-user-service data-source-ref="DataSource"
+				authorities-by-username-query="select uzytkownicy.login,role.typRoli from uzytkownicy join uzytkownicy_role 
+					on uzytkownicy.idUzytkownika=uzytkownicy_role.uzytkownicy_iduzytkownika
+					join role on uzytkownicy_role.role_idroli=role.idroli where uzytkownicy.login = ?"
+				users-by-username-query="select login, haslo,aktywny from uzytkownicy where login = ?"/>  
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

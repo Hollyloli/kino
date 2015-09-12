@@ -8,66 +8,71 @@
 
     
       
-    <form:form commandName="polaczone" cssClass="form-horizontal">
+    <form:form commandName="uczen" cssClass="form-horizontal">
     	
     	<div class="form-group">
 		 <label for="login" class="col-sm-2 control-label">Login</label>
 			 <div class="col-sm-10">
-  			    <form:input path="uzytkownicy.login" cssClass="form-control" />
-  			    <form:errors path="uzytkownicy.login"/>
+  			    <form:input path="login" cssClass="form-control" />
+  			    <form:errors path="login"/>
  			 </div>
 		</div>
 		<div class="form-group">
 		 <label for="imie" class="col-sm-2 control-label">Imię</label>
 			 <div class="col-sm-10">
-  			    <form:input path="uzytkownicy.imie" cssClass="form-control" />
-  			    <form:errors path="uzytkownicy.imie"/>
+  			    <form:input path="imie" cssClass="form-control" />
+  			    <form:errors path="imie"/>
  			 </div>
 		</div>
 		<div class="form-group">
 		 <label for="nazwisko" class="col-sm-2 control-label">Name</label>
 			 <div class="col-sm-10">
-  			    <form:input path="uzytkownicy.nazwisko" cssClass="form-control" />
- 			 	<form:errors path="uzytkownicy.nazwisko"/>
+  			    <form:input path="nazwisko" cssClass="form-control" />
+ 			 	<form:errors path="nazwisko"/>
  			 </div>
 		</div>
 		<div class="form-group">
 		 <label for="nazwisko" class="col-sm-2 control-label">Hasło</label>
 			 <div class="col-sm-10">
-  			    <form:input path="uzytkownicy.haslo" cssClass="form-control" />
-  			    <form:errors path="uzytkownicy.haslo"/>
+  			    <form:input path="haslo" cssClass="form-control" />
+  			    <form:errors path="haslo"/>
  			 </div>
 		</div>
 		<div class="form-group">
 		 <label for="nazwisko" class="col-sm-2 control-label">Adres</label>
 			 <div class="col-sm-3">
-  			    <form:input path="adresy.miasto" cssClass="form-control" placeholder="Miasto" />
-  			    <form:errors path="adresy.miasto"/>
+  			    <form:input path="adresy[0].miasto" cssClass="form-control" placeholder="Miasto" />
+  			    <form:errors path="adresy[0].miasto"/>
  			 </div>
  			 <div class="col-sm-3">
-  			    <form:input path="adresy.ulica" cssClass="form-control" placeholder="ulica"/>
+  			    <form:input path="adresy[0].ulica" cssClass="form-control" placeholder="ulica"/>
+  			    <form:errors path="adresy[0].ulica"/>
  			 </div>
  			 <div class="col-sm-2">
-  			    <form:input path="adresy.numerMieszkania" cssClass="form-control" placeholder="nr mieszkania"/>
+  			    <form:input path="adresy[0].numerMieszkania" cssClass="form-control" placeholder="nr mieszkania"/>
+  			    <form:errors path="adresy[0].numerMieszkania"/>
  			 </div>
  			 <div class="col-sm-2">
-  			    <form:input path="adresy.kodPocztowy" cssClass="form-control" placeholder="kod pocztowy"/>
+  			    <form:input path="adresy[0].kodPocztowy" cssClass="form-control" placeholder="kod pocztowy"/>
+  			    <form:errors path="adresy[0].kodPocztowy"/>
  			 </div>
  			  			 
 		</div>
 		<div class="form-group">
 		 	<label for="nazwisko" class="col-sm-2 control-label">Dane kontaktowe</label>
 			 	<div class="col-sm-5">
-  			    	<form:input path="kontakty.email" cssClass="form-control" placeholder="adres email" />
+  			    	<form:input path="kontakty[0].email" cssClass="form-control" placeholder="adres email" />
+  			    	<form:errors path="kontakty[0].email"/>
  			 	</div>
  			 	<div class="col-sm-5">
-  			    	<form:input path="kontakty.telefon" cssClass="form-control" placeholder="numer telefonu"/>
+  			    	<form:input path="kontakty[0].telefon" cssClass="form-control" placeholder="numer telefonu"/>
+ 			 		<form:errors path="kontakty[0].telefon"/>
  			 	</div>
 		</div>
 		<div class="form-group">
 		
 			 <div class="col-sm-2">
-				<input type="submit" value="Save" class="btn btn-lg btn-primary" />
+				<input type="submit" value="Zapisz" class="btn btn-lg btn-primary" />
  			 </div>
 	</div>
 		

@@ -7,6 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class Kontakty {
@@ -14,8 +19,10 @@ public class Kontakty {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idKontaktu;
 	
+	@Pattern(regexp="^([0-9]{9})", message="Niepoprawny numer telefonu")
 	private String telefon;
 	
+	@Email(message="Niepoprawny emial")
 	private String email;
 	
 	@ManyToMany(mappedBy="kontakty")

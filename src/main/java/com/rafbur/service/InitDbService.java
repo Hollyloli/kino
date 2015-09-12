@@ -6,7 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+
 
 
 
@@ -90,7 +94,9 @@ public class InitDbService {
 		uzytkwonikUczen.setImie("Rafal");
 		uzytkwonikUczen.setNazwisko("Be");
 		uzytkwonikUczen.setLogin("admin");
-		uzytkwonikUczen.setHaslo("admin");
+		uzytkwonikUczen.setAktywny(true);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		uzytkwonikUczen.setHaslo(encoder.encode("admin"));
 		List<Role> role = new ArrayList<Role>();
 		role.add(roleUser);
 		role.add(roleUser2);
@@ -102,14 +108,14 @@ public class InitDbService {
 		adres1.setUlica("Retkinska");;
 		adres1.setKodPocztowy("94-004");
 		adres1.setMiasto("Lodz");
-		adres1.setNumerMieszkania("5");
+		adres1.setNumerMieszkania(new Integer(5));
 		adresyRepository.save(adres1);
 		
 		Adresy adres2 = new Adresy();
 		adres2.setUlica("Bratyslawska");;
 		adres2.setKodPocztowy("94-004");
 		adres2.setMiasto("Lodz");
-		adres2.setNumerMieszkania("17");
+		adres2.setNumerMieszkania(new Integer(17));
 		adresyRepository.save(adres2);
 		
 		
@@ -138,9 +144,9 @@ public class InitDbService {
 		uzytkwonikNauczyciel.setImie("Ann");
 		uzytkwonikNauczyciel.setNazwisko("Kon");
 		uzytkwonikNauczyciel.setLogin("Akon");
-		uzytkwonikNauczyciel.setHaslo("1234");
+		uzytkwonikNauczyciel.setHaslo(encoder.encode("12345"));
 		List<Role> role2 = new ArrayList<Role>();
-		role.add(roleUser2);
+		role2.add(roleUser2);
 		uzytkwonikNauczyciel.setRole(role2);
 		uzytkownicyRepository.save(uzytkwonikNauczyciel);
 		

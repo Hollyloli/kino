@@ -25,6 +25,17 @@
     <put-attribute name="current" value="rejestracja" />
  </definition>
 
+  <definition name="login" extends="wspolne">
+   <put-attribute name="title" value="login" />
+   <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+    <put-attribute name="current" value="login" />
+ </definition>
+ 
+  <definition name="zarzadzanie" extends="wspolne">
+   <put-attribute name="title" value="edycja konta" />
+   <put-attribute name="body" value="/WEB-INF/jsp/edycjaKonta.jsp" />
+    <put-attribute name="current" value="edycjaKonta" />
+ </definition>
 
 	  <definition name="edycjaKonta" extends="wspolne">
    <put-attribute name="title" value="edycja konta" />
