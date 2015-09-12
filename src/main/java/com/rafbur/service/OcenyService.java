@@ -1,26 +1,18 @@
 package com.rafbur.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rafbur.entity.Adresy;
 import com.rafbur.entity.Klasa;
-import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Oceny;
 import com.rafbur.entity.Przedmioty;
 import com.rafbur.entity.Uczniowie;
-import com.rafbur.entity.Uzytkownicy;
-import com.rafbur.repository.AdresyRepository;
 import com.rafbur.repository.KlasaRepository;
 import com.rafbur.repository.OcenyRepository;
 import com.rafbur.repository.PrzedmiotyRepository;
 import com.rafbur.repository.UczniowieRepository;
-import com.rafbur.repository.UzytkownicyRepository;
 
 @Service
 public class OcenyService {

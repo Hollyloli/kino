@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Role;
 import com.rafbur.service.NauczycielService;
 import com.rafbur.service.UserService;

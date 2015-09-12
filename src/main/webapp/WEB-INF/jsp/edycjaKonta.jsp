@@ -34,7 +34,7 @@ label {font-size:20px;
             	<div class="col-sm-4">
         			<label for="labelImie"><strong>Data Urodzenia:</strong></label>
            			<label for="labelImie">${uzytkownik.dataUrodzenia}</label> 
-           		</div>>
+           		</div>
            	</div>
            	<div class="form-group">
            		<div class="col-sm-1">

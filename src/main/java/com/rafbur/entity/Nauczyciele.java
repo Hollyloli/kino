@@ -6,11 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /*musze rozpoznawac po typie roli jestli typ roli jest ROLE_UCZEN to wspisuje login to tabeli 
  *  uczen jesli jest ROLE_nauczyciel wpisuje do tabeli nauczycielale
