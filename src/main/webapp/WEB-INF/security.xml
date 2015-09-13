@@ -9,7 +9,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	
 	
 	<http use-expressions="true">
-		<intercept-url pattern="/edycjaKonta**" access="hasRole('ROLE_NAUCZYCIEL')" />
+		<intercept-url pattern="/edycjaKonta**" access="hasRole('ROLE')" />
 		
 		<form-login  login-page="/login.html"/> 
 		<form-login />  

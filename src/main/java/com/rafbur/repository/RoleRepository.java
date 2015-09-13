@@ -11,4 +11,6 @@ public interface RoleRepository extends JpaRepository<Role, Integer>{
 
 	List<Role> findByUzytkownicy(Uzytkownicy uzytkownik);
 
+	Role findByTypRoli(String wyborRoli);
+
 }

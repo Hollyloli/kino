@@ -62,12 +62,23 @@ public class InitDbService {
 	@PostConstruct
 	public void init() {
 		Role roleUser = new Role();
-		roleUser.setTypRoli("ROLE_UCZEN");
+		roleUser.setTypRoli("ROLE_DYREKTOR");
 		roleRepository.save(roleUser);
 		
 		Role roleUser2 = new Role();
 		roleUser2.setTypRoli("ROLE_NAUCZYCIEL");
 		roleRepository.save(roleUser2);
+		
+		Role roleUser3 = new Role();
+		roleUser3.setTypRoli("ROLE_OPIEKUN");
+		roleRepository.save(roleUser3);
+		
+		
+		Role roleUser4 = new Role();
+		roleUser4.setTypRoli("ROLE_UCZEN");
+		roleRepository.save(roleUser4);
+		
+	
 		
 		Uzytkownicy uzytkwonikUczen = new Uzytkownicy();
 		uzytkwonikUczen.setImie("Rafal");
@@ -123,9 +134,10 @@ public class InitDbService {
 		uzytkwonikNauczyciel.setImie("Ann");
 		uzytkwonikNauczyciel.setNazwisko("Kon");
 		uzytkwonikNauczyciel.setLogin("Akon");
+		uzytkwonikNauczyciel.setAktywny(true);;
 		uzytkwonikNauczyciel.setHaslo(encoder.encode("12345"));
 		List<Role> role2 = new ArrayList<Role>();
-		role2.add(roleUser2);
+//		role2.add(roleUser2);
 		uzytkwonikNauczyciel.setRole(role2);
 		uzytkownicyRepository.save(uzytkwonikNauczyciel);
 		

@@ -42,7 +42,10 @@ public class NauczycielService {
 		System.out.println("wypisuje login z metody znajdzPrzedmioty " + login);
 		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
 		List<Przedmioty> przedmioty = przedmiotyRepository.findByNauczyciele(nauczyciel);
-		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
+		if(przedmioty.size()!=0) {
+			nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
+		}
+		
 //		System.out.println("wypisuje nauczyciela ze " + nauczycieleRepository.findByLogin(login).getLogin());
 		
 		
@@ -91,6 +94,22 @@ public class NauczycielService {
 
 	public Nauczyciele znajdzNauczyciela(String login) {
 		return nauczycieleRepository.findByLogin(login);
+	}
+
+	public List<Nauczyciele> znajdzNauczycieli() {
+		List<Nauczyciele> nauczyciele = nauczycieleRepository.findAll();
+		return nauczyciele;
+	}
+
+	public void dopiszPrzedmiotNauczycielowi(String login, String nazwaPrzedmiotu) {
+		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
+		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
+		List<Przedmioty> przedmioty = przedmiotyRepository.findByNauczyciele(nauczyciel);
+		przedmioty.add(przedmiot);
+		
+		
+		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
+		nauczycieleRepository.saveAndFlush(nauczyciel);
 	}
 
 

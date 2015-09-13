@@ -2,12 +2,20 @@ package com.rafbur.contoler;
 
 import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Uczniowie;
+import com.rafbur.entity.Uzytkownicy;
 
 public class Polaczone2 {
 	
 	private Nauczyciele nauczyciel;
 	private String wyborCZynnosci;
 	private Uczniowie uczen;
+	private Uzytkownicy uzytkownik;
+	public Uzytkownicy getUzytkownik() {
+		return uzytkownik;
+	}
+	public void setUzytkownik(Uzytkownicy uzytkownik) {
+		this.uzytkownik = uzytkownik;
+	}
 	public Uczniowie getUczen() {
 		return uczen;
 	}

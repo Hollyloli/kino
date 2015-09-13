@@ -3,64 +3,88 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition name="wspolne" template="/WEB-INF/basic/classic.jsp">
-    <put-attribute name="footer" value="/WEB-INF/basic/footer.jsp" />
-  </definition>
-  
-  <definition name="rozszerzoneWspolne" extends="wspolne">
-   <!--  <put-attribute name="footer" value="/WEB-INF/basic/footer.jsp" />  -->
-  </definition>
-  
-  
-  <definition name="index" extends="wspolne">
-    <put-attribute name="title" value="Dzienniczek" />
-    <put-attribute name="slider" value="/WEB-INF/basic/slider.jsp" />
-    <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
-    <put-attribute name="current" value="index" />
-  </definition>
+	<definition name="wspolne" template="/WEB-INF/basic/classic.jsp">
+		<put-attribute name="footer" value="/WEB-INF/basic/footer.jsp" />
+	</definition>
 
-  <definition name="rejestracja" extends="wspolne">
-   <put-attribute name="title" value="Rejestracja" />
-   <put-attribute name="body" value="/WEB-INF/jsp/rejestracja.jsp" />
-    <put-attribute name="current" value="rejestracja" />
- </definition>
+	<definition name="rozszerzoneWspolne" extends="wspolne">
+		<!-- <put-attribute name="footer" value="/WEB-INF/basic/footer.jsp" /> -->
+	</definition>
 
-  <definition name="login" extends="wspolne">
-   <put-attribute name="title" value="login" />
-   <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
-    <put-attribute name="current" value="login" />
- </definition>
- 
-  <definition name="zarzadzanie" extends="wspolne">
-   <put-attribute name="title" value="edycja konta" />
-   <put-attribute name="body" value="/WEB-INF/jsp/edycjaKonta.jsp" />
-    <put-attribute name="current" value="edycjaKonta" />
- </definition>
 
-	  <definition name="edycjaKonta" extends="wspolne">
-   <put-attribute name="title" value="edycja konta" />
-   <put-attribute name="body" value="/WEB-INF/jsp/edycjaKonta.jsp" />
-    <put-attribute name="current" value="edycjaKonta" />
- </definition>
+	<definition name="index" extends="wspolne">
+		<put-attribute name="title" value="Dzienniczek" />
+		<put-attribute name="slider" value="/WEB-INF/basic/slider.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+		<put-attribute name="current" value="index" />
+	</definition>
+
+	<definition name="rejestracja" extends="wspolne">
+		<put-attribute name="title" value="Rejestracja" />
+		<put-attribute name="body" value="/WEB-INF/jsp/rejestracja.jsp" />
+		<put-attribute name="current" value="rejestracja" />
+	</definition>
+
+	<definition name="login" extends="wspolne">
+		<put-attribute name="title" value="login" />
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+		<put-attribute name="current" value="login" />
+	</definition>
+
+	<definition name="zarzadzanieUzytkownikami" extends="wspolne">
+		<put-attribute name="title" value="zarzadzanie Uzytkownikami" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/zarzadzanieUzytkownikami.jsp" />
+		<put-attribute name="current" value="zarzadzanieUzytkownikami" />
+	</definition>
+
+	<definition name="dodaniePrzedmiotu" extends="wspolne">
+		<put-attribute name="title" value="dodanie Przedmiotu" />
+		<put-attribute name="body" value="/WEB-INF/jsp/dodaniePrzedmiotu.jsp" />
+		<put-attribute name="current" value="dodaniePrzedmiotu" />
+	</definition>
+	
+	<definition name="dodanieKlasy" extends="wspolne">
+		<put-attribute name="title" value="dodanie Klasy" />
+		<put-attribute name="body" value="/WEB-INF/jsp/dodanieKlasy.jsp" />
+		<put-attribute name="current" value="dodanieKlasy" />
+	</definition>	
 	
 
-	  <definition name="wpisywanieOcen" extends="wspolne">
-   <put-attribute name="title" value="wpisywanie ocen" />
-   <put-attribute name="body" value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot.jsp" />
-   <put-attribute name="current" value="edycjaKonta" />
- </definition>
- 
- <definition name="wpisywanieOcen2" extends="wspolne">
-   <put-attribute name="title" value="wpisywanie ocen" />
-   <put-attribute name="body" value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot2.jsp" />
-   <put-attribute name="current" value="edycjaKonta" />
- </definition>
+	<definition name="przypPrzedNaucz" extends="wspolne">
+		<put-attribute name="title"
+			value="Przyporzadkownie przedmiotu nauczycielowi" />
+		<put-attribute name="body" value="/WEB-INF/jsp/przypPrzedNaucz.jsp" />
+		<put-attribute name="current" value="przypPrzedNaucz" />
+	</definition>
 
- <definition name="wpisywanieOcen3" extends="wspolne">
-   <put-attribute name="title" value="wpisywanie ocen" />
-   <put-attribute name="body" value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot3.jsp" />
-   <put-attribute name="current" value="edycjaKonta" />
- </definition>
+	<definition name="edycjaKonta" extends="wspolne">
+		<put-attribute name="title" value="edycja konta" />
+		<put-attribute name="body" value="/WEB-INF/jsp/edycjaKonta.jsp" />
+		<put-attribute name="current" value="edycjaKonta" />
+	</definition>
+
+
+	<definition name="wpisywanieOcen" extends="wspolne">
+		<put-attribute name="title" value="wpisywanie ocen" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot.jsp" />
+		<put-attribute name="current" value="edycjaKonta" />
+	</definition>
+
+	<definition name="wpisywanieOcen2" extends="wspolne">
+		<put-attribute name="title" value="wpisywanie ocen" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot2.jsp" />
+		<put-attribute name="current" value="edycjaKonta" />
+	</definition>
+
+	<definition name="wpisywanieOcen3" extends="wspolne">
+		<put-attribute name="title" value="wpisywanie ocen" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot3.jsp" />
+		<put-attribute name="current" value="edycjaKonta" />
+	</definition>
 
 
 </tiles-definitions>

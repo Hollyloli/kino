@@ -88,13 +88,24 @@
 					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Uczen</a></li>
 					             </security:authorize>
 			       		        <security:authorize access="hasRole('ROLE_DYREKTOR')">
-					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/dyrektor.html" />'>Dyrektor</a></li>
+					              	<li class="dropdown">
+						                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Dyrektor<span class="caret"></span></a>
+						                <ul class="dropdown-menu">
+						                  <li><a href="<spring:url value="/zarzadzanieUzytkownikami.html" /> ">Aktywacja konta</a></li>
+						                  <li><a href="<spring:url value="/dodaniePrzedmiotu.html" />">Dodanie przedmiotu</a></li>
+						                  <li><a href="<spring:url value="/przypPrzedNaucz.html" />">Przyporządkowanie przedmiotu nauczycielowi</a></li>
+						                  <li><a href="<spring:url value="/dodanieKlasy.html" />">Dodanie klasy</a></li>
+						                  <li><a href="#">Dodanie ucznia do klasy</a></li>
+						                  <li><a href="#">Zakończenie roku szkolnego</a></li>
+						                  <li role="separator" class="divider"></li>
+						                  <li class="dropdown-header">Prowadzone zajecia</li>
+						                
+						                </ul>
+						              </li>
 					             </security:authorize>
 			                    <security:authorize access="hasRole('ROLE_OPIEKUN')">
 					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/opiekun.html" />'>Dyrektor</a></li>
 					             </security:authorize>
-					             
-					      
 					             <security:authorize access="hasRole('ROLE_NAUCZYCIEL')">
 								 	 <li class="dropdown">
 						                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Nauczyciel<span class="caret"></span></a>
@@ -104,7 +115,7 @@
 						                  <li><a href="#">Something else here</a></li>
 						                  <li role="separator" class="divider"></li>
 						                  <li class="dropdown-header">Prowadzone zajecia</li>
-						                  <c:forEach items="${nauczyciel.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
+						                  <c:forEach items="${przedmiotNauczyciela.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
 	            							<li class="${current=='index' ? 'active' : ''}"><a href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
 	           							 </c:forEach>
 						                </ul>
