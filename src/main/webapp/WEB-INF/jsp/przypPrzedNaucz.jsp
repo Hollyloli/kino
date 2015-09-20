@@ -14,9 +14,8 @@
 
 	<form:form commandName="nauczyciel" class="form-horizontal" action="/PracaInz/formularzPrzypPrzedNaucz.html">
 		<div class="form-group">
-
 			<div class="form-group">
-				<label for="labelWyborKlasy">Wybor uzytkownika</label>
+				<label for="labelWyborKlasy">Wybor nauczyciela</label>
 				<form:select path="login" class="form-control">
 					<c:forEach items="${nauczyciele}" var="nauczyciel1">
 						<form:option value="${nauczyciel1.imie} ${nauczyciel1.nazwisko}" />
@@ -31,6 +30,15 @@
 					</c:forEach>
 				</form:select>
 			</div>
+			
+			<div class="form-group">
+				<label for="labelWyborKlasy">Wybor Klasy</label>
+	             <form:select path="klasaNauczyciel[0].symbol" class="form-control" >
+	              <c:forEach items="${klasy}" var="klasa" varStatus="loop">
+	              	<form:option value="${klasa.rok} ${klasa.symbol}"/>
+	              </c:forEach>
+	              </form:select>
+              </div>
 		</div>
 		<button class="btn btn-primary btn-lg" type="submit">Akceptuj</button>
 	</form:form>

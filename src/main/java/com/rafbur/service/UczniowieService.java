@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rafbur.entity.Klasa;
+import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Oceny;
 import com.rafbur.entity.Przedmioty;
 import com.rafbur.entity.Uczniowie;
@@ -109,6 +111,37 @@ public class UczniowieService {
 		uczen.setOceny(oceny);
 		
 		return uczen;
+	}
+
+
+
+	public List<Uczniowie> znajdzUczniowBezKlasy() {
+		Klasa klasa = null;
+		List<Uczniowie> uczniowie = uczniowieRepository.findByKlasa(klasa);
+		
+		System.out.println("wypisuje ilosc uczniow " + uczniowie.size());
+		
+		return uczniowie;
+	}
+
+
+
+	public List<Uczniowie> znajdzWszystkichUczniow() {
+		List<Uczniowie> uczniowie = uczniowieRepository.findAll();
+		return uczniowie;
+	}
+
+
+
+	public void dopiszPrzedmiotUcznowi(String login, String nazwaPrzedmiotu) {
+		Uczniowie uczen = uczniowieRepository.findByLogin(login);
+		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
+		List<Przedmioty> przedmioty = przedmiotyRepository.findByUczniowie(uczen);
+		przedmioty.add(przedmiot);
+		
+		uczen.setPrzedmioty(przedmioty);
+		uczniowieRepository.saveAndFlush(uczen);
+		
 	}
 	
 	

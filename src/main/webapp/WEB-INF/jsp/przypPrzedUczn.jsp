@@ -12,18 +12,27 @@
 <!--Edit Main Content Area here-->
 <div class="col-sm-12" id="divMain">
 
-	<form:form commandName="przedmiot" class="form-horizontal" action="/PracaInz/formularzDodaniaPrzedmiotu.html">
+	<form:form commandName="uczen" class="form-horizontal" action="/PracaInz/formularzPrzypPrzedUczniom.html">
 		<div class="form-group">
-
 			<div class="form-group">
-				<label for="labelWyborKlasy">Wybor uzytkownika</label>
-				<form:input path="nazwa" cssClass="form-control"  />
-  			    <form:errors path="nazwa" />
+				<label for="labelWyborKlasy">Wybor ucznia</label>
+				<form:select path="login" class="form-control">
+					<c:forEach items="${uczniowie}" var="uczen">
+						<form:option value="${uczen.imie} ${uczen.nazwisko}" />
+					</c:forEach>
+				</form:select>
 			</div>
+			<div class="form-group">
+				<label for="labelWyborKlasy">Wybor przedmioty</label>
+				<form:select path="przedmioty[0].nazwa" class="form-control">
+					<c:forEach items="${przedmioty}" var="przedmiot">
+						<form:option value="${przedmiot.nazwa}" />
+					</c:forEach>
+				</form:select>
+			</div>
+			
 		</div>
-		
-		
-		<button class="btn btn-primary btn-lg" type="submit">Dodaj</button>
+		<button class="btn btn-primary btn-lg" type="submit">Akceptuj</button>
 	</form:form>
 
 

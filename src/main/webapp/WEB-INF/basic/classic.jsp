@@ -95,8 +95,9 @@
 						                  <li><a href="<spring:url value="/dodaniePrzedmiotu.html" />">Dodanie przedmiotu</a></li>
 						                  <li><a href="<spring:url value="/przypPrzedNaucz.html" />">Przyporządkowanie przedmiotu nauczycielowi</a></li>
 						                  <li><a href="<spring:url value="/dodanieKlasy.html" />">Dodanie klasy</a></li>
-						                  <li><a href="#">Dodanie ucznia do klasy</a></li>
-						                  <li><a href="#">Zakończenie roku szkolnego</a></li>
+						                  <li><a href="<spring:url value="/dodanieUczniaDoKlasy.html" />">Dodanie ucznia do klasy</a></li>
+						                  <li><a href="<spring:url value="/przypPrzedUczn.html" />">Przyporządkowanie przedmiotu uczniom</a></li>
+						                  <li><a href="<spring:url value="/zakonczenieRokuSzkolnego.html" /> ">Zakończenie roku szkolnego</a></li>
 						                  <li role="separator" class="divider"></li>
 						                  <li class="dropdown-header">Prowadzone zajecia</li>
 						                

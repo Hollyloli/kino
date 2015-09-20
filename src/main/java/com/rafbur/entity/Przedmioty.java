@@ -3,14 +3,22 @@ package com.rafbur.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.rafbur.annotation.UniqueNazwaPrzedmiotu;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"nazwa" })})
 public class Przedmioty implements Serializable{
 	
 	/**
@@ -22,6 +30,9 @@ public class Przedmioty implements Serializable{
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idPrzedmiotu;
 	
+	@Size(min=2, max=30, message="nieodpowiednia d³ugoœæ nazwy przedmiotu")
+	@UniqueNazwaPrzedmiotu
+	@Column(unique=true)
 	private String nazwa;
 	
 	@ManyToMany(mappedBy="przedmioty")

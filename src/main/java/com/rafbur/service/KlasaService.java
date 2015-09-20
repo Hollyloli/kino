@@ -74,6 +74,31 @@ public class KlasaService {
 		}
 		return czyWszyscyMajaOcenyKoncowe;
 	}
+	public void dodajKlase(Klasa klasa) {
+//		System.out.println("wchodzi w dodajKlase");
+//		Klasa nowaKlasa = new Klasa();
+////		System.out.println("wypisuje rok klasy " + klasa.getRok());
+//		nowaKlasa.setRok(klasa.getRok());
+//		nowaKlasa.setSymbol(klasa.getSymbol());
+		klasaRepository.save(klasa);
+	}
+	public List<Klasa> znjadzWszyskieKlasy() {
+		List<Klasa> klasy = klasaRepository.findAll();
+		
+		return klasy;
+	}
+	public void dodajUcznia(Uczniowie uczen) {
+		String[] rokIsymbol = uczen.getKlasa().getSymbol().split(" ");
+		Integer rok = Integer.parseInt(rokIsymbol[0]);
+		String symbol = rokIsymbol[1];
+		Klasa klasaBaza = klasaRepository.findByRokAndSymbol(rok, symbol);
+		
+		String[] imieINazwisko = uczen.getImie().split(" ");
+		Uczniowie uczenBaza = uczniowieRepository.findByImieAndNazwisko(imieINazwisko[0], imieINazwisko[1]);
+		uczenBaza.setKlasa(klasaBaza);
+		uczniowieRepository.saveAndFlush(uczenBaza);
+		
+	}
 
 	
 }

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +16,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.rafbur.entity.Klasa;
 import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Przedmioty;
+import com.rafbur.entity.Uczniowie;
 import com.rafbur.entity.Uzytkownicy;
+import com.rafbur.service.KlasaService;
 import com.rafbur.service.NauczycielService;
 import com.rafbur.service.PrzedmiotyService;
+import com.rafbur.service.UczniowieService;
 import com.rafbur.service.UserService;
 
 @Controller
 public class zarzadzaniaUzytkawnikami {
 
+	
+//	jesli dodaje ucznia do klasy to dodaje tez do niego przedmioty, uczniow nalezacych do tej klasy
+	
 	@Autowired
 	private UserService userService;
 	
@@ -32,6 +39,12 @@ public class zarzadzaniaUzytkawnikami {
 	@Autowired
 	private NauczycielService nauczycielService;
 	
+	@Autowired
+	private KlasaService klasaService;
+	
+	@Autowired
+	private UczniowieService uczniowieService;
+	
 	@ModelAttribute("uzytkownik")
 	public Uzytkownicy constructUzytkownik() {
 		return new Uzytkownicy();
@@ -40,6 +53,11 @@ public class zarzadzaniaUzytkawnikami {
 	@ModelAttribute("przedmiot")
 	public Przedmioty constructPrzedmiot() {
 		return new Przedmioty();
+	}
+	
+	@ModelAttribute("uczen")
+	public Uczniowie constructUczen() {
+		return new Uczniowie();
 	}
 
 	@ModelAttribute("nauczyciel")
@@ -60,8 +78,9 @@ public class zarzadzaniaUzytkawnikami {
 	}
 	
 	@RequestMapping("przypPrzedNaucz")
-	public String przypPrzedNaucz() {
+	public String przypPrzedNaucz(Model model) {
 		System.out.println("wypisuje przypPrzedNaucz");
+		model.addAttribute("klasy", klasaService.znjadzWszyskieKlasy());
 		return "przypPrzedNaucz";
 	}
 	
@@ -77,16 +96,30 @@ public class zarzadzaniaUzytkawnikami {
 		return "dodanieKlasy";
 	}
 	
+	@RequestMapping("przypPrzedUczn")
+	public String przypPrzedUczn(Model model) {
+		System.out.println("wypisuje przypPrzedNaucz");
+		//potrzebuje uczniow i przedmiotow
+		model.addAttribute("uczniowie", uczniowieService.znajdzWszystkichUczniow());
+		model.addAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
+		return "przypPrzedUczn";
+	}
+	
+	
+	@RequestMapping("dodanieUczniaDoKlasy")
+	public String dodanieUczniaDoKlasy(Model model) {
+		model.addAttribute("uczniowie", uczniowieService.znajdzUczniowBezKlasy());
+		model.addAttribute("klasy", klasaService.znjadzWszyskieKlasy());
+		System.out.println("wypisuje dodanieUczniaDoKlasy");
+		return "dodanieUczniaDoKlasy";
+	}
 	
 	
 	@RequestMapping(value="/formularzDodatniaRoli", method=RequestMethod.POST)
 	public String DodanieRoliUzytkownikowi(@Valid @ModelAttribute("uzytkownik") Uzytkownicy uzytkownik, BindingResult result,HttpSession sesja)
 	{
-		System.out.println("wchodzi w formularz dodania roli");
 		userService.dodajRole(uzytkownik);
 		sesja.setAttribute("uzytkownicyBezRoli", userService.znajdzNieaktywowanychUzytkownikow());
-
-//		sesja.removeAttribute("nauczyciele");
 		sesja.setAttribute("nauczyciele", userService.znajdzNauczycieli());
 		return "redirect:/zarzadzanieUzytkownikami.html?success=true";
 	}
@@ -102,14 +135,33 @@ public class zarzadzaniaUzytkawnikami {
 //		danego uzytkownika i dodaje do nich wczesniej znaleziony przedmiot. Kolejnym krokiem jest ustawienie dla obiektu nauczyciel
 //		przedmiotow oraz aktualizacja rekorku nauczyciel w bazie danych
 		String login = userService.znajdzNauczyciela(nauczyciel.getLogin());
-		nauczycielService.dopiszPrzedmiotNauczycielowi(login,nauczyciel.getPrzedmiotyNauczycieli().get(0).getNazwa());
+		String[] rokIsymbol = nauczyciel.getKlasaNauczyciel().get(0).getSymbol().split(" ");
+		Integer rok = Integer.parseInt(rokIsymbol[0]);
+		String symbol = rokIsymbol[1];
+		nauczycielService.dopiszPrzedmiotNauczycielowi(login,nauczyciel.getPrzedmiotyNauczycieli().get(0).getNazwa(),rok,symbol);
 		sesja.setAttribute("przedmiotNauczyciela", nauczycielService.znajdzPrzedmioty(principal.getName()));
 		return "redirect:/dodaniePrzedmiotu.html?success=true";
 	}
 	
-	@RequestMapping(value="/formularzDodaniaPrzedmiotu", method=RequestMethod.POST)
-	public String dodaniePRzedmiotu(@Valid @ModelAttribute("przedmiot") Przedmioty przedmiot, BindingResult result,HttpSession sesja)
+	@RequestMapping(value="/formularzPrzypPrzedUczniom", method=RequestMethod.POST)
+	public String formularzprzypPrzedUczn(@Valid @ModelAttribute("uczen") Uczniowie uczen, BindingResult result,Principal principal , HttpSession sesja)
 	{
+
+		String login = userService.znajdzNauczyciela(uczen.getLogin());
+
+		uczniowieService.dopiszPrzedmiotUcznowi(login,uczen.getPrzedmioty().get(0).getNazwa());
+		//sesja.setAttribute("przedmiotNauczyciela", nauczycielService.znajdzPrzedmioty(principal.getName()));
+		return "redirect:/przypPrzedUczn.html?success=true";
+	}
+	
+	@RequestMapping(value="/formularzDodaniaPrzedmiotu", method=RequestMethod.POST)
+	public String dodaniePrzedmiotu(@Valid @ModelAttribute("przedmiot") Przedmioty przedmiot, BindingResult result,HttpSession sesja)
+	{
+		System.out.println("dupa");
+		if(result.hasErrors()) {
+			System.out.println("ten przedmiot juz istnieje");
+			return "dodaniePrzedmiotu";
+		}
 		przedmiotyService.dodajPrzedmiot(przedmiot.getNazwa());
 		sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
 		return "redirect:/dodaniePrzedmiotu.html?success=true";
@@ -118,11 +170,36 @@ public class zarzadzaniaUzytkawnikami {
 	@RequestMapping(value="/formularzDodaniaKlasy", method=RequestMethod.POST)
 	public String dodanieKlasy(@Valid @ModelAttribute("klasa") Klasa klasa, BindingResult result,HttpSession sesja)
 	{
+		if(result.hasErrors()) {
+//			result.reject("error.klasa");
+			System.out.println("dupa " +result.getGlobalError());
+			System.out.println("dupa2" + result.getObjectName());
+			
+			System.out.println("walidacja sie nie powiodla " +result.getAllErrors());
+			return "dodanieKlasy";
+		}
+			
 		System.out.println("wypisuje formularz formularzDodaniaKlasy");
+		klasaService.dodajKlase(klasa);
+		
 //		przedmiotyService.dodajPrzedmiot(przedmiot.getNazwa());
 //		sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
-		return "redirect:/formularzDodaniaKlasy.html?success=true";
+		return "redirect:/dodanieKlasy.html?success=true";
 	}
+	
+	@RequestMapping(value="/formularzUczniaDoKlasy", method=RequestMethod.POST)
+	public String formularzDodaniaUczniaDoKlasy(@Valid @ModelAttribute("uczen") Uczniowie uczen, BindingResult result,HttpSession sesja)
+	{
+		
+		System.out.println("wypisuje formularz formulaarz cuznia do Klasy");
+		klasaService.dodajUcznia(uczen);
+		
+//		przedmiotyService.dodajPrzedmiot(przedmiot.getNazwa());
+//		sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
+		return "redirect:/dodanieUczniaDoKlasy.html?success=true";
+	}
+	
+
 	
 	
 

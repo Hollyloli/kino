@@ -101,14 +101,18 @@ public class NauczycielService {
 		return nauczyciele;
 	}
 
-	public void dopiszPrzedmiotNauczycielowi(String login, String nazwaPrzedmiotu) {
+	public void dopiszPrzedmiotNauczycielowi(String login, String nazwaPrzedmiotu, Integer rok, String symbol) {
 		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		List<Przedmioty> przedmioty = przedmiotyRepository.findByNauczyciele(nauczyciel);
 		przedmioty.add(przedmiot);
 		
+		Klasa klasa = klasaRepository.findByRokAndSymbol(rok, symbol);
+		List<Klasa> klasy = new ArrayList<Klasa>();
+		klasy.add(klasa);
 		
 		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
+		nauczyciel.setKlasaNauczyciel(klasy);
 		nauczycieleRepository.saveAndFlush(nauczyciel);
 	}
 

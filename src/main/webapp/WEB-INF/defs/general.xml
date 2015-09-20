@@ -50,7 +50,19 @@
 		<put-attribute name="current" value="dodanieKlasy" />
 	</definition>	
 	
-
+	
+	<definition name="dodanieUczniaDoKlasy" extends="wspolne">
+		<put-attribute name="title" value="dodanie ucznia do klasy" />
+		<put-attribute name="body" value="/WEB-INF/jsp/dodanieUczniaDoKlasy.jsp" />
+		<put-attribute name="current" value="dodanieUczniaDoKlasy" />
+	</definition>	
+	
+	<definition name="przypPrzedUczn" extends="wspolne">
+		<put-attribute name="title" value="dodaj przedmiot uczniowi" />
+		<put-attribute name="body" value="/WEB-INF/jsp/przypPrzedUczn.jsp" />
+		<put-attribute name="current" value="przypPrzedUczn" />
+	</definition>
+	
 	<definition name="przypPrzedNaucz" extends="wspolne">
 		<put-attribute name="title"
 			value="Przyporzadkownie przedmiotu nauczycielowi" />

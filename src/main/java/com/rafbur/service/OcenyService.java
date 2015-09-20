@@ -39,7 +39,7 @@ public class OcenyService {
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		List<Oceny> ocenaBaza = ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(przedmiot, uczen,klasa.getRok(),new Integer(1), "ukonczono");
 		System.out.println("gdzie wywala 2");
-		if(ocenaBaza == null ) {
+		if(ocenaBaza.size() == 0 ) {
 			ocena.setSemestr(new Integer(1));
 		}
 		else {
@@ -65,7 +65,8 @@ public class OcenyService {
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		boolean czyWszyscyMajaOceneSemestralna=true;
 		for(int i=0; i<klasa.getUczniowie().size(); i++) {
-			if(ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(przedmiot, klasa.getUczniowie().get(i), rokNauki, semestr, "ukonczono") == null) {
+			System.out.println("rozmiar klasy " + klasa.getUczniowie().size());
+			if(ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(przedmiot, klasa.getUczniowie().get(i), rokNauki, semestr, "ukonczono").size()==0) {
 				czyWszyscyMajaOceneSemestralna=false;
 				break;
 			}
