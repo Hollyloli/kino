@@ -1,6 +1,7 @@
 package com.rafbur.contoler;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -12,6 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+
+
 
 import com.rafbur.entity.Klasa;
 import com.rafbur.entity.Nauczyciele;
@@ -95,6 +99,15 @@ public class zarzadzaniaUzytkawnikami {
 		System.out.println("wypisuje dodanieKlasy");
 		return "dodanieKlasy";
 	}
+	@RequestMapping("zakonczenieRokuSzkolnego")
+	public String zakonczenieRokuSzkolnego(Model model) {
+		
+		List<Klasa> klasy = klasaService.znjadzWszyskieKlasy();
+		model.addAttribute("klasy", klasy);
+		model.addAttribute("statusOcen", klasaService.statusOcenPodKoniecRoku(klasy));
+		return "zakonczenieRokuSzkolnego";
+	}
+	
 	
 	@RequestMapping("przypPrzedUczn")
 	public String przypPrzedUczn(Model model) {

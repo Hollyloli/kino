@@ -70,6 +70,12 @@
 		<put-attribute name="current" value="przypPrzedNaucz" />
 	</definition>
 
+	<definition name="zakonczenieRokuSzkolnego" extends="wspolne">
+		<put-attribute name="title"	value="Zakonczenie roku szkolnego" />
+		<put-attribute name="body" value="/WEB-INF/jsp/zakonczenieRokuSzkolnego.jsp" />
+		<put-attribute name="current" value="zakonczenieRokuSzkolnego" />
+	</definition>
+
 	<definition name="edycjaKonta" extends="wspolne">
 		<put-attribute name="title" value="edycja konta" />
 		<put-attribute name="body" value="/WEB-INF/jsp/edycjaKonta.jsp" />

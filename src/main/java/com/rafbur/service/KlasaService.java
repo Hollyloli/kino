@@ -1,5 +1,6 @@
 package com.rafbur.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,57 @@ public class KlasaService {
 		uczenBaza.setKlasa(klasaBaza);
 		uczniowieRepository.saveAndFlush(uczenBaza);
 		
+	}
+	public List<Integer> statusOcenPodKoniecRoku(List<Klasa> klasy) {
+		List<Integer> statusOcen = new ArrayList<Integer>();
+		
+//		Oceny ocena = new Oceny();
+//		ocena.set
+		
+		System.out.println("rozmiar klas " + klasy.size());
+		for (Klasa klasa : klasy) {
+			
+			List<Uczniowie> uczniowie = uczniowieRepository.findByKlasa(klasa);
+			
+			boolean pojedynczyStatusOcen = false;
+			System.out.println("wypisuje rozmiar uczniow " + uczniowie.size());
+			if(uczniowie.size()>0) {
+				for (Uczniowie uczen : uczniowie) {
+					List<Oceny> oceny = ocenyRepository.findByUczniowieAndRokNauki(uczen, klasa.getRok());
+					
+					//znajduje przedmioty daneog ucznia
+					System.out.println("gdzie wywala 1");
+					List<Przedmioty> przedmiotyUcznia = przedmiotyRepository.findByUczniowieAndOceny(uczen,oceny.get(0));
+					System.out.println("gdzie wywala 2");
+					for (Przedmioty przedmiot : przedmiotyUcznia) {
+						System.out.println("gdzie wywala 3");
+						if(ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndTyp(przedmiot, uczen, klasa.getRok(), "koncowa").size()==0) {
+							System.out.println("wypisuje imie i nazwisko " + uczen.getImie() + " " + uczen.getNazwisko());
+							System.out.println("gdzie wywala 4");
+							pojedynczyStatusOcen = true;
+							break;
+						}
+					}
+					//zrobic kolejnosc
+					//zrobic zakonczenie roku szkolnego
+					
+				}
+			}
+			else {
+				pojedynczyStatusOcen = true;
+			}
+			if(pojedynczyStatusOcen) {
+				// 1 to nie wszystkie oceny wpisane
+				statusOcen.add(new Integer(1));
+			}
+			else {
+				statusOcen.add(new Integer(0));
+			}
+			
+		}
+		System.out.println("wypisuje rozmiar statusu ocen " + statusOcen.size());
+		System.out.println(statusOcen);
+		return statusOcen;
 	}
 
 	

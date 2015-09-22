@@ -34,6 +34,8 @@ public interface OcenyRepository extends JpaRepository<Oceny, Integer>{
 	List<Oceny> findByPrzedmiotyAndUczniowieAndRokNaukiAndTyp(
 			Przedmioty przedmiot, Uczniowie uczen, Integer rok, String typ);
 
+	List<Oceny> findByUczniowieAndRokNauki(Uczniowie uczen, Integer rok);
+
 	
 //	Oceny findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(
 //			Przedmioty przedmiot, Uczniowie uczniowie, Integer rokNauki,
