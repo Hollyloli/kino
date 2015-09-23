@@ -176,7 +176,7 @@ public class InitDbService {
 		Oceny ocena4 = new Oceny();
 		ocena4.setOcena(6);
 		ocena4.setRokNauki(1);
-		ocena4.setSemestr(2);
+		ocena4.setSemestr(1);
 		ocena4.setTyp("semestralna");
 		ocenyRepository.save(ocena4);
 		
@@ -216,11 +216,11 @@ public class InitDbService {
 		klasy.add(pierwszaKlasa);
 		klasaRepository.save(pierwszaKlasa);
 		
-		Klasa pierwszaKlasa2 = new Klasa();
-		pierwszaKlasa2.setRok(2);
-		pierwszaKlasa2.setSymbol("B");
-		klasy.add(pierwszaKlasa2);
-		klasaRepository.save(pierwszaKlasa2);
+//		Klasa pierwszaKlasa2 = new Klasa();
+//		pierwszaKlasa2.setRok(2);
+//		pierwszaKlasa2.setSymbol("B");
+//		klasy.add(pierwszaKlasa2);
+//		klasaRepository.save(pierwszaKlasa2);
 		
 		
 		Uczniowie uczen = new Uczniowie();

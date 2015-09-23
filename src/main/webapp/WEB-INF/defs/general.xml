@@ -7,11 +7,6 @@
 		<put-attribute name="footer" value="/WEB-INF/basic/footer.jsp" />
 	</definition>
 
-	<definition name="rozszerzoneWspolne" extends="wspolne">
-		<!-- <put-attribute name="footer" value="/WEB-INF/basic/footer.jsp" /> -->
-	</definition>
-
-
 	<definition name="index" extends="wspolne">
 		<put-attribute name="title" value="Dzienniczek" />
 		<put-attribute name="slider" value="/WEB-INF/basic/slider.jsp" />

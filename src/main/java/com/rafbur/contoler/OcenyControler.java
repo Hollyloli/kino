@@ -120,11 +120,14 @@ public class OcenyControler {
 	//to podgladania ocen
 	@RequestMapping(value="/formularzWyswietlenieOcen", method=RequestMethod.POST)
 	public String formularzWyswietlenieOcen(@ModelAttribute("ocena") Oceny ocena, BindingResult result, Model model, HttpSession session) {
-		System.out.println("formularz wyswietlenieOcen");
-		session.setAttribute("ocenySemestr1",klasaService.znajdzOcenyUczniowZroku((Klasa)session.getAttribute("klasa"),ocena.getRokNauki(),new Integer(1),(String)session.getAttribute("nazwaPrzedmiotu")));
+		System.out.println("dupa");
+		session.removeAttribute("ocenySemestr2");
+		System.out.println("formularz wyswietlenieOcen " + ocena.getRokNauki());
+		Klasa klasa = (Klasa)session.getAttribute("klasa");
+		session.setAttribute("ocenySemestr1",klasaService.znajdzOcenyUczniowZroku(klasa,ocena.getRokNauki(),new Integer(1),(String)session.getAttribute("nazwaPrzedmiotu")));
 		//sprwdzam czy kazdy z uczniow ma wpisana ocene koncowa na semestr jesli tak to wyswietlam tez 2 semestr
-		if(ocenyService.CzyJestOcenaRoczna((Klasa)session.getAttribute("klasa"),ocena.getRokNauki(),new Integer(2),(String)session.getAttribute("nazwaPrzedmiotu"))) {
-			session.setAttribute("ocenySemestr2",klasaService.znajdzOcenyUczniowZroku((Klasa)session.getAttribute("klasa"),ocena.getRokNauki(),new Integer(2),(String)session.getAttribute("nazwaPrzedmiotu")));
+		if(ocenyService.CzyJestOcenaSemestr(klasa,ocena.getRokNauki(),new Integer(2),(String)session.getAttribute("nazwaPrzedmiotu"))) {
+			session.setAttribute("ocenySemestr2",klasaService.znajdzOcenyUczniowZroku(klasa,ocena.getRokNauki(),new Integer(2),(String)session.getAttribute("nazwaPrzedmiotu")));
 		}
 		return "redirect:/przedmiot-"+session.getAttribute("nazwaPrzedmiotu")+"/"+session.getAttribute("wybor")+".html";
 	}

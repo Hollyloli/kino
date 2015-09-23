@@ -136,7 +136,19 @@ public class zarzadzaniaUzytkawnikami {
 		sesja.setAttribute("nauczyciele", userService.znajdzNauczycieli());
 		return "redirect:/zarzadzanieUzytkownikami.html?success=true";
 	}
-
+	
+	@RequestMapping(value="/formularzZakonczeniaRoku", method=RequestMethod.POST)
+	public String formularzZakonczeniaRoku(@Valid @ModelAttribute("uzytkownik") Uzytkownicy uzytkownik, BindingResult result,HttpSession sesja)
+	{
+		System.out.println("wypisuje zakonczenieRokuSzkolnego");
+		klasaService.zakonczRokSzkolny();
+		sesja.removeAttribute("ocenySemestr2");
+//		userService.dodajRole(uzytkownik);
+//		sesja.setAttribute("uzytkownicyBezRoli", userService.znajdzNieaktywowanychUzytkownikow());
+//		sesja.setAttribute("nauczyciele", userService.znajdzNauczycieli());
+		return "redirect:/zakonczenieRokuSzkolnego.html?success=true";
+	}
+	
 	
 	@RequestMapping(value="/formularzPrzypPrzedNaucz", method=RequestMethod.POST)
 	public String formularzPrzypPrzedNaucz(@Valid @ModelAttribute("nauczyciel") Nauczyciele nauczyciel, BindingResult result,Principal principal , HttpSession sesja)

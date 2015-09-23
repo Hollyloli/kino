@@ -61,12 +61,12 @@ public class OcenyService {
 			przedmiotyRepository.saveAndFlush(przedmiot);
 	}
 
-	public boolean CzyJestOcenaRoczna(Klasa klasa, Integer rokNauki, Integer semestr, String nazwaPrzedmiotu) {
+	public boolean CzyJestOcenaSemestr(Klasa klasa, Integer rokNauki, Integer semestr, String nazwaPrzedmiotu) {
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		boolean czyWszyscyMajaOceneSemestralna=true;
 		for(int i=0; i<klasa.getUczniowie().size(); i++) {
 			System.out.println("rozmiar klasy " + klasa.getUczniowie().size());
-			if(ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(przedmiot, klasa.getUczniowie().get(i), rokNauki, semestr, "ukonczono").size()==0) {
+			if(ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndTyp(przedmiot, klasa.getUczniowie().get(i), rokNauki, "semestralna").size()==0) {
 				czyWszyscyMajaOceneSemestralna=false;
 				break;
 			}

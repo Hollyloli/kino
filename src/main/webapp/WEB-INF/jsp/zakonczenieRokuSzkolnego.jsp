@@ -49,7 +49,7 @@
 	 </div>
 	 	
 	<c:if test="${liczbaKlas==liczbaWpisanychWszystkichOcen}">
-		<form:form commandName="klasa" class="form-horizontal" action="/PracaInz/formularzDodaniaKlasy.html">
+		<form:form commandName="klasa" class="form-horizontal" action="/PracaInz/formularzZakonczeniaRoku.html">
 			
 			<button class="btn btn-primary btn-lg" type="submit">Dodaj</button>
 		</form:form>

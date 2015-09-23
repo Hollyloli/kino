@@ -66,7 +66,7 @@
 		                        </div>
 		                        <div class="form-group">
 		                            <label for="labelWyborKlasy">Wybór roku nauki</label>
-		                            <form:select path="ocena" class="form-control" >
+		                            <form:select path="rokNauki" class="form-control" >
 		                            	<c:forEach var="i" begin="1" end="${klasa.rok}">
 		                           			<form:option value="${i}" />
 		                           		</c:forEach>
