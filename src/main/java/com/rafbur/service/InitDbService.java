@@ -1,6 +1,11 @@
 package com.rafbur.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +19,7 @@ import com.rafbur.entity.Klasa;
 import com.rafbur.entity.Kontakty;
 import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Oceny;
+import com.rafbur.entity.Opiekunowie;
 import com.rafbur.entity.Przedmioty;
 import com.rafbur.entity.Role;
 import com.rafbur.entity.Uczniowie;
@@ -23,6 +29,7 @@ import com.rafbur.repository.KlasaRepository;
 import com.rafbur.repository.KontaktyRepository;
 import com.rafbur.repository.NauczycieleRepository;
 import com.rafbur.repository.OcenyRepository;
+import com.rafbur.repository.OpiekunowieRepository;
 import com.rafbur.repository.PrzedmiotyRepository;
 import com.rafbur.repository.RoleRepository;
 import com.rafbur.repository.UczniowieRepository;
@@ -59,8 +66,11 @@ public class InitDbService {
 	@Autowired
 	private NauczycieleRepository nauczycieleRepository;
 	
+	@Autowired
+	private OpiekunowieRepository opiekunowieRepository;
+	
 	@PostConstruct
-	public void init() {
+	public void init() throws ParseException {
 		Role roleUser = new Role();
 		roleUser.setTypRoli("ROLE_DYREKTOR");
 		roleRepository.save(roleUser);
@@ -82,7 +92,7 @@ public class InitDbService {
 		
 		Uzytkownicy uzytkwonikUczen = new Uzytkownicy();
 		uzytkwonikUczen.setImie("Rafal");
-		uzytkwonikUczen.setNazwisko("Be");
+		uzytkwonikUczen.setNazwisko("Burnejko");
 		uzytkwonikUczen.setLogin("admin");
 		uzytkwonikUczen.setAktywny(true);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -90,9 +100,8 @@ public class InitDbService {
 		List<Role> role = new ArrayList<Role>();
 		role.add(roleUser);
 		role.add(roleUser2);
+		role.add(roleUser4);
 		uzytkwonikUczen.setRole(role);
-		
-		
 		
 		Adresy adres1 = new Adresy();
 		adres1.setUlica("Retkinska");;
@@ -110,7 +119,7 @@ public class InitDbService {
 		
 		
 		Kontakty kontakt1 = new Kontakty();
-		kontakt1.setEmail("lol@lol.pl");
+		kontakt1.setEmail("rafal@email.pl");
 		kontakt1.setTelefon("510389421");
 		KontaktyRepository.save(kontakt1);
 		
@@ -126,9 +135,16 @@ public class InitDbService {
 		
 		uzytkownicyRepository.save(uzytkwonikUczen);
 		
-		
-		
-		
+		Uzytkownicy uzytkwonikOpiekun = new Uzytkownicy();
+		uzytkwonikOpiekun.setImie("imieOpiekun");
+		uzytkwonikOpiekun.setNazwisko("nazwiskoOpiekun");
+		uzytkwonikOpiekun.setLogin("opiekun");
+		uzytkwonikOpiekun.setHaslo(encoder.encode("opiekun"));
+		uzytkwonikOpiekun.setAktywny(true);
+		List<Role> roleOpiekuna = new ArrayList<Role>();
+		roleOpiekuna.add(roleUser3);
+		uzytkwonikOpiekun.setRole(roleOpiekuna);
+		uzytkownicyRepository.save(uzytkwonikOpiekun);
 		
 		Uzytkownicy uzytkwonikNauczyciel = new Uzytkownicy();
 		uzytkwonikNauczyciel.setImie("Ann");
@@ -142,16 +158,16 @@ public class InitDbService {
 		uzytkownicyRepository.save(uzytkwonikNauczyciel);
 		
 		
-		Oceny ocena = new Oceny();
-		ocena.setOcena(4);
-		ocena.setWagaOceny(1);
-		ocena.setRokNauki(1);
-		ocena.setSemestr(2);
-		ocena.setTyp("koncowa");
-		ocenyRepository.save(ocena);
+//		Oceny ocena = new Oceny();
+//		ocena.setOcena(4);
+//		ocena.setWagaOceny(1);
+//		ocena.setRokNauki(1);
+//		ocena.setSemestr(2);
+//		ocena.setTyp("koncowa");
+//		ocenyRepository.save(ocena);
 		
 		Oceny ocena2 = new Oceny();
-		ocena2.setOcena(2);
+		ocena2.setOcena(4);
 		ocena2.setRokNauki(1);
 		ocena2.setSemestr(1);
 		ocena2.setTyp("semestralna");
@@ -174,35 +190,86 @@ public class InitDbService {
 		ocenyRepository.save(ocena5);
 		
 		Oceny ocena4 = new Oceny();
-		ocena4.setOcena(6);
+		ocena4.setOcena(3);
 		ocena4.setRokNauki(1);
 		ocena4.setSemestr(1);
 		ocena4.setTyp("semestralna");
 		ocenyRepository.save(ocena4);
 		
-		Oceny ocena6 = new Oceny();
-		ocena6.setOcena(6);
-		ocena6.setRokNauki(1);
-		ocena6.setSemestr(2);
-		ocena6.setTyp("koncowa");
-		ocenyRepository.save(ocena6);
+		Oceny ocena11 = new Oceny();
+		ocena11.setOcena(4);
+		ocena11.setWagaOceny(2);
+		ocena11.setRokNauki(1);
+		ocena11.setSemestr(2);
+		ocena11.setTyp("czastkowa");
+		ocenyRepository.save(ocena11);
+		
+		Oceny ocena12 = new Oceny();
+		ocena12.setOcena(5);
+		ocena12.setWagaOceny(1);
+		ocena12.setRokNauki(1);
+		ocena12.setSemestr(2);
+		ocena12.setTyp("czastkowa");
+		ocenyRepository.save(ocena12);
+		
+		
 		
 		List<Oceny> oceny = new ArrayList<Oceny>();
-		oceny.add(ocena);
+//		oceny.add(ocena);
 		oceny.add(ocena2);
 		oceny.add(ocena3);
 		oceny.add(ocena5);
+		oceny.add(ocena11);
+		oceny.add(ocena12);
+		
+		
+		Oceny ocena7 = new Oceny();
+		ocena7.setOcena(2);
+		ocena7.setWagaOceny(3);
+		ocena7.setRokNauki(1);
+		ocena7.setSemestr(1);
+		ocena7.setTyp("czastkowa");
+		ocenyRepository.save(ocena7);
+		
+		Oceny ocena8 = new Oceny();
+		ocena8.setOcena(5);
+		ocena8.setWagaOceny(2);
+		ocena8.setRokNauki(1);
+		ocena8.setSemestr(1);
+		ocena8.setTyp("czastkowa");
+		ocenyRepository.save(ocena8);
+		
+		Oceny ocena9 = new Oceny();
+		ocena9.setOcena(1);
+		ocena9.setWagaOceny(2);
+		ocena9.setRokNauki(1);
+		ocena9.setSemestr(1);
+		ocena9.setTyp("czastkowa");
+		ocenyRepository.save(ocena9);
+		
+		Oceny ocena10 = new Oceny();
+		ocena10.setOcena(6);
+		ocena10.setWagaOceny(1);
+		ocena10.setRokNauki(1);
+		ocena10.setSemestr(1);
+		ocena10.setTyp("czastkowa");
+		ocenyRepository.save(ocena10);
+		
 		
 		
 		List<Oceny> oceny2 = new ArrayList<Oceny>();
 		oceny2.add(ocena4);
-		oceny2.add(ocena6);
+		oceny2.add(ocena7);
+		oceny2.add(ocena8);
+		oceny2.add(ocena9);
+		oceny2.add(ocena10);
+		
 		
 		List<Oceny> wszystkieOceny = new ArrayList<Oceny>();
 		wszystkieOceny.addAll(oceny);
 		wszystkieOceny.addAll(oceny2);
 		Przedmioty przedmiot = new Przedmioty();
-		przedmiot.setNazwa("polski");
+		przedmiot.setNazwa("jezyk polski");
 		przedmiot.setOceny(wszystkieOceny);
 		List<Przedmioty> przedmioty = new ArrayList<Przedmioty>();
 		przedmioty.add(przedmiot);
@@ -222,6 +289,15 @@ public class InitDbService {
 //		klasy.add(pierwszaKlasa2);
 //		klasaRepository.save(pierwszaKlasa2);
 		
+		Opiekunowie opiekun = new Opiekunowie();
+		opiekun.setLogin(uzytkwonikOpiekun.getLogin());
+//		List<Uczniowie> uczniowie = new ArrayList<Uczniowie>();
+//		uczniowie.add(uczen);
+//		opiekun.setUczniowie(uczniowie);
+		opiekunowieRepository.save(opiekun);
+		
+		List<Opiekunowie> opiekunowie = new ArrayList<Opiekunowie>();
+		opiekunowie.add(opiekun);
 		
 		Uczniowie uczen = new Uczniowie();
 		uczen.setLogin(uzytkwonikUczen.getLogin());
@@ -230,12 +306,13 @@ public class InitDbService {
 		uczen.setPrzedmioty(przedmioty);
 		uczen.setKlasa(pierwszaKlasa);
 		uczen.setOceny(oceny);
+		uczen.setOpiekunowie(opiekunowie);
 		uczniowieRepository.save(uczen);
 		
 		Uczniowie uczen2 = new Uczniowie();
-		uczen2.setLogin("erafbur'");
-		uczen2.setImie("Raf");
-		uczen2.setNazwisko("Burnej");
+		uczen2.setLogin("aklepka");
+		uczen2.setImie("Anna");
+		uczen2.setNazwisko("Klepka");
 		uczen2.setPrzedmioty(przedmioty);
 		uczen2.setKlasa(pierwszaKlasa);
 		uczen2.setOceny(oceny2);
@@ -246,6 +323,8 @@ public class InitDbService {
 		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
 		nauczyciel.setKlasaNauczyciel(klasy);
 		nauczycieleRepository.save(nauczyciel);
+		
+	
 		
 	}
 	

@@ -142,7 +142,15 @@
 	                                    		<c:forEach items="${uczen.oceny}" var="pojedynczaOcena" varStatus="loop">
 	                                    			<c:if test="${pojedynczaOcena.wagaOceny==2 && pojedynczaOcena.typ=='czastkowa'}">
 	                                    				<td align="center">${pojedynczaOcena.ocena} 
-   					                         				<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal" data-whatever="${uczen.oceny[loop.index].idOceny}">Zmien</button></td>
+		                                    				<c:choose>
+	   					         				                <c:when test="${wybor2=='edycja_oceny'}" >
+			                                    					<button type="button"  class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal" data-whatever="${uczen.oceny[loop.index].idOceny}">Zmien</button>
+			                                    				</c:when>
+			                                    				<c:when test="${wybor2=='usuniecie_oceny'}">
+			                                    					 <a href="<spring:url value="/usuniecieOceny/${uczen.oceny[loop.index].idOceny}.html"  /> " class="btn btn-danger btn-xs" >usuń ocene</a>
+			                                    				</c:when>
+		                                    				</c:choose>                			
+   					                         			</td>
 	                                    				<c:set var="sredniaOcen" value="${sredniaOcen+2*pojedynczaOcena.ocena}" />
 	                                    				<c:set var="wagaOcen" value="${wagaOcen+2}" />
 	                                    				<c:set var="iloscKolumn" value="${iloscKolumn+1}" />
@@ -151,7 +159,16 @@
 	                                    		<c:forEach items="${uczen.oceny}" var="pojedynczaOcena" varStatus="loop">
 	                                    			<c:if test="${pojedynczaOcena.wagaOceny==3 && pojedynczaOcena.typ=='czastkowa'}">
 	                                    				<td align="center">${pojedynczaOcena.ocena} 
-	                                    					<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal" data-whatever="${uczen.oceny[loop.index].idOceny}">Zmien</button></td>
+	                                    					<c:choose>
+	   					         				                <c:when test="${wybor2=='edycja_oceny'}" >
+			                                    					<button type="button"  class="btn btn-primary btn-xs" data-toggle="modal" data-target="#exampleModal" data-whatever="${uczen.oceny[loop.index].idOceny}">Zmien</button>
+			                                    				</c:when>
+			                                    				<c:when test="${wybor2=='usuniecie_oceny'}">
+			                                    					 <a href="<spring:url value="/usuniecieOceny/${uczen.oceny[loop.index].idOceny}.html"  /> " class="btn btn-danger btn-xs" >usuń ocene</a>
+			                                    				</c:when>
+		                                    				</c:choose>                			
+   					                         			</td>
+	                                    				
 	                                    				<c:set var="sredniaOcen" value="${sredniaOcen+3*pojedynczaOcena.ocena}" />
 	                                    				<c:set var="wagaOcen" value="${wagaOcen+3}" />
 	                                    				<c:set var="iloscKolumn" value="${iloscKolumn+1}" />
@@ -229,8 +246,8 @@
 								        
 								      </div>
 								      <div class="modal-footer">
-								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								        <input type="submit"  class="btn btn-primary" value="Save" />
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+								        <input type="submit"  class="btn btn-primary" value="zapisz" />
 								      </div>
 								    </div>
 								  </div>
@@ -349,8 +366,8 @@
 					                       		</div>
 								      </div>
 								      <div class="modal-footer">
-								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								        <input type="submit"  class="btn btn-primary" value="Save" />
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+								        <input type="submit"  class="btn btn-primary" value="Zapisz" />
 								      </div>
 								    </div>
 								  </div>

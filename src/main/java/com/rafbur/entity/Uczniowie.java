@@ -1,5 +1,6 @@
 package com.rafbur.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,8 +19,13 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-public class Uczniowie {
+public class Uczniowie implements Serializable{
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)

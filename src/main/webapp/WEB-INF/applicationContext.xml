@@ -17,6 +17,7 @@
 	</context:component-scan>
 
 	<!-- <jdbc:embedded-database type="HSQL" id="DataSource"/> -->
+	
 	<bean id="DataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
@@ -24,8 +25,6 @@
 		<property name="username" value="postgres" />
 		<property name="password" value="postgres" />
 	</bean>
-
-
 	<bean
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
 		id="entityManagerFactory">
@@ -42,19 +41,12 @@
 			<bean class="org.hibernate.jpa.HibernatePersistenceProvider" />
 		</property>
 	</bean>
-
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
 		id="transactionManager">
 		<property name="dataSource" ref="DataSource" />
 	</bean>
-
-
-
-	<jpa:repositories base-package="com.rafbur.repository"
-		entity-manager-factory-ref="entityManagerFactory"
-		transaction-manager-ref="transactionManager" />
+	<jpa:repositories base-package="com.rafbur.repository" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager" />
 
 	<import resource="security.xml" />
 </beans>

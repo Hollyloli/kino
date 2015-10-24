@@ -11,17 +11,14 @@
 
  <!--Edit Main Content Area here-->
  <div class="col-sm-12" id="divMain">
- viyviv
+ 
         <h1>Nazwa przedmiotu: ${nazwaPrzedmiotu} </h1> 
         
                     <hr>
-                   
-                    
-                    
                   
                     		<c:choose>
 			                    <c:when test="${wybor=='czynnosci_zwiazane_z_edycja_ocen'}">
-			                    dupa22
+			                    
 			                    	  <c:choose>
                     					<c:when test="${ocenaKoncowa==null}">
 					        				<form:form commandName="wspolne" class="form-horizontal" action="/PracaInz/formularzUczenIczynnnosc.html">
@@ -60,7 +57,6 @@
 	        			
 	        			</c:when>
 	                    <c:when test="${wybor=='czynnosci_zwiazane_z_podgladaniem_ocen'}">
-	                    dupa
 	                    	<form:form commandName="ocena" class="form-horizontal" action="/PracaInz/formularzWyswietlenieOcen.html" >
 		                        <div class="form-group">
 		                        </div>
@@ -367,7 +363,6 @@
 	                    		
 	                    </c:when>
 	                    <c:when test="${wybor=='czynnosci zwiazane z podgladaniem frekfencji'}">
-	                    	dupa2
 	                    </c:when>
                    	</c:choose>                              
                  

@@ -6,4 +6,6 @@ import com.rafbur.entity.Opiekunowie;
 
 public interface OpiekunowieRepository extends JpaRepository<Opiekunowie, Integer>{
 
+	Opiekunowie findByLogin(String loginOpiekuna);
+
 }

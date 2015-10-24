@@ -30,12 +30,6 @@ label {font-size:20px;
 	            	<label for="labelImie">${uzytkownik.nazwisko}</label>
             	</div>
             </div>
-            <div class="form-group">
-            	<div class="col-sm-4">
-        			<label for="labelImie"><strong>Data Urodzenia:</strong></label>
-           			<label for="labelImie">${uzytkownik.dataUrodzenia}</label> 
-           		</div>
-           	</div>
            	<div class="form-group">
            		<div class="col-sm-1">
            			<label for="labelImie"><strong>Hasło:</strong></label>
@@ -174,7 +168,7 @@ label {font-size:20px;
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Dodaj adres</h4>
+	        <h4 class="modal-title" id="myModalLabel">Dodaj dane kontaktowe</h4>
 	      </div>
 	      <div class="modal-body">
 	        	<div class="form-group">

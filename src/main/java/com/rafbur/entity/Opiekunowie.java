@@ -21,6 +21,14 @@ public class Opiekunowie {
 	@ManyToMany(mappedBy="opiekunowie")
 	private List<Uczniowie> uczniowie;
 
+	public List<Uczniowie> getUczniowie() {
+		return uczniowie;
+	}
+
+	public void setUczniowie(List<Uczniowie> uczniowie) {
+		this.uczniowie = uczniowie;
+	}
+
 	public Integer getIdOpiekuna() {
 		return idOpiekuna;
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rafbur.service.NauczycielService;
+import com.rafbur.service.OpiekunowieService;
 import com.rafbur.service.PrzedmiotyService;
 import com.rafbur.service.UserService;
 
@@ -22,6 +23,9 @@ public class IndexControler {
 	
 	@Autowired
 	private PrzedmiotyService przedmiotyService;
+	
+	@Autowired
+	private OpiekunowieService opiekunowieService;
 	
 	@RequestMapping("/index")
 	public String index(SecurityContextHolderAwareRequestWrapper rolaUyztkownika,HttpSession sesja) {
@@ -42,10 +46,10 @@ public class IndexControler {
 				rolaUyztkownika.getSession().setAttribute("uzytkownicyBezRoli", userService.znajdzNieaktywowanychUzytkownikow());
 				sesja.setAttribute("nauczyciele", userService.znajdzNauczycieli());
 				sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
-				
 			}
-//			System.out.println("wypisuje typ roli " + listaRoli.get(1).getTypRoli());
-//			
+			if(rolaUyztkownika.isUserInRole("ROLE_OPIEKUN")) {
+				sesja.setAttribute("dzieciPodOpieka", opiekunowieService.znajdzDzieciOpiekuna(rolaUyztkownika.getUserPrincipal().getName()));
+			}
 //			for(int i = 0; i < listaRoli.size(); i++) {
 //				System.out.println("wchodzi w liste roli " +i);
 //				if(listaRoli.get(i).getTypRoli().equals("ROLE_NAUCZYCIEL")) {

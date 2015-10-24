@@ -66,8 +66,8 @@
               		
 
                     <div id="divLogo" class="pull-left">
-                        <a href="index.php" id="divSiteTitle">Dziennik</a><br />
-                        <a href="index.php" id="divTagLine">Szkolny</a>
+                        <a href="<spring:url value="/" />" id="divSiteTitle">Dziennik</a><br />
+                        <a href="<spring:url value="/" />" id="divTagLine">Szkolny</a>
                     </div>
 
                     <div id="divMenuRight" class="pull-right">
@@ -85,7 +85,7 @@
 					            <ul class="nav nav-pills ddmenu">
 					              <li class="${current=='index' ? 'active' : ''} "><a href='<spring:url value="/" />'>Home</a></li>
 					             <security:authorize access="hasRole('ROLE_UCZEN')">
-					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/users.html" />'>Uczen</a></li>
+						             <li><a href='<spring:url value="/ocenyUcznia.html" />'>Oceny ucznia</a></li>
 					             </security:authorize>
 			       		        <security:authorize access="hasRole('ROLE_DYREKTOR')">
 					              	<li class="dropdown">
@@ -94,6 +94,7 @@
 						                  <li><a href="<spring:url value="/zarzadzanieUzytkownikami.html" /> ">Aktywacja konta</a></li>
 						                  <li><a href="<spring:url value="/dodaniePrzedmiotu.html" />">Dodanie przedmiotu</a></li>
 						                  <li><a href="<spring:url value="/przypPrzedNaucz.html" />">Przyporządkowanie przedmiotu nauczycielowi</a></li>
+						                  <li><a href="<spring:url value="/przypUczniowOpiek.html" />">Przyporządkowanie uczniow opiekunowi</a></li>
 						                  <li><a href="<spring:url value="/dodanieKlasy.html" />">Dodanie klasy</a></li>
 						                  <li><a href="<spring:url value="/dodanieUczniaDoKlasy.html" />">Dodanie ucznia do klasy</a></li>
 						                  <li><a href="<spring:url value="/przypPrzedUczn.html" />">Przyporządkowanie przedmiotu uczniom</a></li>
@@ -105,7 +106,15 @@
 						              </li>
 					             </security:authorize>
 			                    <security:authorize access="hasRole('ROLE_OPIEKUN')">
-					              	<li class="${current=='users' ? 'active' : ''}"><a href='<spring:url value="/opiekun.html" />'>Dyrektor</a></li>
+						              <li class="dropdown">
+						                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Opiekun<span class="caret"></span></a>
+						                <ul class="dropdown-menu">
+						                  <li class="dropdown-header">Opieka na dziećmi</li>
+						                  <c:forEach items="${dzieciPodOpieka}" var="dziecko" varStatus="loop">
+	            							<li><a href='<spring:url value="/dziecko-${dziecko.login}.html" /> '>${dziecko.imie} ${dziecko.nazwisko}</a></li>
+	           							 </c:forEach>
+						                </ul>
+						              </li>
 					             </security:authorize>
 					             <security:authorize access="hasRole('ROLE_NAUCZYCIEL')">
 								 	 <li class="dropdown">
@@ -129,6 +138,7 @@
 					              <li><a href='<spring:url value="/kontakt.html" />'>Kontakt</a></li>
 					              <security:authorize access="isAuthenticated()">
 									<li><a href='<spring:url value="/edycjaKonta.html" />'>Edycja Konta</a></li>
+									
 									<li><a href='<spring:url value="/logout" />'>Wyloguj</a></li>
 								  </security:authorize>
 					            </ul>
@@ -148,17 +158,10 @@
             
             <c:if test="${current!='index'}">
             	<div class="breadcrumbs">
-                	<a href="index.php">Home</a> &nbsp;/&nbsp; <span>${current}</span>
+                	<a href="<spring:url value="/" />">Home</a> &nbsp;/&nbsp; <span>${current}</span>
             	</div>
             </c:if>
-            <c:forEach items="${nauczyciel.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
-            	${przedmiot.nazwa}
-            </c:forEach>
-            <!-- dodac w dziedziczonych 
-            <div class="breadcrumbs">
-                <a href="index.php">Home</a> &nbsp;/&nbsp; <span>Edycja konta</span>
-            </div>
-			 -->
+
             
             <div class="row">
             

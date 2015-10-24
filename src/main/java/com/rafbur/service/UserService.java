@@ -103,7 +103,6 @@ public class UserService {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		uzytkownik.setHaslo(encoder.encode(uzytkownikDane.getHaslo()));
 		uzytkownicyRepository.saveAndFlush(uzytkownik);
-		
 	}
 
 	public List<Role> znajdzTypRoliUzytkownika(String login) {

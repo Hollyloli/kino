@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.rafbur.entity.Klasa;
 import com.rafbur.entity.Nauczyciele;
+import com.rafbur.entity.Opiekunowie;
 import com.rafbur.entity.Uczniowie;
 
 public interface UczniowieRepository extends JpaRepository<Uczniowie, Integer>{
@@ -15,5 +16,7 @@ public interface UczniowieRepository extends JpaRepository<Uczniowie, Integer>{
 	Uczniowie findByImieAndNazwisko(String imie, String nazwisko);
 
 	Uczniowie findByLogin(String login);
+
+	List<Uczniowie> findByOpiekunowie(Opiekunowie opiekun);
 
 }

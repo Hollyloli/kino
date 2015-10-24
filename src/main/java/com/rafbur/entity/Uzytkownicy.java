@@ -1,7 +1,6 @@
 package com.rafbur.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,16 +16,34 @@ import javax.validation.constraints.Size;
 @Entity
 public class Uzytkownicy implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
-	private Integer idUzytkownika;
-	
-	private Boolean aktywny;
+	private Integer idUzytkownika;	
+	private Boolean aktywny;		
+	@Size(min=4, message="login jest za krótki")
+	@Pattern(regexp="^[a-zA-Z0-9]+$", message="Login u¿ytkownika nie mo¿e zawieraæ spacji")
+	private String login;	
+	@Pattern(regexp="^[a-zA-Z]+$", message="Imie nie moze zawieraæ cyfr lub spacji")
+	@Size(min=3,max=20, message="Niepoprawna d³ugoœæ imienia")
+	private String imie;	
+	@Pattern(regexp="^[a-zA-Z]+$", message="Nazwisko nie moze zawieraæ cyfr lub spacji")
+	@Size(min=2, max=15, message="Niepoprawna d³ugoœæ nazwiska")
+	private String nazwisko;	
+	@Size(min=4, message="Haslo nie moze byæ krótsze ni¿ 4 znaki")
+	private String haslo;
+	@ManyToMany
+	@JoinTable
+	@Valid
+	private List<Kontakty> kontakty;
+	@ManyToMany
+	@JoinTable
+	@Valid
+	private List<Adresy> adresy;	
+	@ManyToMany
+	@JoinTable
+	private List<Role> role;
 	
 	public Boolean getAktywny() {
 		return aktywny;
@@ -35,30 +52,6 @@ public class Uzytkownicy implements Serializable{
 	public void setAktywny(Boolean aktywny) {
 		this.aktywny = aktywny;
 	}
-	@Size(min=4, message="login jest za krótki")
-	@Pattern(regexp="^[a-zA-Z0-9]+$", message="Login u¿ytkownika nie mo¿e zawieraæ spacji")
-	private String login;
-	
-	@Pattern(regexp="^[a-zA-Z]+$", message="Imie nie moze zawieraæ cyfr lub spacji")
-	@Size(min=3,max=20, message="Niepoprawna d³ugoœæ imienia")
-	private String imie;
-	
-	@Pattern(regexp="^[a-zA-Z]+$", message="Nazwisko nie moze zawieraæ cyfr lub spacji")
-	@Size(min=2, max=15, message="Niepoprawna d³ugoœæ nazwiska")
-	private String nazwisko;
-	
-	@Size(min=4, message="Haslo nie moze byæ krótsze ni¿ 4 znaki")
-	private String haslo;
-
-	@ManyToMany
-	@JoinTable
-	@Valid
-	private List<Kontakty> kontakty;
-
-	@ManyToMany
-	@JoinTable
-	@Valid
-	private List<Adresy> adresy;
 	
 	public List<Kontakty> getKontakty() {
 		return kontakty;
@@ -77,11 +70,7 @@ public class Uzytkownicy implements Serializable{
 	}
 	
 	
-	private Date dataUrodzenia;
-	
-	@ManyToMany
-	@JoinTable
-	private List<Role> role;
+
 	
 
 	
@@ -133,14 +122,6 @@ public class Uzytkownicy implements Serializable{
 
 	public void setHaslo(String haslo) {
 		this.haslo = haslo;
-	}
-
-	public Date getDataUrodzenia() {
-		return dataUrodzenia;
-	}
-
-	public void setDataUrodzenia(Date dataUrodzenia) {
-		this.dataUrodzenia = dataUrodzenia;
 	}
 
 }
