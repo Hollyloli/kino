@@ -26,26 +26,13 @@
 	                            <label for="labelWyborCzynnosci">Wybór czynności</label>
 	                            <form:select path="wyborCZynnosci" class="form-control">
 	                                <form:option value="czynnosci zwiazane z edycja ocen" />
-	                                <form:option value="czynnosci zwiazane z edycja frekfencji" />
 	                                <form:option value="czynnosci zwiazane z podgladaniem ocen" />
-	                                <form:option value="czynnosci zwiazane z podgladaniem frekfencji" />
 	                            </form:select>
 	                            
 	                        </div>
 	                        <button class="btn btn-primary btn-lg" type="submit" >Akceptuj</button>
                     </form:form>
-                    
-                                                            
                        <br />                  
                     <br />                                    
                     <hr>
-                    <br>
-                    
-                    
-                    
-                    
-
-        
-                
     </div>
- <!--End Main Content-->

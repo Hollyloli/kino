@@ -99,9 +99,6 @@
 						                  <li><a href="<spring:url value="/dodanieUczniaDoKlasy.html" />">Dodanie ucznia do klasy</a></li>
 						                  <li><a href="<spring:url value="/przypPrzedUczn.html" />">Przyporządkowanie przedmiotu uczniom</a></li>
 						                  <li><a href="<spring:url value="/zakonczenieRokuSzkolnego.html" /> ">Zakończenie roku szkolnego</a></li>
-						                  <li role="separator" class="divider"></li>
-						                  <li class="dropdown-header">Prowadzone zajecia</li>
-						                
 						                </ul>
 						              </li>
 					             </security:authorize>
@@ -120,10 +117,6 @@
 								 	 <li class="dropdown">
 						                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >Nauczyciel<span class="caret"></span></a>
 						                <ul class="dropdown-menu">
-						                  <li><a href="#">Prowadzone zajęcia</a></li>
-						                  <li><a href="#">Another action</a></li>
-						                  <li><a href="#">Something else here</a></li>
-						                  <li role="separator" class="divider"></li>
 						                  <li class="dropdown-header">Prowadzone zajecia</li>
 						                  <c:forEach items="${przedmiotNauczyciela.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
 	            							<li class="${current=='index' ? 'active' : ''}"><a href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
@@ -176,7 +169,13 @@
 </div>
 <br /><br /><br />
 
+<script type="text/javascript">
+$('#carousel-example-generic2').carousel({
+	  //interval: 1000
+	})
 
+
+</script>
 
 
 <script src="<c:url value="/resources/scripts/carousel/jquery.carouFredSel-6.2.0-packed.js" />" type="text/javascript"></script>

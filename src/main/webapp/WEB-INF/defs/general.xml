@@ -101,6 +101,11 @@
 		<put-attribute name="current" value="edycjaKonta" />
 	</definition>
 
+	<definition name="kontakt" extends="wspolne">
+		<put-attribute name="title" value="kontakt" />
+		<put-attribute name="body" value="/WEB-INF/jsp/kontakt.jsp" />
+		<put-attribute name="current" value="kontakt" />
+	</definition>
 
 	<definition name="wpisywanieOcen" extends="wspolne">
 		<put-attribute name="title" value="wpisywanie ocen" />
