@@ -1,9 +1,7 @@
 package com.rafbur.contoler;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rafbur.entity.Oceny;
-import com.rafbur.entity.Przedmioty;
-import com.rafbur.entity.Uzytkownicy;
 import com.rafbur.service.UczniowieService;
 
 @Controller

@@ -11,17 +11,15 @@ import com.rafbur.entity.Uczniowie;
 public interface OcenyRepository extends JpaRepository<Oceny, Integer>{
 
 	List<Oceny> findByPrzedmiotyAndUczniowie(Przedmioty przedmioty, Uczniowie uczen);
-	
 	Oceny findByRokNaukiAndSemestrAndTyp(Integer rok,Integer semestr, String typ);
-
-	List<Oceny> findByPrzedmioty(Przedmioty przedmiot);
 
 	List<Oceny> findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(
 			Przedmioty przedmiot, Uczniowie uczniowie, Integer rok,
 			Integer semestr, String typ);
+	
 
+	List<Oceny> findByPrzedmioty(Przedmioty przedmiot);
 	List<Oceny> findByUczniowie(Uczniowie uczen);
-
 	List<Oceny> findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestr(
 			Przedmioty przedmiot, Uczniowie uczen, Integer i, Integer j);
 
@@ -35,10 +33,5 @@ public interface OcenyRepository extends JpaRepository<Oceny, Integer>{
 			Przedmioty przedmiot, Uczniowie uczen, Integer rok, String typ);
 
 	List<Oceny> findByUczniowieAndRokNauki(Uczniowie uczen, Integer rok);
-
-	
-//	Oceny findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(
-//			Przedmioty przedmiot, Uczniowie uczniowie, Integer rokNauki,
-//			Integer semestr, String typ);
-
 }
+

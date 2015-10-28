@@ -42,8 +42,6 @@ public class EdycjaKontaControler {
 	
 	@RequestMapping("edycjaKonta")
 	public String EdycjaKonta(Model model,Principal principal) {
-		System.out.println("wypisuje edycja konta");
-		System.out.println("wypisuje uczestnika " + principal.getName());
 		model.addAttribute("uzytkownik",userService.znajdUzytkownika(principal.getName()));
 		return "edycjaKonta";
 	}
@@ -52,11 +50,9 @@ public class EdycjaKontaControler {
 	public String rejestrowanie(@Valid @ModelAttribute("polaczone") Uzytkownicy uzytkownik, BindingResult result, Model model,Principal principal)
 	{
 		if(result.hasErrors()) {
-			System.out.println("wypisuje error" + result.getFieldError("adresy[0].miasto"));
 			model.addAttribute("uzytkownik",userService.znajdUzytkownika(principal.getName()));
 			return "edycjaKonta";
 		}
-		System.out.println(" wypisuje adres " +uzytkownik.getAdresy().get(0).getMiasto());
 		userService.aktualizuj(uzytkownik,principal.getName());
 		return "redirect:/edycjaKonta.html?success=true";
 	}
@@ -70,18 +66,12 @@ public class EdycjaKontaControler {
 	
 	@RequestMapping(value="/edycjaKonta2", method=RequestMethod.POST)
 	public String dodajAdres(@Valid @ModelAttribute("polaczone2") Uzytkownicy uzytkownik,BindingResult result, Model model,Principal principal) {
-		System.out.println("wypisuje error" + result.getFieldError());
 		if(result.hasErrors())
 		{
-			System.out.println("wypsiuje blad");
 			EdycjaKonta(model, principal);
 			return "edycjaKonta";
 		}
-		System.out.println("wchodzi do doAddBlog " + uzytkownik.getAdresy().get(0).getMiasto());
-		String name=principal.getName();
-		
-		
-		adresService.save(uzytkownik,name);
+		adresService.save(uzytkownik,principal.getName());
 		return "redirect:/edycjaKonta.html";
 	}
 	

@@ -119,7 +119,7 @@
 						                <ul class="dropdown-menu">
 						                  <li class="dropdown-header">Prowadzone zajecia</li>
 						                  <c:forEach items="${przedmiotNauczyciela.przedmiotyNauczycieli}" var="przedmiot" varStatus="loop">
-	            							<li class="${current=='index' ? 'active' : ''}"><a href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
+	            							<li><a href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
 	           							 </c:forEach>
 						                </ul>
 						              </li>
@@ -168,21 +168,6 @@
   
 </div>
 <br /><br /><br />
-
-<script type="text/javascript">
-$('#carousel-example-generic2').carousel({
-	  //interval: 1000
-	})
-
-
-</script>
-
-
-<script src="<c:url value="/resources/scripts/carousel/jquery.carouFredSel-6.2.0-packed.js" />" type="text/javascript"></script>
-<script type="text/javascript">$('#list_photos').carouFredSel({ responsive: true, width: '100%', scroll: 2, items: {width: 320,visible: {min: 2, max: 6}} });</script>
-<script src="<c:url value="/resources/scripts/camera/scripts/camera.min.js" /> " type="text/javascript"></script>
-<script src="<c:url value="/resources/scripts/easing/jquery.easing.1.3.js" />" type="text/javascript"></script>
-<script type="text/javascript">function startCamera() {$('#camera_wrap').camera({ fx: 'scrollLeft', time: 2000, loader: 'none', playPause: false, navigation: true, height: '35%', pagination: true });}$(function(){startCamera()});</script>
 
 
 </body>

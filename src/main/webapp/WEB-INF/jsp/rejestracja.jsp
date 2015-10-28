@@ -25,7 +25,7 @@
  			 </div>
 		</div>
 		<div class="form-group">
-		 <label for="nazwisko" class="col-sm-2 control-label">Name</label>
+		 <label for="nazwisko" class="col-sm-2 control-label">Nazwisko</label>
 			 <div class="col-sm-10">
   			    <form:input path="nazwisko" cssClass="form-control" />
  			 	<form:errors path="nazwisko"/>

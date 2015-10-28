@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rafbur.entity.Klasa;
-import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Oceny;
 import com.rafbur.entity.Opiekunowie;
 import com.rafbur.entity.Przedmioty;
@@ -181,6 +180,7 @@ public class UczniowieService {
 //		List<Oceny> ocenyUcznia = new ArrayList<Oceny>();
 		Map<Przedmioty, List<Oceny>> mapa = new HashMap<Przedmioty, List<Oceny>>();
 		for (Przedmioty przedmiot : przedmiotyUcznia) {
+			
 			mapa.put(przedmiot, ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestr(przedmiot, uczen, rok, semestr));
 			System.out.println("wypisuej ilosc ocen z danego przedmiotu " + mapa.get(przedmiot).size());
 		}

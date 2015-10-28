@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.rafbur.entity.Klasa;
-import com.rafbur.entity.Nauczyciele;
 import com.rafbur.entity.Opiekunowie;
 import com.rafbur.entity.Uczniowie;
 

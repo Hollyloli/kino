@@ -41,6 +41,7 @@ public class NauczycielService {
 	public Nauczyciele znajdzPrzedmioty(String login) {
 		System.out.println("wypisuje login z metody znajdzPrzedmioty " + login);
 		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
+		System.out.println("wypisuje nauczyciela " +nauczyciel.getLogin());
 		List<Przedmioty> przedmioty = przedmiotyRepository.findByNauczyciele(nauczyciel);
 		if(przedmioty.size()!=0) {
 			nauczyciel.setPrzedmiotyNauczycieli(przedmioty);

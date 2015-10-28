@@ -124,7 +124,12 @@ public class OcenyService {
 		ocenaKoncowa.setOcena(ocena.getOcena());
 		ocenaKoncowa.setRokNauki(uczen.getOceny().get(0).getRokNauki());
 		ocenaKoncowa.setSemestr(uczen.getOceny().get(0).getSemestr());
-		ocenaKoncowa.setTyp("koncowa");
+		if(ocenaKoncowa.getSemestr().equals(1)) {
+			ocenaKoncowa.setTyp("semestralna");
+		}
+		else {
+			ocenaKoncowa.setTyp("koncowa");
+		}
 		ocenyRepository.save(ocenaKoncowa);
 
 		List<Oceny> ocenyUcznia = ocenyRepository.findByUczniowie(uczenBaza);
