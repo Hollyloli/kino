@@ -88,11 +88,7 @@ public class EdycjaKontaControler {
 			EdycjaKonta(model, principal);
 			return "edycjaKonta";
 		}
-//		System.out.println("wchodzi do doAddBlog " + uzytkownik.getAdresy().get(0).getMiasto());
-		String name=principal.getName();
-		kontaktyService.save(uzytkownik,name);
-//		adresService.save(uzytkownik,name);
+		kontaktyService.save(uzytkownik,principal.getName());
 		return "redirect:/edycjaKonta.html";
 	}
-	
 }

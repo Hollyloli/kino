@@ -31,13 +31,11 @@ public class KlasaService {
 	private UczniowieRepository uczniowieRepository;
 	
 	public Klasa znajdzOcenyUczniowZroku(Klasa klasa, Integer rokNauki,Integer semestr,String nazwaPrzedmiotu) {
-		System.out.println("wypisuje rok nauki i semestr" + rokNauki +" " + semestr );
 		Klasa klasa2 = klasaRepository.findOne(klasa.getIdKlasy());
 		List<Uczniowie> uczniowie2 = uczniowieRepository.findByKlasa(klasa2);
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		for(int i=0; i<uczniowie2.size(); i++) {
 			List<Oceny> oceny2 = ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestr(przedmiot, uczniowie2.get(i),rokNauki, semestr);
-			System.out.println("wypisuje rozmiar listy ocen " + oceny2.size());
 			uczniowie2.get(i).setOceny(oceny2);
 		}
 		klasa2.setUczniowie(uczniowie2);
@@ -49,7 +47,6 @@ public class KlasaService {
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		for(int i=0; i<uczniowie2.size(); i++) {
 			List<Oceny> oceny2 = ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(przedmiot, uczniowie2.get(i),klasa.getRok(), semestr,"czastkowa");
-			System.out.println("wypisuje rozmiar listy ocen " + oceny2.size());
 			uczniowie2.get(i).setOceny(oceny2);
 		}
 		klasa2.setUczniowie(uczniowie2);
@@ -60,7 +57,6 @@ public class KlasaService {
 		Klasa klasa = klasaRepository.findByRokAndSymbol(Integer.parseInt(rokIsymbol[0]),rokIsymbol[1]);
 		List<Uczniowie> uczniowie = uczniowieRepository.findByKlasa(klasa);
 		klasa.setUczniowie(uczniowie);
-		
 		return klasa;
 	}
 	public boolean czyWszyscyMajaOcKoncowa(String nazwaPrzedmiotu, Integer rok, String symbol,String typOceny) {
@@ -77,11 +73,6 @@ public class KlasaService {
 		return czyWszyscyMajaOcenyKoncowe;
 	}
 	public void dodajKlase(Klasa klasa) {
-//		System.out.println("wchodzi w dodajKlase");
-//		Klasa nowaKlasa = new Klasa();
-////		System.out.println("wypisuje rok klasy " + klasa.getRok());
-//		nowaKlasa.setRok(klasa.getRok());
-//		nowaKlasa.setSymbol(klasa.getSymbol());
 		klasaRepository.save(klasa);
 	}
 	public List<Klasa> znjadzWszyskieKlasy() {
@@ -103,29 +94,16 @@ public class KlasaService {
 	}
 	public List<Integer> statusOcenPodKoniecRoku(List<Klasa> klasy) {
 		List<Integer> statusOcen = new ArrayList<Integer>();
-		
-//		Oceny ocena = new Oceny();
-//		ocena.set
-		
-		System.out.println("rozmiar klas " + klasy.size());
 		for (Klasa klasa : klasy) {
 			List<Uczniowie> uczniowie = uczniowieRepository.findByKlasa(klasa);
 			boolean pojedynczyStatusOcen = false;
-			System.out.println("wypisuje rozmiar uczniow " + uczniowie.size());
 			if(uczniowie.size()>0) {
 				for (Uczniowie uczen : uczniowie) {
 					List<Oceny> oceny = ocenyRepository.findByUczniowieAndRokNauki(uczen, klasa.getRok());
-					//znajduje przedmioty daneog ucznia
-					System.out.println("gdzie wywala 1");
-					System.out.println("wypisuje oceny siez " + oceny.size());
 					if(oceny.size()>0) {
 						List<Przedmioty> przedmiotyUcznia = przedmiotyRepository.findByUczniowieAndOceny(uczen,oceny.get(0));
-						System.out.println("gdzie wywala 2");
 						for (Przedmioty przedmiot : przedmiotyUcznia) {
-							System.out.println("gdzie wywala 3");
 							if(ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndTyp(przedmiot, uczen, klasa.getRok(), "koncowa").size()==0) {
-								System.out.println("wypisuje imie i nazwisko " + uczen.getImie() + " " + uczen.getNazwisko());
-								System.out.println("gdzie wywala 4");
 								pojedynczyStatusOcen = true;
 								break;
 							}
@@ -149,18 +127,13 @@ public class KlasaService {
 				statusOcen.add(new Integer(0));
 			}
 		}
-		System.out.println("wypisuje rozmiar statusu ocen " + statusOcen.size());
-		System.out.println(statusOcen);
 		return statusOcen;
 	}
 	public void zakonczRokSzkolny() {
-		// TODO Auto-generated method stub
 		List<Klasa> klasy = klasaRepository.findAll();
 		for (Klasa klasa : klasy) {
 			klasa.setRok(klasa.getRok()+1);
 			klasaRepository.saveAndFlush(klasa);
 		}
-	
 	}
-
 }

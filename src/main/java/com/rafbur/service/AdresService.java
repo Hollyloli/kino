@@ -21,30 +21,20 @@ public class AdresService {
 
 	
 	public void delete(int id, String login) {
-		System.out.println("wypisuje id " +id);
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
 		List<Adresy> adresy = adresyRepository.findByUzytkownicy(uzytkownik);
-		// tu jest blad
 		Adresy adresDousuniecia = adresyRepository.findOne(id);
-		
-		System.out.println(" adres do usuniecia " +adresDousuniecia.getUlica());
-		System.out.println(" id do usuniecia " + adresDousuniecia.getIdAdresy());
-		int cos=0;
+		int zmienna=0;
 		for(int i=0; i<adresy.size(); i++)
 		{
 			if(adresy.get(i).getIdAdresy()==adresDousuniecia.getIdAdresy()) {
-				cos=i;
+				zmienna=i;
 				break;
 			}
 		}
-		System.out.println("zwraca index " + cos);
-		
-		System.out.println("wypisuje rozmiar adresow " + adresy.size());
-		adresy.remove(cos);
-		System.out.println("wypisuje rozmiar adresow " + adresy.size());
+		adresy.remove(zmienna);
 		uzytkownik.setAdresy(adresy);
 		uzytkownicyRepository.saveAndFlush(uzytkownik);
-		
 		adresyRepository.delete(id);
 	}
 	

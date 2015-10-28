@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.rafbur.contoler.Polaczone;
 import com.rafbur.entity.Adresy;
 import com.rafbur.entity.Kontakty;
 import com.rafbur.entity.Nauczyciele;
@@ -47,29 +46,12 @@ public class UserService {
 	@Autowired
 	private UczniowieRepository uczniowieRepository;
 	
-	@Autowired OpiekunowieRepository opiekunowieRepository;
+	@Autowired 
+	private OpiekunowieRepository opiekunowieRepository;
 	
-	public void save(Polaczone polaczeone) {
-		adresyRepository.save(polaczeone.getAdresy());
-		List<Adresy> adresy= new ArrayList<Adresy>();
-		adresy.add(polaczeone.getAdresy());
-		
-		kontaktyRepository.save(polaczeone.getKontakty());
-		List<Kontakty> kontakty = new ArrayList<Kontakty>();
-		kontakty.add(polaczeone.getKontakty());
-		
-		Uzytkownicy uzytkownik = polaczeone.getUzytkownicy();
-		uzytkownik.setKontakty(kontakty);
-		uzytkownik.setAdresy(adresy);
-		uzytkownicyRepository.save(uzytkownik);
-	}
 
 	public Uzytkownicy znajdUzytkownika(String login) {
-		System.out.println("wypisuje imie " + login);
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
-		System.out.println(" wypisuje imie uzytkownika ze znajdzUzytkownika " + uzytkownik.getImie());
-		System.out.println(" wypisuje nazwisko uzytkownika ze znajdzUzytkownika " + uzytkownik.getLogin());
-		
 		return znajdzAdresy(uzytkownik.getIdUzytkownika());
 	}
 
@@ -124,16 +106,11 @@ public class UserService {
 		uzytkownik.setKontakty(kontakty);
 		uzytkownik.setAdresy(adresy);
 		uzytkownicyRepository.save(uzytkownik);
-		
-		
 	}
 
 	public List<Uzytkownicy> znajdzNieaktywowanychUzytkownikow() {
-		
 		List<Uzytkownicy> uzytkownicy = uzytkownicyRepository.findAll();
-		
 		List<Uzytkownicy> uzytkownicyBezRoli = new ArrayList<Uzytkownicy>();
-		
 		for (Uzytkownicy uzytkownik : uzytkownicy) {
 			if(uzytkownik.getRole().size()==0) {
 				uzytkownicyBezRoli.add(uzytkownik);
@@ -144,13 +121,10 @@ public class UserService {
 		return uzytkownicyBezRoli;
 	}
 
-
-
 	public void dodajRole(Uzytkownicy uzytkownik) {
 		String[] imieINazwisko = uzytkownik.getImie().split(" ");
 		Uzytkownicy uzytkownikBaza = uzytkownicyRepository.findByImieAndNazwisko(imieINazwisko[0], imieINazwisko[1]);
 		Role rola=null;
-		System.out.println("wypisuje role " +uzytkownik.getRole().get(0).getTypRoli());
 		if(uzytkownik.getRole().get(0).getTypRoli().equals("Nauczyciel")) {
 			rola = roleRepository.findByTypRoli("ROLE_NAUCZYCIEL");
 			Nauczyciele nauczyciel = new Nauczyciele();
@@ -181,29 +155,19 @@ public class UserService {
 
 	public void znajdzRole(String name) {
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(name);
-		
 		List<Role> role = roleRepository.findByUzytkownicy(uzytkownik);
-		
 		System.out.println(role.get(0).getTypRoli());
-		
 	}
 
 	public List<Uzytkownicy> znajdzNauczycieli() {
 		Role rola = roleRepository.findByTypRoli("ROLE_NAUCZYCIEL");
-		
 		List<Uzytkownicy> nauczyciele = uzytkownicyRepository.findByRole(rola);
-		System.out.println("wypisuje rozmiar nauczycieli " + nauczyciele.size());
-
 		return nauczyciele;
 	}
 
 	public String znajdzNauczyciela(String login) {
 		String[] imieINazwisko = login.split(" ");
-		System.out.println("wypisuje imie i nazwisko " + imieINazwisko[0] + " " + imieINazwisko[1]);
-		
-//		Uzytkownicy uzytkownikBaza = uzytkownicyRepository.findByImieAndNazwisko(imieINazwisko[0], imieINazwisko[1]);
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByImieAndNazwisko(imieINazwisko[0], imieINazwisko[1]);
-		
 		return uzytkownik.getLogin();
 	}	
 }

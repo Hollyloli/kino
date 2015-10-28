@@ -50,26 +50,19 @@ public class OpiekunowieKontroler {
 	
 	@RequestMapping("dziecko-{id}")
 	public String widokOcenDziecka(Model model,@PathVariable String id,Principal principal, HttpSession session) {
-		System.out.println("wpisuje widok ocen ucznia");
-		System.out.println("wypisuje login " + principal.getName());
 		session.setAttribute("loginDziecka", id);
 		List<String> lataIsemestryZOcenami = uczniowieService.lataISemestryZWpisanymiOcenami(id);
 		for (String rokISemest : lataIsemestryZOcenami) {
 			System.out.println(rokISemest);
 		}
 		model.addAttribute("lataISemestryZOcenami", lataIsemestryZOcenami);
-		System.out.println("wypisuje uczniowie kontroler");
 		return "ocenyDziecka";
 	}
 	
 	@RequestMapping(value="/formularzOcenDziecka", method=RequestMethod.POST)
 	public String formularzOcenUcznia(@Valid @ModelAttribute("ocena") Oceny ocena, BindingResult result, HttpSession session)
 	{
-		System.out.println("wchodzi w formularz coeny ucznia");
-		System.out.println("dupa2 " + ocena.getTyp().substring(4, 5) + " " + ocena.getTyp().substring(14, 15));
-		System.out.println("dupa3 " +(String)session.getAttribute("loginDziecka"));
 		session.setAttribute("ocenySemestr",uczniowieService.znajdzOcenyUcznia((String)session.getAttribute("loginDziecka"),Integer.parseInt(ocena.getTyp().substring(4, 5)),Integer.parseInt(ocena.getTyp().substring(14, 15))));
-		System.out.println("dupa4");
 		return  "redirect:/dziecko-"+(String)session.getAttribute("loginDziecka")+".html";
 	}
 	
@@ -77,9 +70,7 @@ public class OpiekunowieKontroler {
 	public String formularzOcenUcznia(@Valid @ModelAttribute("opiekunowie") Opiekunowie opiekunowie, BindingResult result,Principal principal, HttpSession session) {
 		String[] login = opiekunowie.getLogin().split(" ");
 		String[] imieINazwiskoUcznia = opiekunowie.getUczniowie().get(0).getLogin().split(" ");
-		System.out.println("dupa");
 		uczniowieService.przypiszOpiekunaDziecku(login[login.length-1], imieINazwiskoUcznia[imieINazwiskoUcznia.length-1]);
-//		opiekunowieService.przypiszUczniaOpiekunowi(login[login.length-1], imieINazwiskoUcznia[imieINazwiskoUcznia.length-1]);
 		return  "redirect:/przypUczniowOpiek.html";
 	}
 }

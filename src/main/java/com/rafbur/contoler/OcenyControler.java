@@ -58,12 +58,8 @@ public class OcenyControler {
 	
 	@RequestMapping("przedmiot-{id}")
 	public String widokKlasIczynnosci(Model model,@PathVariable String id, Principal principal, HttpSession session) {
-		System.out.println("wpisuje ocene");
-		System.out.println("wypisuje id1234 " +id);
 		session.setAttribute("nazwaPrzedmiotu", id);
 		session.removeAttribute("ocenaKoncowa");
-//		session.removeAttribute("wybor");
-//		session.removeAttribute("wybor2");
 		model.addAttribute("nauczyciel",nauczycielService.znajdzKlasyIPrzedmiotNaucz(principal.getName(),id));
 		return "wpisywanieOcen";
 	}
@@ -88,8 +84,6 @@ public class OcenyControler {
 		String symbol = rokIsymbol[1];
 		if(klasaService.czyWszyscyMajaOcKoncowa((String) session.getAttribute("nazwaPrzedmiotu"),rok, symbol,"koncowa")) {
 			//edycja ocen nie dostepna
-			System.out.println("wszyscy maja ocene koncowa " + session.getAttribute("wybor"));
-			
 			session.setAttribute("ocenaKoncowa", "ocenaKoncowa");
 			if(polaczone.getWyborCZynnosci().equals("czynnosci zwiazane z podgladaniem ocen")) {
 				Klasa klasa = klasaService.znajdzUczniowWKlasie((String) session.getAttribute("nazwaPrzedmiotu"),polaczone.getNauczyciel().getKlasaNauczyciel().get(0).getSymbol().split(" "));
@@ -99,18 +93,13 @@ public class OcenyControler {
 		else {
 			if(polaczone.getWyborCZynnosci().equals("czynnosci zwiazane z edycja ocen"))
 			{
-	//			Nauczyciele nauczyciel2 = nauczycielService.znajdzUczniowKlasyIPrzedmiot(principal.getName(),(String) session.getAttribute("nazwaPrzedmiotu"),polaczone.getNauczyciel().getKlasaNauczyciel().get(0).getSymbol().split(" "));
-	//			session.setAttribute("nauczyciel2", nauczyciel2);
 				Klasa klasa = klasaService.znajdzUczniowWKlasie((String) session.getAttribute("nazwaPrzedmiotu"),polaczone.getNauczyciel().getKlasaNauczyciel().get(0).getSymbol().split(" "));
 				session.setAttribute("klasa", klasa);
 			}
 			else {
 				Klasa klasa = klasaService.znajdzUczniowWKlasie((String) session.getAttribute("nazwaPrzedmiotu"),polaczone.getNauczyciel().getKlasaNauczyciel().get(0).getSymbol().split(" "));
 				session.setAttribute("klasa", klasa);
-				
 			}
-			
-			
 		}
 		session.removeAttribute("ocenySemestr1");
 		session.removeAttribute("ocenySemestr2");
@@ -120,9 +109,7 @@ public class OcenyControler {
 	//to podgladania ocen
 	@RequestMapping(value="/formularzWyswietlenieOcen", method=RequestMethod.POST)
 	public String formularzWyswietlenieOcen(@ModelAttribute("ocena") Oceny ocena, BindingResult result, Model model, HttpSession session) {
-		System.out.println("dupa");
 		session.removeAttribute("ocenySemestr2");
-		System.out.println("formularz wyswietlenieOcen " + ocena.getRokNauki());
 		Klasa klasa = (Klasa)session.getAttribute("klasa");
 		session.setAttribute("ocenySemestr1",klasaService.znajdzOcenyUczniowZroku(klasa,ocena.getRokNauki(),new Integer(1),(String)session.getAttribute("nazwaPrzedmiotu")));
 		//sprwdzam czy kazdy z uczniow ma wpisana ocene koncowa na semestr jesli tak to wyswietlam tez 2 semestr
@@ -132,26 +119,20 @@ public class OcenyControler {
 		return "redirect:/przedmiot-"+session.getAttribute("nazwaPrzedmiotu")+"/"+session.getAttribute("wybor")+".html";
 	}
 	
-	
-	
 	@RequestMapping(value="/formularzUczenIczynnnosc", method=RequestMethod.POST)
 	public String formularzUczenIczynnnosc(@ModelAttribute("wspolne") Polaczone2 polaczone, BindingResult result, Model model, HttpSession session) {
 		//w tym momencie nie wszyscy uczniowie maja wspiana ocene koncowa
 		Przedmioty przedmiot = przedmiotyService.znajdzPrzedmiot((String)session.getAttribute("nazwaPrzedmiotu"));
 		Uczniowie uczen = uczniowieService.znajdzUcznia(polaczone.getUczen().getImie().split(" "));
-		System.out.println("wypisuje ucznia " + uczen.getImie()+ " " +uczen.getNazwisko());
 		Klasa klasa = (Klasa)session.getAttribute("klasa");
 		if(uczniowieService.sprawdzCzyjestOcSemLubKon(uczen,przedmiot,klasa.getRok(),"semestralna")) {
-			
 			if(klasaService.czyWszyscyMajaOcKoncowa((String)session.getAttribute("nazwaPrzedmiotu"),klasa.getRok(), klasa.getSymbol(),"semestralna")) {
 				if(uczniowieService.sprawdzCzyjestOcSemLubKon(uczen,przedmiot,klasa.getRok(),"koncowa")) {
 					System.out.println("uczen ma wpisana ocene roczna");
 					session.setAttribute("wpisanaOcena", "koncowa");
-					
 				}
 				else {
 					uczen = uczniowieService.znajdzUczniaZOcenami(uczen,przedmiot,klasa.getRok(),new Integer(2));
-					
 				}
 			}
 			else {

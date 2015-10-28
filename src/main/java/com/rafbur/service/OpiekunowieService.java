@@ -36,7 +36,6 @@ public class OpiekunowieService {
 		return opiekunowie;
 	}
 
-
 	public void przypiszUczniaOpiekunowi(String loginOpiekuna, String loginUcznia) {
 		List<Uczniowie> uczniowie = new ArrayList<Uczniowie>();
 		Uczniowie uczen = uczniowieRepository.findByLogin(loginUcznia);
@@ -45,17 +44,10 @@ public class OpiekunowieService {
 		opiekun.setUczniowie(uczniowie);
 	}
 
-
 	public List<Uczniowie> znajdzDzieciOpiekuna(String loginOpiekuna) {
-		System.out.println("czy whcodzi w znajdzDzieciOpiekuna");
 		Opiekunowie opiekun = opiekunowieRepository.findByLogin(loginOpiekuna);
 		List<Uczniowie> uczniowie = uczniowieRepository.findByOpiekunowie(opiekun);
-		for (Uczniowie uczen : uczniowie) {
-			System.out.println("uczen " +  uczen.getLogin());
-		}
-		
 		return uczniowie;
 	}
-	
 	
 }

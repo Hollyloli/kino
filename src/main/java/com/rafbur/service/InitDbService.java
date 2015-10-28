@@ -221,8 +221,8 @@ public class InitDbService {
 		uzytkownicyRepository.save(uzytkwonikNauczyciel2);
 		
 		Uzytkownicy uzytkwonikNauczyciel3 = new Uzytkownicy();
-		uzytkwonikNauczyciel3.setImie("Anna");
-		uzytkwonikNauczyciel3.setNazwisko("Konowicz");
+		uzytkwonikNauczyciel3.setImie("Ryszard");
+		uzytkwonikNauczyciel3.setNazwisko("Nikczemny");
 		uzytkwonikNauczyciel3.setLogin("nauczyciel3");
 		uzytkwonikNauczyciel3.setAktywny(true);;
 		uzytkwonikNauczyciel3.setHaslo(encoder.encode("nauczyciel3"));
@@ -230,8 +230,8 @@ public class InitDbService {
 		uzytkownicyRepository.save(uzytkwonikNauczyciel3);
 
 		Uzytkownicy uzytkwonikNauczyciel4 = new Uzytkownicy();
-		uzytkwonikNauczyciel4.setImie("Anna");
-		uzytkwonikNauczyciel4.setNazwisko("Konowicz");
+		uzytkwonikNauczyciel4.setImie("Marian");
+		uzytkwonikNauczyciel4.setNazwisko("Pazdzioch");
 		uzytkwonikNauczyciel4.setLogin("nauczyciel4");
 		uzytkwonikNauczyciel4.setAktywny(true);;
 		uzytkwonikNauczyciel4.setHaslo(encoder.encode("nauczyciel4"));

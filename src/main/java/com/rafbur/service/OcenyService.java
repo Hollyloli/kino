@@ -38,7 +38,6 @@ public class OcenyService {
 		Klasa klasa = klasaRepository.findByUczniowie(uczen);
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		List<Oceny> ocenaBaza = ocenyRepository.findByPrzedmiotyAndUczniowieAndRokNaukiAndSemestrAndTyp(przedmiot, uczen,klasa.getRok(),new Integer(1), "ukonczono");
-		System.out.println("gdzie wywala 2");
 		if(ocenaBaza.size() == 0 ) {
 			ocena.setSemestr(new Integer(1));
 		}
@@ -49,11 +48,9 @@ public class OcenyService {
 			ocena.setTyp("czastkowa");
 			ocenyRepository.save(ocena);
 			List<Oceny> oceny = ocenyRepository.findByPrzedmiotyAndUczniowie(przedmiot, uczen);
-			
 			List<Oceny> ocenyZprzedmiotow = ocenyRepository.findByPrzedmioty(przedmiot);
 			oceny.add(ocena);
 			Uczniowie uczen1 = uczniowieRepository.findOne(uczen.getIdUcznia());
-			
 			uczen1.setOceny(oceny);
 			uczniowieRepository.saveAndFlush(uczen1);
 			ocenyZprzedmiotow.add(ocena);
@@ -76,19 +73,13 @@ public class OcenyService {
 
 	public void zaaktualizujOCene(Oceny ocena) {
 		Oceny ocenaZBazy = ocenyRepository.findOne(ocena.getIdOceny());
-		
 		ocenaZBazy.setOcena(ocena.getOcena());
 		ocenaZBazy.setWagaOceny(ocena.getWagaOceny());
-		
 		ocenyRepository.saveAndFlush(ocenaZBazy);
-		
-		
 	}
 
 	public void usunOcene(Integer idOceny,Uczniowie uczen, String nazwaPrzedmiotu) {
 		Uczniowie uczenBaza = uczniowieRepository.findByImieAndNazwisko(uczen.getImie(), uczen.getNazwisko());
-		
-		System.out.println("wypisuje rok i semest " + uczen.getOceny().get(0).getRokNauki()+" " + uczen.getOceny().get(0).getSemestr());
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		List<Oceny> ocenyZPrzedmiotu = ocenyRepository.findByPrzedmioty(przedmiot);
 		for(int i = 0; i<ocenyZPrzedmiotu.size(); i++) {
@@ -99,28 +90,20 @@ public class OcenyService {
 		przedmiot.setOceny(ocenyZPrzedmiotu);
 		przedmiotyRepository.saveAndFlush(przedmiot);
 		List<Oceny> ocenyUczniow = ocenyRepository.findByUczniowieAndRokNaukiAndSemestr(uczenBaza, 1, 1);
-		System.out.println("wypisuje rozmiar ocen uczniow " + ocenyUczniow.size());
 		for(int i = 0; i<ocenyUczniow.size(); i++) {
-			
 			if(ocenyUczniow.get(i).getIdOceny().equals(idOceny)) {
-				System.out.println("wypisuje id usuwanej oceny " + idOceny);
 				ocenyUczniow.remove(i);
 			}
 		}
 		uczenBaza.setOceny(ocenyUczniow);
 		uczniowieRepository.saveAndFlush(uczenBaza);
 		ocenyRepository.delete(idOceny);
-		
 	}
 
 	public Uczniowie wystawOceneKoncowa(Uczniowie uczen, Oceny ocena,String nazwaPrzedmiotu) {
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
-		System.out.println("wypisuje semestr i rok " + uczen.getOceny().get(0).getRokNauki() + " " + uczen.getOceny().get(0).getSemestr());
-
 		Uczniowie uczenBaza = uczniowieRepository.findOne(uczen.getIdUcznia());
-		
 		Oceny ocenaKoncowa = new Oceny();
-		
 		ocenaKoncowa.setOcena(ocena.getOcena());
 		ocenaKoncowa.setRokNauki(uczen.getOceny().get(0).getRokNauki());
 		ocenaKoncowa.setSemestr(uczen.getOceny().get(0).getSemestr());
@@ -131,26 +114,15 @@ public class OcenyService {
 			ocenaKoncowa.setTyp("koncowa");
 		}
 		ocenyRepository.save(ocenaKoncowa);
-
 		List<Oceny> ocenyUcznia = ocenyRepository.findByUczniowie(uczenBaza);
 		List<Oceny> ocenyZprzedmiotow = ocenyRepository.findByPrzedmioty(przedmiot);
-		System.out.println("wypisuje ilosc ocen  " + ocenyUcznia.size());
-		
 		ocenyUcznia.add(ocenaKoncowa);
 		uczenBaza.setOceny(ocenyUcznia);
-		
 		uczniowieRepository.saveAndFlush(uczenBaza);
-		
-		
 		ocenyZprzedmiotow.add(ocenaKoncowa);
 		przedmiot.setOceny(ocenyZprzedmiotow);	
-		
 		przedmiotyRepository.saveAndFlush(przedmiot);
-		
 		uczen.getOceny().add(ocenaKoncowa);
 		return uczen;
-		
 	}
-	
-	
 }

@@ -30,69 +30,63 @@
 		<put-attribute name="title" value="zarzadzanie Uzytkownikami" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/zarzadzanieUzytkownikami.jsp" />
-		<put-attribute name="current" value="zarzadzanieUzytkownikami" />
+		<put-attribute name="current" value="zarzadzanie uzytkownikami" />
 	</definition>
 
 	<definition name="dodaniePrzedmiotu" extends="wspolne">
 		<put-attribute name="title" value="dodanie Przedmiotu" />
 		<put-attribute name="body" value="/WEB-INF/jsp/dodaniePrzedmiotu.jsp" />
-		<put-attribute name="current" value="dodaniePrzedmiotu" />
+		<put-attribute name="current" value="dodanie przedmiotu" />
 	</definition>
 	
 	<definition name="dodanieKlasy" extends="wspolne">
 		<put-attribute name="title" value="dodanie Klasy" />
 		<put-attribute name="body" value="/WEB-INF/jsp/dodanieKlasy.jsp" />
-		<put-attribute name="current" value="dodanieKlasy" />
+		<put-attribute name="current" value="dodanie klasy" />
 	</definition>	
-	
-	<definition name="dodanieKlasy" extends="wspolne">
-		<put-attribute name="title" value="dodanie Klasy" />
-		<put-attribute name="body" value="/WEB-INF/jsp/dodanieKlasy.jsp" />
-		<put-attribute name="current" value="dodanieKlasy" />
-	</definition>
 	
 	<definition name="ocenyUcznia" extends="wspolne">
 		<put-attribute name="title" value="oceny Ucznia" />
 		<put-attribute name="body" value="/WEB-INF/jsp/ocenyUcznia.jsp" />
-		<put-attribute name="current" value="ocenyUcznia" />
+		<put-attribute name="current" value="oceny ucznia" />
 	</definition>
 	
 	
 	<definition name="ocenyDziecka" extends="wspolne">
 		<put-attribute name="title" value="oceny Dziecka" />
 		<put-attribute name="body" value="/WEB-INF/jsp/ocenyDziecka.jsp" />
-		<put-attribute name="current" value="ocenyDziecka" />
+		<put-attribute name="current" value="oceny dziecka" />
 	</definition>
 	
 	<definition name="dodanieUczniaDoKlasy" extends="wspolne">
 		<put-attribute name="title" value="dodanie ucznia do klasy" />
 		<put-attribute name="body" value="/WEB-INF/jsp/dodanieUczniaDoKlasy.jsp" />
-		<put-attribute name="current" value="dodanieUczniaDoKlasy" />
+		<put-attribute name="current" value="dodanie ucznia do klasy" />
 	</definition>	
 	
 	<definition name="przypPrzedUczn" extends="wspolne">
 		<put-attribute name="title" value="dodaj przedmiot uczniowi" />
 		<put-attribute name="body" value="/WEB-INF/jsp/przypPrzedUczn.jsp" />
-		<put-attribute name="current" value="przypPrzedUczn" />
+		<put-attribute name="current" value="przypisanie przedmiotow uczniowi" />
 	</definition>
 	
 	<definition name="przypPrzedNaucz" extends="wspolne">
 		<put-attribute name="title"
 			value="Przyporzadkownie przedmiotu nauczycielowi" />
 		<put-attribute name="body" value="/WEB-INF/jsp/przypPrzedNaucz.jsp" />
-		<put-attribute name="current" value="przypPrzedNaucz" />
+		<put-attribute name="current" value="przypisanie przedmiotu nauczycielowi" />
 	</definition>
 
 	<definition name="przypUczniowOpiek" extends="wspolne">
 		<put-attribute name="title" value="Przyporzadkownie przedmiotu nauczycielowi" />
 		<put-attribute name="body" value="/WEB-INF/jsp/przypUczniowOpiek.jsp" />
-		<put-attribute name="current" value="przypUczniowOpiek" />
+		<put-attribute name="current" value="przypisanie dziecka opiekunowi" />
 	</definition>
 
 	<definition name="zakonczenieRokuSzkolnego" extends="wspolne">
 		<put-attribute name="title"	value="Zakonczenie roku szkolnego" />
 		<put-attribute name="body" value="/WEB-INF/jsp/zakonczenieRokuSzkolnego.jsp" />
-		<put-attribute name="current" value="zakonczenieRokuSzkolnego" />
+		<put-attribute name="current" value="zakonczenie roku szkolnego" />
 	</definition>
 
 	<definition name="edycjaKonta" extends="wspolne">
@@ -111,14 +105,14 @@
 		<put-attribute name="title" value="wpisywanie ocen" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot.jsp" />
-		<put-attribute name="current" value="wybór czynnośc dotyczących ocen" />
+		<put-attribute name="current" value="wybor czynnosci dotyczacych ocen" />
 	</definition>
 
 	<definition name="wpisywanieOcen2" extends="wspolne">
 		<put-attribute name="title" value="wpisywanie ocen" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/wpisywanieOcenPrzedmiot2.jsp" />
-		<put-attribute name="current" value="edycja ocen" />
+		<put-attribute name="current" value="wybor czynnosci dotyczacych ocen" />
 	</definition>
 
 	<definition name="wpisywanieOcen3" extends="wspolne">

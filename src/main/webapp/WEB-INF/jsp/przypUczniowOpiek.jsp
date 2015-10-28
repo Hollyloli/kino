@@ -12,13 +12,15 @@
 <!--Edit Main Content Area here-->
 <div class="col-sm-12" id="divMain">
 
-	<form:form commandName="opiekunowie" class="form-horizontal" action="/PracaInz/formularzPrzypUczniaOpiek.html">
+	<form:form commandName="opiekunowie" class="form-horizontal"
+		action="/PracaInz/formularzPrzypUczniaOpiek.html">
 		<div class="form-group">
 			<div class="form-group">
 				<label for="labelWyborKlasy">Wybor opiekuna</label>
 				<form:select path="login" class="form-control">
 					<c:forEach items="${opiekunowie1}" var="opiekun">
-						<form:option value="${opiekun.imie} ${opiekun.nazwisko} : ${opiekun.login}" />
+						<form:option
+							value="${opiekun.imie} ${opiekun.nazwisko} : ${opiekun.login}" />
 					</c:forEach>
 				</form:select>
 			</div>
@@ -26,24 +28,17 @@
 				<label for="labelWyborKlasy">Wybor ucznia</label>
 				<form:select path="uczniowie[0].login" class="form-control">
 					<c:forEach items="${uczniowie}" var="uczen">
-						<form:option value="${uczen.imie} ${uczen.nazwisko} : ${uczen.login}" />
+						<form:option
+							value="${uczen.imie} ${uczen.nazwisko} : ${uczen.login}" />
 					</c:forEach>
 				</form:select>
 			</div>
 		</div>
 		<button class="btn btn-primary btn-lg" type="submit">Akceptuj</button>
 	</form:form>
-
-
 	<br /> <br />
 	<hr>
 	<br>
-
-
-
-
-
-
 
 </div>
 <!--End Main Content-->

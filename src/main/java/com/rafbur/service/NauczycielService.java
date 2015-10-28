@@ -39,57 +39,35 @@ public class NauczycielService {
 	private OcenyRepository ocenyRepository;
 
 	public Nauczyciele znajdzPrzedmioty(String login) {
-		System.out.println("wypisuje login z metody znajdzPrzedmioty " + login);
 		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
-		System.out.println("wypisuje nauczyciela " +nauczyciel.getLogin());
 		List<Przedmioty> przedmioty = przedmiotyRepository.findByNauczyciele(nauczyciel);
 		if(przedmioty.size()!=0) {
 			nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
 		}
-		
-//		System.out.println("wypisuje nauczyciela ze " + nauczycieleRepository.findByLogin(login).getLogin());
-		
-		
 		return nauczyciel;
 	}
 
 	public Nauczyciele znajdzKlasyIPrzedmiotNaucz(String login, String nazwaPrzedmiotu) {
 		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
-		
 		List<Przedmioty> przedmioty = new ArrayList<Przedmioty>();
 		przedmioty.add(przedmiotyRepository.findByNazwa(nazwaPrzedmiotu));
-		
 		List<Klasa> klasy = klasaRepository.findByNauczyciele(nauczyciel);
-		System.out.println("wypisuje klasy " +klasy.get(0).getRok());
 		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
 		nauczyciel.setKlasaNauczyciel(klasy);
-//		System.out.println("klasy nauczyciela " + nauczyciel.getKlasaNauczyciel().get(0).getRok());
 		return nauczyciel;
 	}
 
 	public Nauczyciele znajdzUczniowKlasyIPrzedmiot(String login, String nazwaPrzedmiotu,String[] rokIsymbol) {
-		System.out.println("wchodzi w znajdzUczniowKlasyIPrzedmiot");
 		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
-		System.out.println("wypisuje rok i wymbol " + rokIsymbol[0]);
 		Klasa klasa = klasaRepository.findByRokAndSymbol(Integer.parseInt(rokIsymbol[0]),rokIsymbol[1]);
 		List<Uczniowie> uczniowie2 = uczniowieRepository.findByKlasa(klasa);
 		List<Przedmioty> przedmioty = new ArrayList<Przedmioty>();
-		System.out.println("wypisuje nazwa przedmiotu " +nazwaPrzedmiotu);
 		przedmioty.add(przedmiotyRepository.findByNazwa(nazwaPrzedmiotu));
-		System.out.println("wypisuje przedmioty " + przedmioty.get(0));
-		
-		//wydaje sie nie potrzebne
-//		for(int i=0; i<uczniowie2.size(); i++) {
-//			List<Oceny> oceny2 = ocenyRepository.findByPrzedmiotyAndUczniowie(przedmioty.get(0), uczniowie2.get(i));
-//			System.out.println("wypisuje wielkosc listy ocen " + oceny2.size());
-//			uczniowie2.get(i).setOceny(oceny2);
-//		}
 		klasa.setUczniowie(uczniowie2);
 		List<Klasa> klasy = new ArrayList<Klasa>();
 		klasy.add(klasa);
 		nauczyciel.setKlasaNauczyciel(klasy);	
 		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
-		System.out.println("wypisuje czy sa jakies klasy " + klasy.size());
 		return nauczyciel;
 	}
 
@@ -104,19 +82,15 @@ public class NauczycielService {
 
 	public void dopiszPrzedmiotNauczycielowi(String login, String nazwaPrzedmiotu, Integer rok, String symbol) {
 		Nauczyciele nauczyciel = nauczycieleRepository.findByLogin(login);
+		System.out.println("wypisuje nauczycila " + nauczyciel.getLogin());
 		Przedmioty przedmiot = przedmiotyRepository.findByNazwa(nazwaPrzedmiotu);
 		List<Przedmioty> przedmioty = przedmiotyRepository.findByNauczyciele(nauczyciel);
 		przedmioty.add(przedmiot);
-		
 		Klasa klasa = klasaRepository.findByRokAndSymbol(rok, symbol);
 		List<Klasa> klasy = new ArrayList<Klasa>();
 		klasy.add(klasa);
-		
 		nauczyciel.setPrzedmiotyNauczycieli(przedmioty);
 		nauczyciel.setKlasaNauczyciel(klasy);
 		nauczycieleRepository.saveAndFlush(nauczyciel);
 	}
-
-
-	
 }

@@ -12,7 +12,12 @@
 <!--Edit Main Content Area here-->
 <div class="col-sm-12" id="divMain">
 
-	<form:form commandName="uczen" class="form-horizontal" action="/PracaInz/formularzPrzypPrzedUczniom.html">
+	<c:if test="${param.success eq true}">
+		<div class="alert alert-success">Rejestracja uztkownika
+			powiodła się</div>
+	</c:if>
+	<form:form commandName="uczen" class="form-horizontal"
+		action="/PracaInz/formularzPrzypPrzedUczniom.html">
 		<div class="form-group">
 			<div class="form-group">
 				<label for="labelWyborKlasy">Wybor ucznia</label>
@@ -30,7 +35,7 @@
 					</c:forEach>
 				</form:select>
 			</div>
-			
+
 		</div>
 		<button class="btn btn-primary btn-lg" type="submit">Akceptuj</button>
 	</form:form>

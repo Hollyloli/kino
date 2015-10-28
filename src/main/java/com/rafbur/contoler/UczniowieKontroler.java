@@ -30,25 +30,18 @@ public class UczniowieKontroler {
 	
 	@RequestMapping("ocenyUcznia")
 	public String OcenyUczniow(Model model,Principal principal, HttpSession session) {
-		
-		System.out.println("wypisuje login " + principal.getName());
 		List<String> lataIsemestryZOcenami = uczniowieService.lataISemestryZWpisanymiOcenami(principal.getName());
 		for (String rokISemest : lataIsemestryZOcenami) {
 			System.out.println(rokISemest);
 		}
 		model.addAttribute("lataISemestryZOcenami", lataIsemestryZOcenami);
-		System.out.println("wypisuje uczniowie kontroler");
 		return "ocenyUcznia";
 	}
 	
 	@RequestMapping(value="/formularzOcenUcznia", method=RequestMethod.POST)
 	public String formularzOcenUcznia(@Valid @ModelAttribute("ocena") Oceny ocena, BindingResult result,Principal principal, HttpSession session)
 	{
-		
-		System.out.println("wchodzi w formularz coeny ucznia");
-		System.out.println("dupa2 " + ocena.getTyp().substring(4, 5) + " " + ocena.getTyp().substring(14, 15));
 		session.setAttribute("ocenySemestr",uczniowieService.znajdzOcenyUcznia(principal.getName(),Integer.parseInt(ocena.getTyp().substring(4, 5)),Integer.parseInt(ocena.getTyp().substring(14, 15))));
 		return  "redirect:/ocenyUcznia.html";
 	}
-	
 }

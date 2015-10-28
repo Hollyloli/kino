@@ -10,6 +10,5 @@ public class KontaktKontroler {
 	public String kontaktWidok() {
 		return "kontakt";
 	}
-	
 
 }
