@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.swing.plaf.metal.OceanTheme;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,14 +30,13 @@ import com.rafbur.repository.PrzedmiotyRepository;
 import com.rafbur.repository.RoleRepository;
 import com.rafbur.repository.UczniowieRepository;
 import com.rafbur.repository.UzytkownicyRepository;
-
+	
 @Service
 public class InitDbService {
 
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	
+		
 	@Autowired
 	private UzytkownicyRepository uzytkownicyRepository;	
 	
@@ -569,8 +567,6 @@ public class InitDbService {
 //		uczen1
 		ocenyZmatematyki.add(ocena15);
 		ocenyZmatematyki.add(ocena8);
-		ocenyZmatematyki.add(ocena2);
-
 		
 		Przedmioty przedmiot4 = new Przedmioty();
 		przedmiot4.setNazwa("matematyka");
@@ -591,9 +587,10 @@ public class InitDbService {
 		
 		List<Oceny> ocenyZfizyki = new ArrayList<Oceny>();
 //		uczen1
+		ocenyZfizyki.add(ocena18);
 		ocenyZfizyki.add(ocena8);
 		ocenyZfizyki.add(ocena2);
-		ocenyZfizyki.add(ocena4);
+//		ocenyZfizyki.add(ocena4);
 		
 		Przedmioty przedmiot6 = new Przedmioty();
 		przedmiot6.setNazwa("fizyka");
@@ -603,7 +600,7 @@ public class InitDbService {
 		List<Oceny> ocenyZChemi = new ArrayList<Oceny>();
 //		uczen1
 		ocenyZChemi.add(ocena3);
-		ocenyZChemi.add(ocena4);
+//		ocenyZChemi.add(ocena4);
 		ocenyZChemi.add(ocena15);
 
 		
@@ -706,7 +703,7 @@ public class InitDbService {
 //		polski
 		ocenyUcznia1.add(ocena17);
 		ocenyUcznia1.add(ocena15);
-		ocenyUcznia1.add(ocena2);
+		ocenyUcznia1.add(ocena1);
 		ocenyUcznia1.add(ocena8);
 //		WOS
 		ocenyUcznia1.add(ocena4);
