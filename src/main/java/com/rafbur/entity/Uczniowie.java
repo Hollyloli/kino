@@ -74,7 +74,7 @@ public class Uczniowie implements Serializable{
 	private List<Przedmioty> przedmioty;
 	
 	@ManyToOne
-	@JoinColumn(name="klasa_id")
+	@JoinColumn(name="uzytkownicy_id")
 	private Klasa klasa;
 	
 

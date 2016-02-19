@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -44,6 +45,9 @@ public class Uzytkownicy implements Serializable{
 	@ManyToMany
 	@JoinTable
 	private List<Role> role;
+	
+	@OneToMany(mappedBy="uzytkownik")
+	private List<Bilet> bilety;
 	
 	public Boolean getAktywny() {
 		return aktywny;
