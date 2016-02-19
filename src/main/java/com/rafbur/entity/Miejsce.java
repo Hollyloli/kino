@@ -16,6 +16,16 @@ public class Miejsce {
 	
 	private Integer numerMiejsca;
 	
+	private Boolean zajetoscMiejsca;
+	
+	public Boolean getZajetoscMiejsca() {
+		return zajetoscMiejsca;
+	}
+
+	public void setZajetoscMiejsca(Boolean zajetoscMiejsca) {
+		this.zajetoscMiejsca = zajetoscMiejsca;
+	}
+
 	public Integer getIdMiejsca() {
 		return idMiejsca;
 	}

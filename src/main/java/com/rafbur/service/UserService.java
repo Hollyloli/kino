@@ -11,17 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.rafbur.entity.Adresy;
 import com.rafbur.entity.Kontakty;
-import com.rafbur.entity.Nauczyciele;
-import com.rafbur.entity.Opiekunowie;
 import com.rafbur.entity.Role;
-import com.rafbur.entity.Uczniowie;
 import com.rafbur.entity.Uzytkownicy;
 import com.rafbur.repository.AdresyRepository;
 import com.rafbur.repository.KontaktyRepository;
-import com.rafbur.repository.NauczycieleRepository;
-import com.rafbur.repository.OpiekunowieRepository;
 import com.rafbur.repository.RoleRepository;
-import com.rafbur.repository.UczniowieRepository;
 import com.rafbur.repository.UzytkownicyRepository;
 
 @Service
@@ -39,15 +33,6 @@ public class UserService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	@Autowired
-	private NauczycieleRepository nauczycieleRepository;
-	
-	@Autowired
-	private UczniowieRepository uczniowieRepository;
-	
-	@Autowired 
-	private OpiekunowieRepository opiekunowieRepository;
 	
 
 	public Uzytkownicy znajdUzytkownika(String login) {
@@ -105,6 +90,8 @@ public class UserService {
 		uzytkownik.setHaslo(encoder.encode("1234"));
 		uzytkownik.setKontakty(kontakty);
 		uzytkownik.setAdresy(adresy);
+	
+		uzytkownik.setRole(znajdzTypRoliUzytkownika(uzytkownik.getLogin()));
 		uzytkownicyRepository.save(uzytkownik);
 	}
 
@@ -121,37 +108,37 @@ public class UserService {
 		return uzytkownicyBezRoli;
 	}
 
-	public void dodajRole(Uzytkownicy uzytkownik) {
-		String[] imieINazwisko = uzytkownik.getImie().split(" ");
-		Uzytkownicy uzytkownikBaza = uzytkownicyRepository.findByImieAndNazwisko(imieINazwisko[0], imieINazwisko[1]);
-		Role rola=null;
-		if(uzytkownik.getRole().get(0).getTypRoli().equals("Nauczyciel")) {
-			rola = roleRepository.findByTypRoli("ROLE_NAUCZYCIEL");
-			Nauczyciele nauczyciel = new Nauczyciele();
-			nauczyciel.setLogin(uzytkownikBaza.getLogin());
-			nauczycieleRepository.save(nauczyciel);
-		}
-		if(uzytkownik.getRole().get(0).getTypRoli().equals("Uczen")) {
-			rola = roleRepository.findByTypRoli("ROLE_UCZEN");
-			Uczniowie uczen = new Uczniowie();
-			uczen.setImie(uzytkownikBaza.getImie());
-			uczen.setNazwisko(uzytkownikBaza.getNazwisko());
-			uczen.setLogin(uzytkownikBaza.getLogin());
-			uczniowieRepository.save(uczen);
-		}
-		if(uzytkownik.getRole().get(0).getTypRoli().equals("Opiekun")) {
-			rola = roleRepository.findByTypRoli("ROLE_OPIEKUN");
-			Opiekunowie opiekun = new Opiekunowie();
-			opiekun.setLogin(uzytkownikBaza.getLogin());
-			opiekunowieRepository.save(opiekun);
-		}
-		List<Role> role = new ArrayList<Role>();
-		role.add(rola);
-		uzytkownikBaza.setRole(role);
-		uzytkownikBaza.setAktywny(true);
-		uzytkownicyRepository.saveAndFlush(uzytkownikBaza);
-		
-	}
+//	public void dodajRole(Uzytkownicy uzytkownik) {
+//		String[] imieINazwisko = uzytkownik.getImie().split(" ");
+//		Uzytkownicy uzytkownikBaza = uzytkownicyRepository.findByImieAndNazwisko(imieINazwisko[0], imieINazwisko[1]);
+//		Role rola=null;
+//		if(uzytkownik.getRole().get(0).getTypRoli().equals("Nauczyciel")) {
+//			rola = roleRepository.findByTypRoli("ROLE_NAUCZYCIEL");
+//			Nauczyciele nauczyciel = new Nauczyciele();
+//			nauczyciel.setLogin(uzytkownikBaza.getLogin());
+//			nauczycieleRepository.save(nauczyciel);
+//		}
+//		if(uzytkownik.getRole().get(0).getTypRoli().equals("Uczen")) {
+//			rola = roleRepository.findByTypRoli("ROLE_UCZEN");
+//			Uczniowie uczen = new Uczniowie();
+//			uczen.setImie(uzytkownikBaza.getImie());
+//			uczen.setNazwisko(uzytkownikBaza.getNazwisko());
+//			uczen.setLogin(uzytkownikBaza.getLogin());
+//			uczniowieRepository.save(uczen);
+//		}
+//		if(uzytkownik.getRole().get(0).getTypRoli().equals("Opiekun")) {
+//			rola = roleRepository.findByTypRoli("ROLE_OPIEKUN");
+//			Opiekunowie opiekun = new Opiekunowie();
+//			opiekun.setLogin(uzytkownikBaza.getLogin());
+//			opiekunowieRepository.save(opiekun);
+//		}
+//		List<Role> role = new ArrayList<Role>();
+//		role.add(rola);
+//		uzytkownikBaza.setRole(role);
+//		uzytkownikBaza.setAktywny(true);
+//		uzytkownicyRepository.saveAndFlush(uzytkownikBaza);
+//		
+//	}
 
 	public void znajdzRole(String name) {
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(name);

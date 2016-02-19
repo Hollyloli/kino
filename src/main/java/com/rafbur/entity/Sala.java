@@ -22,18 +22,38 @@ public class Sala {
 	@OneToMany(mappedBy="sala")
 	private List<Seans> seanse;
 	
-//	@ManyToMany
-//	@JoinTable
-//	private List<Rzad> rzedy ;
-//	
-//	@ManyToOne
-//	@JoinColumn(name = "sala_id")
-//	private Sala sala;
-	
 	@OneToMany(mappedBy="sala")
 	private List<Rzad> rzedy;
-	
-	
-	
-	
+
+	public Integer getIdSeansu() {
+		return idSeansu;
+	}
+
+	public void setIdSeansu(Integer idSeansu) {
+		this.idSeansu = idSeansu;
+	}
+
+	public String getNazwaSali() {
+		return nazwaSali;
+	}
+
+	public void setNazwaSali(String nazwaSali) {
+		this.nazwaSali = nazwaSali;
+	}
+
+	public List<Seans> getSeanse() {
+		return seanse;
+	}
+
+	public void setSeanse(List<Seans> seanse) {
+		this.seanse = seanse;
+	}
+
+	public List<Rzad> getRzedy() {
+		return rzedy;
+	}
+
+	public void setRzedy(List<Rzad> rzedy) {
+		this.rzedy = rzedy;
+	}
 }

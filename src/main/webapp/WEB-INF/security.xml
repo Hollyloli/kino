@@ -9,7 +9,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	
 	
 	<http use-expressions="true">
-		<intercept-url pattern="/edycjaKonta**" access="hasAnyRole('ROLE_NAUCZYCIEL','ROLE_UCZEN','ROLE_OPIEKUN','ROLE_DYREKTOR')" />
+		<intercept-url pattern="/edycjaKonta**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		
 				
 		<form-login  login-page="/login.html"/> 
@@ -32,7 +32,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 				authorities-by-username-query="select uzytkownicy.login,role.typRoli from uzytkownicy join uzytkownicy_role 
 					on uzytkownicy.idUzytkownika=uzytkownicy_role.uzytkownicy_iduzytkownika
 					join role on uzytkownicy_role.role_idroli=role.idroli where uzytkownicy.login = ?"
-				users-by-username-query="select login, haslo,aktywny from uzytkownicy where login = ?"/>  
+				users-by-username-query="select login, haslo,1 from uzytkownicy where login = ?"/>  
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

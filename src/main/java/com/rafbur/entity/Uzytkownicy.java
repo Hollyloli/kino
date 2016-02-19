@@ -22,7 +22,7 @@ public class Uzytkownicy implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idUzytkownika;	
-	private Boolean aktywny;		
+	
 	@Size(min=4, message="login jest za krótki")
 	@Pattern(regexp="^[a-zA-Z0-9]+$", message="Login u¿ytkownika nie mo¿e zawieraæ spacji")
 	private String login;	
@@ -48,14 +48,6 @@ public class Uzytkownicy implements Serializable{
 	
 	@OneToMany(mappedBy="uzytkownik")
 	private List<Bilet> bilety;
-	
-	public Boolean getAktywny() {
-		return aktywny;
-	}
-
-	public void setAktywny(Boolean aktywny) {
-		this.aktywny = aktywny;
-	}
 	
 	public List<Kontakty> getKontakty() {
 		return kontakty;

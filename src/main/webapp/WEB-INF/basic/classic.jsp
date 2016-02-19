@@ -101,24 +101,17 @@
 								<ul class="nav nav-pills ddmenu">
 									<li class="${current=='index' ? 'active' : ''} "><a
 										href='<spring:url value="/" />'>Home</a></li>
-									<security:authorize access="hasRole('ROLE_UCZEN')">
-										<li><a href='<spring:url value="/ocenyUcznia.html" />'>Oceny
-												ucznia</a></li>
-									</security:authorize>
-									<security:authorize access="hasRole('ROLE_DYREKTOR')">
+									
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button">Dyrektor<span
+											data-toggle="dropdown" role="button">Admin<span
 												class="caret"></span></a>
 											<ul class="dropdown-menu">
 												<li><a
-													href="<spring:url value="/zarzadzanieUzytkownikami.html" /> ">Aktywacja
-														konta</a></li>
+													href="<spring:url value="/dodanieFilmu.html" />">Dodaj film</a></li>
 												<li><a
-													href="<spring:url value="/dodaniePrzedmiotu.html" />">Dodanie
-														przedmiotu</a></li>
+													href="<spring:url value="/przypPrzedNaucz.html" />">Dodaj sale</a></li>
 												<li><a
-													href="<spring:url value="/przypPrzedNaucz.html" />">Przyporządkowanie
-														przedmiotu nauczycielowi</a></li>
+													href="<spring:url value="/przypPrzedNaucz.html" />">Dodaj seans</a></li>
 												<li><a
 													href="<spring:url value="/przypUczniowOpiek.html" />">Przyporządkowanie
 														uczniow opiekunowi</a></li>
@@ -134,8 +127,8 @@
 													href="<spring:url value="/zakonczenieRokuSzkolnego.html" /> ">Zakończenie
 														roku szkolnego</a></li>
 											</ul></li>
-									</security:authorize>
-									<security:authorize access="hasRole('ROLE_OPIEKUN')">
+									
+									
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button">Opiekun<span
 												class="caret"></span></a>
@@ -148,8 +141,8 @@
 															${dziecko.nazwisko}</a></li>
 												</c:forEach>
 											</ul></li>
-									</security:authorize>
-									<security:authorize access="hasRole('ROLE_NAUCZYCIEL')">
+									
+								
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button">Nauczyciel<span
 												class="caret"></span></a>
@@ -162,7 +155,7 @@
 														href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
 												</c:forEach>
 											</ul></li>
-									</security:authorize>
+									
 									<security:authorize access="!isAuthenticated()">
 										<li><a href='<spring:url value="/login.html" />'>Logowanie</a></li>
 										<li><a href='<spring:url value="/rejestracja.html" />'>Rejestracja</a></li>

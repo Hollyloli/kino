@@ -38,6 +38,12 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/dodaniePrzedmiotu.jsp" />
 		<put-attribute name="current" value="dodanie przedmiotu" />
 	</definition>
+
+	<definition name="dodanieFilmu" extends="wspolne">
+	<put-attribute name="title" value="dodanie Filmu" />
+	<put-attribute name="body" value="/WEB-INF/jsp/dodanieFilmu.jsp" />
+	<put-attribute name="current" value="dodanie przedmiotu" />
+	</definition>	
 	
 	<definition name="dodanieKlasy" extends="wspolne">
 		<put-attribute name="title" value="dodanie Klasy" />

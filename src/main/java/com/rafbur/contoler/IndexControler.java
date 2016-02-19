@@ -7,9 +7,6 @@ import org.springframework.security.web.servletapi.SecurityContextHolderAwareReq
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.rafbur.service.NauczycielService;
-import com.rafbur.service.OpiekunowieService;
-import com.rafbur.service.PrzedmiotyService;
 import com.rafbur.service.UserService;
 
 @Controller
@@ -18,27 +15,20 @@ public class IndexControler {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private NauczycielService nauczycielService;
-	
-	@Autowired
-	private PrzedmiotyService przedmiotyService;
-	
-	@Autowired
-	private OpiekunowieService opiekunowieService;
+
 	
 	@RequestMapping("/index")
 	public String index(SecurityContextHolderAwareRequestWrapper rolaUyztkownika,HttpSession sesja) {
 		if(rolaUyztkownika.isUserInRole("ROLE_NAUCZYCIEL")) {
-			sesja.setAttribute("przedmiotNauczyciela", nauczycielService.znajdzPrzedmioty(rolaUyztkownika.getUserPrincipal().getName()));
+//			sesja.setAttribute("przedmiotNauczyciela", nauczycielService.znajdzPrzedmioty(rolaUyztkownika.getUserPrincipal().getName()));
 		}
 		if(rolaUyztkownika.isUserInRole("ROLE_DYREKTOR")) {
 			rolaUyztkownika.getSession().setAttribute("uzytkownicyBezRoli", userService.znajdzNieaktywowanychUzytkownikow());
-			sesja.setAttribute("nauczyciele", userService.znajdzNauczycieli());
-			sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
+		//	sesja.setAttribute("nauczyciele", userService.znajdzNauczycieli());
+//			sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
 		}
 		if(rolaUyztkownika.isUserInRole("ROLE_OPIEKUN")) {
-			sesja.setAttribute("dzieciPodOpieka", opiekunowieService.znajdzDzieciOpiekuna(rolaUyztkownika.getUserPrincipal().getName()));
+//			sesja.setAttribute("dzieciPodOpieka", opiekunowieService.znajdzDzieciOpiekuna(rolaUyztkownika.getUserPrincipal().getName()));
 		}
 		return "index";
 	}

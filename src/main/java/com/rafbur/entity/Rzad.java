@@ -19,7 +19,18 @@ public class Rzad {
 	
 	private Integer numerRzedu;
 	
+	private Boolean zajetoscRzedu;
 	
+	public Boolean getZajetoscRzedu() {
+		return zajetoscRzedu;
+	}
+
+
+	public void setZajetoscRzedu(Boolean zajetoscRzedu) {
+		this.zajetoscRzedu = zajetoscRzedu;
+	}
+
+
 	public Integer getIdRzedu() {
 		return idRzedu;
 	}
@@ -27,6 +38,16 @@ public class Rzad {
 
 	public void setIdRzedu(Integer idRzedu) {
 		this.idRzedu = idRzedu;
+	}
+
+
+	public List<Miejsce> getMiejsca() {
+		return miejsca;
+	}
+
+
+	public void setMiejsca(List<Miejsce> miejsca) {
+		this.miejsca = miejsca;
 	}
 
 
