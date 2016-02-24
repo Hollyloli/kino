@@ -1,4 +1,3 @@
-<%@page import="com.rafbur.entity.Nauczyciele"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,21 +9,21 @@
 
 <div class="col-sm-12" id="divMain">
 	<c:if test="${param.success eq true}">
-		<div class="alert alert-success">Dodanie przedmiotu powiodło się</div>
+		<div class="alert alert-success">Dodanie sali powiodło się</div>
 	</c:if>
-	<form:form commandName="przedmiot" class="form-horizontal"
-		action="/PracaInz/formularzDodaniaPrzedmiotu.html">
-		<div class="form-group">
+	<form:form commandName="seans" class="form-horizontal" action="/PracaInz/formularzWyboruSeansu.html">
 			<div class="form-group">
-				<label for="labelWyborKlasy">Wpisanie przedmiotu</label>
-				<form:input path="nazwa" cssClass="form-control" />
-				<form:errors path="nazwa" />
+				<label for="labelWyborKlasy">Wybór filmu</label>
+				<form:select path="film.tytulFilmu" class="form-control">
+					<c:forEach items="${seanse}" var="seans">
+						<form:option value="Tytul: \"${seans.film.tytulFilmu}\" godzina rozpoczecia: ${seans.poczatekFilmu} godzina zakonczenia: ${seans.koniecFilmu} Sala: ${seans.sala.nazwaSali}" />
+					</c:forEach>
+				</form:select>
 			</div>
-		</div>
 		<button class="btn btn-primary btn-lg" type="submit">Dodaj</button>
 	</form:form>
 	<br /> <br />
 	<hr>
 	<br>
 </div>
-<!--End Main Content-->
+

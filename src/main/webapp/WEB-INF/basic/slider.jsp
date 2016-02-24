@@ -21,32 +21,30 @@
 			<!-- Slajdy -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<c:url value="/resources/slider-images/zdjecieTablica.jpg" />"
+					<img src="<c:url value="/resources/slider-images/starwars.jpg" />"
 						alt="" style="width: 100%; height: 400px">
 					<!-- Opis slajdu -->
 					<div class="carousel-caption">
-						<h3>"Uczymy się nie dla szkoły, lecz dla życia."</h3>
-						<p>Seneka Młodszy</p>
+						<h3>"Gwiezdne Wojny przebudzenie mocy."</h3>
+						<p>J.J. Abrams</p>
 					</div>
 				</div>
 
 				<div class="item">
 					<img
-						src="<c:url value="/resources/slider-images/zdjecieKsiazki2.jpg" />"
+						src="<c:url value="/resources/slider-images/dead2.jpg" />"
 						alt="" style="width: 100%; height: 400px">
 					<!-- Opis slajdu -->
-					<div class="carousel-caption">
-						<h4>"Wiedzę możemy zdobywać od innych, ale mądrości musimy
-							nauczyć się sami."</h4>
-						<p>Adam Mickiewicz</p>
-					</div>
 				</div>
 
 				<div class="item">
-					<img src="<c:url value="/resources/slider-images/ziomeczek.jpg" />"
+					<img src="<c:url value="/resources/slider-images/cywil.jpg" />"
 						alt="" style="width: 100%; height: 400px">
 					<!-- Opis slajdu -->
-					<div class="carousel-caption"></div>
+					<div class="carousel-caption">
+						<h4>"Kapitan Ameryka wojna bohaterow"</h4>
+						<p>Anthony Russo</p>
+					</div>
 				</div>
 			</div>
 			<!-- Strzałki do przewijania -->

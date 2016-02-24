@@ -23,7 +23,7 @@ public class IndexControler {
 //			sesja.setAttribute("przedmiotNauczyciela", nauczycielService.znajdzPrzedmioty(rolaUyztkownika.getUserPrincipal().getName()));
 		}
 		if(rolaUyztkownika.isUserInRole("ROLE_DYREKTOR")) {
-			rolaUyztkownika.getSession().setAttribute("uzytkownicyBezRoli", userService.znajdzNieaktywowanychUzytkownikow());
+		//	rolaUyztkownika.getSession().setAttribute("uzytkownicyBezRoli", userService.znajdzNieaktywowanychUzytkownikow());
 		//	sesja.setAttribute("nauczyciele", userService.znajdzNauczycieli());
 //			sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
 		}

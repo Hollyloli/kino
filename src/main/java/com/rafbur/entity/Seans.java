@@ -1,5 +1,6 @@
 package com.rafbur.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Seans {
+
+public class Seans implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
@@ -22,17 +29,28 @@ public class Seans {
 	@JoinColumn(name = "film_id")
 	private Filmy film;
 	
-	private Date data;
+
+	private Date poczatekFilmu;
 	
+	private Date koniecFilmu;
 	
-	
-	public Date getData() {
-		return data;
+	public Date getKoniecFilmu() {
+		return koniecFilmu;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setKoniecFilmu(Date koniecFilmu) {
+		this.koniecFilmu = koniecFilmu;
 	}
+
+
+	public Date getPoczatekFilmu() {
+		return poczatekFilmu;
+	}
+
+	public void setPoczatekFilmu(Date poczatekFilmu) {
+		this.poczatekFilmu = poczatekFilmu;
+	}
+
 
 	@OneToMany(mappedBy="seans")
 	private List<Bilet> bilety;

@@ -3,13 +3,13 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
-
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE HTML>
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
 
@@ -71,21 +71,47 @@
 
 <link href="<c:url value="/resources/styles/custom.css" />"
 	rel="stylesheet" type="text/css" />
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
 </head>
 
 <body>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.rafbur.service.text" />
+
 	<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
 		prefix="tilesx"%>
 	<tilesx:useAttribute name="current" />
 
 	<div id="divBoxed" class="container">
+		
 		<div class="transparent-bg"
 			style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
 		<div class="divPanel notop nobottom">
+			
+    		<div class="row">
+    			<div id="divMenuRight" class="pull-right">
+    				<form>
+    					<input name="language" type="image" value="pl" ${language == 'pl' ? 'selected' : ''} src="./resources\styles\flaga.png" style="height:20px; width: 30px">
+				        <input name="language" type="image" value="en" ${language == 'en' ? 'selected' : ''} src="./resources\styles\usa.png" style="height:20px; width: 30px">
+				        
+			    	</form>	
+    			</div>
+    		</div>
 			<div class="row">
 				<div id="divLogo" class="pull-left">
-					<a href="<spring:url value="/" />" id="divSiteTitle">Dziennik</a><br />
-					<a href="<spring:url value="/" />" id="divTagLine">Szkolny</a>
+					<a href="<spring:url value="/" />" id="divSiteTitle">Elektorniczna</a><br />
+					<a href="<spring:url value="/" />" id="divTagLine">rezerwacja biletow</a>
 				</div>
 				<div id="divMenuRight" class="pull-right">
 					<nav class="navbar ">
@@ -100,75 +126,38 @@
 
 								<ul class="nav nav-pills ddmenu">
 									<li class="${current=='index' ? 'active' : ''} "><a
-										href='<spring:url value="/" />'>Home</a></li>
+										href='<spring:url value="/" />'><fmt:message key="glowne.dom" /></a></li>
 									
+									
+									<security:authorize access="hasRole('ROLE_ADMIN')">
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button">Admin<span
+											data-toggle="dropdown" role="button"><fmt:message key="glowne.admin" /><span
 												class="caret"></span></a>
 											<ul class="dropdown-menu">
 												<li><a
 													href="<spring:url value="/dodanieFilmu.html" />">Dodaj film</a></li>
 												<li><a
-													href="<spring:url value="/przypPrzedNaucz.html" />">Dodaj sale</a></li>
+													href="<spring:url value="/dodanieSali.html" />">Dodaj sale</a></li>
 												<li><a
-													href="<spring:url value="/przypPrzedNaucz.html" />">Dodaj seans</a></li>
-												<li><a
-													href="<spring:url value="/przypUczniowOpiek.html" />">Przyporządkowanie
-														uczniow opiekunowi</a></li>
-												<li><a href="<spring:url value="/dodanieKlasy.html" />">Dodanie
-														klasy</a></li>
-												<li><a
-													href="<spring:url value="/dodanieUczniaDoKlasy.html" />">Dodanie
-														ucznia do klasy</a></li>
-												<li><a
-													href="<spring:url value="/przypPrzedUczn.html" />">Przyporządkowanie
-														przedmiotu uczniom</a></li>
-												<li><a
-													href="<spring:url value="/zakonczenieRokuSzkolnego.html" /> ">Zakończenie
-														roku szkolnego</a></li>
+													href="<spring:url value="/znalezieniaSali.html" />">Dodaj seans</a></li>
+												
 											</ul></li>
-									
-									
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button">Opiekun<span
-												class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li class="dropdown-header">Opieka na dziećmi</li>
-												<c:forEach items="${dzieciPodOpieka}" var="dziecko"
-													varStatus="loop">
-													<li><a
-														href='<spring:url value="/dziecko-${dziecko.login}.html" /> '>${dziecko.imie}
-															${dziecko.nazwisko}</a></li>
-												</c:forEach>
-											</ul></li>
-									
+									</security:authorize>
 								
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button">Nauczyciel<span
-												class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li class="dropdown-header">Prowadzone zajecia</li>
-												<c:forEach
-													items="${przedmiotNauczyciela.przedmiotyNauczycieli}"
-													var="przedmiot" varStatus="loop">
-													<li><a
-														href='<spring:url value="/przedmiot-${przedmiot.nazwa}.html" /> '>${przedmiot.nazwa}</a></li>
-												</c:forEach>
-											</ul></li>
 									
 									<security:authorize access="!isAuthenticated()">
-										<li><a href='<spring:url value="/login.html" />'>Logowanie</a></li>
-										<li><a href='<spring:url value="/rejestracja.html" />'>Rejestracja</a></li>
+										<li><a href='<spring:url value="/login.html" />'><fmt:message key="glowne.logowanie" /></a></li>
+										<li><a href='<spring:url value="/rejestracja.html" />'><fmt:message key="glowne.rejestracja" /></a></li>
 									</security:authorize>
-									<li><a href='<spring:url value="/kontakt.html" />'>Kontakt</a></li>
 									<security:authorize access="isAuthenticated()">
-										<li><a href='<spring:url value="/edycjaKonta.html" />'>Edycja
-												Konta</a></li>
-
-										<li><a href='<spring:url value="/logout" />'>Wyloguj</a></li>
+									<li><a href='<spring:url value="/wyborSeansu.html" />'><fmt:message key="glowne.rezerwacja" /></a></li>
+										<li><a href='<spring:url value="/edycjaKonta.html" />'><fmt:message key="glowne.edycjaKonta" /></a></li>
+										
+										<li><a href='<spring:url value="/logout" />'><fmt:message key="glowne.wyloguj" /></a></li>
 									</security:authorize>
 								</ul>
-
+								
+								
 							</div>
 							<!--/.nav-collapse -->
 						</div>

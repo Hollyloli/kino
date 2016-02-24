@@ -11,11 +11,22 @@
 	</entity>
 
 	<entity>
+		<entity-name>com.rafbur.entity.Filmy</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>1138</entity-X-Coordinate>
+		<entity-Y-Coordinate>39</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
 		<entity-name>com.rafbur.entity.Sala</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>166</entity-height>
-		<entity-X-Coordinate>1019</entity-X-Coordinate>
-		<entity-Y-Coordinate>246</entity-Y-Coordinate>
+		<entity-X-Coordinate>936</entity-X-Coordinate>
+		<entity-Y-Coordinate>303</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -46,7 +57,7 @@
 	<entity>
 		<entity-name>com.rafbur.entity.Seans</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>186</entity-height>
+		<entity-height>206</entity-height>
 		<entity-X-Coordinate>900</entity-X-Coordinate>
 		<entity-Y-Coordinate>38</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
@@ -93,17 +104,6 @@
 		<entity-height>166</entity-height>
 		<entity-X-Coordinate>192</entity-X-Coordinate>
 		<entity-Y-Coordinate>373</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>com.rafbur.entity.Filmy</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>166</entity-height>
-		<entity-X-Coordinate>1138</entity-X-Coordinate>
-		<entity-Y-Coordinate>39</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

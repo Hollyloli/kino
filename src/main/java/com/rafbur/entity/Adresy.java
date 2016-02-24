@@ -1,5 +1,6 @@
 package com.rafbur.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,8 +15,13 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-public class Adresy {
+public class Adresy implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Integer getIdAdresy() {
 		return idAdresy;
 	}

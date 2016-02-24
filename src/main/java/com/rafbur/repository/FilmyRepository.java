@@ -6,4 +6,6 @@ import com.rafbur.entity.Filmy;
 
 public interface FilmyRepository extends JpaRepository<Filmy, Integer>{
 
+	Filmy findByTytulFilmu(String tytulFilmu);
+
 }

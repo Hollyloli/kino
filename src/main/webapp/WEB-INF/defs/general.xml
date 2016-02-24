@@ -42,8 +42,46 @@
 	<definition name="dodanieFilmu" extends="wspolne">
 	<put-attribute name="title" value="dodanie Filmu" />
 	<put-attribute name="body" value="/WEB-INF/jsp/dodanieFilmu.jsp" />
-	<put-attribute name="current" value="dodanie przedmiotu" />
+	<put-attribute name="current" value="dodanie filmu" />
 	</definition>	
+	
+	<definition name="dodanieSali" extends="wspolne">
+	<put-attribute name="title" value="dodanie Sali" />
+	<put-attribute name="body" value="/WEB-INF/jsp/dodanieSali.jsp" />
+	<put-attribute name="current" value="dodanie sali" />
+	</definition>			
+
+	<definition name="dodanieSeansu" extends="wspolne">
+	<put-attribute name="title" value="dodanie Seansu" />
+	<put-attribute name="body" value="/WEB-INF/jsp/dodanieSeansu.jsp" />
+	<put-attribute name="current" value="dodanie seansu" />
+	</definition>	
+	
+	<definition name="znalezieniaSali" extends="wspolne">
+	<put-attribute name="title" value="znalezienie sali" />
+	<put-attribute name="body" value="/WEB-INF/jsp/znalezieniaSali.jsp" />
+	<put-attribute name="current" value="znaleznie sali" />
+	</definition>	
+	
+	<definition name="wyborSeansu" extends="wspolne">
+	<put-attribute name="title" value="wybor seansu" />
+	<put-attribute name="body" value="/WEB-INF/jsp/wyborSeansu.jsp" />
+	<put-attribute name="current" value="wybor seansu" />
+	</definition>
+	
+	<definition name="wyborRzedu" extends="wspolne">
+	<put-attribute name="title" value="wybor Rzedu" />
+	<put-attribute name="body" value="/WEB-INF/jsp/wyborRzedu.jsp" />
+	<put-attribute name="current" value="wybor Rzedu" />
+	</definition>
+	
+	<definition name="wybranieMiejsc" extends="wspolne">
+	<put-attribute name="title" value="wybor miejsc" />
+	<put-attribute name="body" value="/WEB-INF/jsp/wybranieMiejsc.jsp" />
+	<put-attribute name="current" value="wybor miejsc" />
+	</definition>
+	
+	
 	
 	<definition name="dodanieKlasy" extends="wspolne">
 		<put-attribute name="title" value="dodanie Klasy" />

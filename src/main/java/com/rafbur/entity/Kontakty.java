@@ -1,5 +1,6 @@
 package com.rafbur.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,7 +13,13 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
-public class Kontakty {
+public class Kontakty implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idKontaktu;

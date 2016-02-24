@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.rafbur.service.text" />
 <style>
 body {
 	padding-top: 40px;
@@ -56,12 +61,12 @@ body {
 
 	<form class="form-signin" role="form" action="/PracaInz/login"
 		method="POST">
-		<h2 class="form-signin-heading">Logowanie</h2>
+		<h2 class="form-signin-heading"><fmt:message key="logowanie.logowanie" /></h2>
 		<input type="text" name='username' class="form-control"
 			placeholder="login" required autofocus> <input
 			type="password" name='password' class="form-control"
-			placeholder="hasło" required>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+			placeholder=<fmt:message key="logowanie.haslo" /> required>
+		<button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="logowanie.przycisk" /></button>
 	</form>
 
 

@@ -155,8 +155,15 @@ public class InitDbService {
 		Seans seans = new Seans();
 		seans.setFilm(film);
 		seans.setSala(sala);
-		seans.setData(new Date(135, 2, 25, 8, 53));
+		seans.setPoczatekFilmu(new Date(135, 2, 25, 9, 00));
+		seans.setKoniecFilmu(new Date(135, 2, 25, 10, 00));
+		
+//		seans.setData(new Date(135, 2, 25, 8, 53));
 		seansRepository.save(seans);
+		
+		
+		
+		
 	
 		Bilet bilet = new Bilet();
 		bilet.setSeans(seans);
