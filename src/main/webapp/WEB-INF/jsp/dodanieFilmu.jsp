@@ -23,7 +23,7 @@
 				<form:errors path="tytulFilmu" />
 			</div>
 			<div class="form-group">
-				<label for="labelWyborKlasy">Dlugosc Filmu</label>
+				<label for="labelWyborKlasy"><fmt:message key="dodaniefilmu.dlugosc" /></label>
 				<form:input path="dlugsc" cssClass="form-control" />
 				<form:errors path="dlugsc" />
 			</div>

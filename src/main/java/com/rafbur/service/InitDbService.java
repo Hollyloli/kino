@@ -144,6 +144,7 @@ public class InitDbService {
 		Miejsce miejsce = new Miejsce();
 		miejsce.setNumerMiejsca(1);
 		miejsce.setRzad(rzad);
+		miejsce.setZajetoscMiejsca(true);
 		miejsceRepository.save(miejsce);
 		
 		

@@ -1,7 +1,11 @@
 package com.rafbur.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import javax.persistence.Column;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +36,34 @@ public class RzadService {
 		
 		for(Rzad rzad: rzedy) {
 			System.out.println("wypisuje id rzedu " + rzad.getIdRzedu());
-			ArrayList<Miejsce> miejsca = miejsceRepository.findByRzad(rzad);
+			List<Miejsce> miejsca = miejsceRepository.findByRzad(rzad);
+			
+			for(Miejsce miejsce: miejsca) {
+				System.out.println("wypisuje miejsca " +  miejsce.getNumerMiejsca() + " typ miejsca " + miejsce.getZajetoscMiejsca());
+			}
+			int temp;
+			Boolean temp2;
+			int zmiana = 1;
+			while(zmiana > 0){
+				zmiana = 0;
+				for(int i=0; i<miejsca.size()-1; i++){
+					if(miejsca.get(i).getNumerMiejsca()>miejsca.get(i+1).getNumerMiejsca()){
+						
+						temp = miejsca.get(i+1).getNumerMiejsca();
+						temp2 = miejsca.get(i+1).getZajetoscMiejsca();
+						
+						miejsca.get(i+1).setNumerMiejsca(miejsca.get(i).getNumerMiejsca());
+						miejsca.get(i+1).setZajetoscMiejsca(miejsca.get(i).getZajetoscMiejsca());
+						miejsca.get(i).setNumerMiejsca(temp);
+						miejsca.get(i).setZajetoscMiejsca(temp2);
+						zmiana++;
+					}
+				}
+			}
+			
+			for(Miejsce miejsce: miejsca) {
+				System.out.println("wypisuje miejsca " +  miejsce.getNumerMiejsca() + " typ miejsca " + miejsce.getZajetoscMiejsca());
+			}
 			
 			rzad.setMiejsca(miejsca);
 		}

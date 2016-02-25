@@ -9,7 +9,7 @@
 
 <div class="col-sm-12" id="divMain">
 	<c:if test="${param.success eq true}">
-		<div class="alert alert-success">Dodanie sali powiodło się</div>
+		<div class="alert alert-success">Zarezerowanie biletu powiodlo sie</div>
 	</c:if>
 	<form:form commandName="seans" class="form-horizontal" action="/PracaInz/formularzWyboruSeansu.html">
 			<div class="form-group">

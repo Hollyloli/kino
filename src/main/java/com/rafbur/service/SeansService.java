@@ -26,13 +26,7 @@ public class SeansService {
 	@Autowired
 	private SalaRepository salaRepository;
 	
-	public ArrayList<Sala> znajdzSale(Seans seans) {
-		
-		//sprawdzic czy sala ma przyisany jakis seans
-//		jesli nie to przypisac jestli tak to sprwdzic
-//		czy w tej godzinie jest przypisany jakis seans
-//		Seans seans2 = seansRepository.fin
-//		seans2.setData(seans.getData());
+	public List<Sala> znajdzSale(Seans seans) {
 		
 		ArrayList<Sala> wszystkieSale = (ArrayList<Sala>) salaRepository.findAll();
 		System.out.println("wypisuje wszyskie sale " + wszystkieSale.size());

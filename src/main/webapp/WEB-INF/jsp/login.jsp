@@ -62,10 +62,8 @@ body {
 	<form class="form-signin" role="form" action="/PracaInz/login"
 		method="POST">
 		<h2 class="form-signin-heading"><fmt:message key="logowanie.logowanie" /></h2>
-		<input type="text" name='username' class="form-control"
-			placeholder="login" required autofocus> <input
-			type="password" name='password' class="form-control"
-			placeholder=<fmt:message key="logowanie.haslo" /> required>
+		<input type="text" name='username' class="form-control"	placeholder="login" required autofocus> 
+		<input	type="password" name='password' class="form-control"	placeholder=<fmt:message key="logowanie.haslo" /> required>
 		<button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="logowanie.przycisk" /></button>
 	</form>
 

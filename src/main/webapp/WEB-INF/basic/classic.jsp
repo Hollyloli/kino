@@ -110,8 +110,8 @@
     		</div>
 			<div class="row">
 				<div id="divLogo" class="pull-left">
-					<a href="<spring:url value="/" />" id="divSiteTitle">Elektorniczna</a><br />
-					<a href="<spring:url value="/" />" id="divTagLine">rezerwacja biletow</a>
+					<a href="<spring:url value="/" />" id="divSiteTitle"><fmt:message key="glowne.tytul1" /></a><br />
+					<a href="<spring:url value="/" />" id="divTagLine"><fmt:message key="glowne.tytul2" /></a>
 				</div>
 				<div id="divMenuRight" class="pull-right">
 					<nav class="navbar ">
@@ -135,11 +135,11 @@
 												class="caret"></span></a>
 											<ul class="dropdown-menu">
 												<li><a
-													href="<spring:url value="/dodanieFilmu.html" />">Dodaj film</a></li>
+													href="<spring:url value="/dodanieFilmu.html" />"><fmt:message key="glowne.dodajFilm" /></a></li>
 												<li><a
-													href="<spring:url value="/dodanieSali.html" />">Dodaj sale</a></li>
+													href="<spring:url value="/dodanieSali.html" />"><fmt:message key="glowne.dodajSale" /></a></li>
 												<li><a
-													href="<spring:url value="/znalezieniaSali.html" />">Dodaj seans</a></li>
+													href="<spring:url value="/znalezieniaSali.html" />"><fmt:message key="glowne.dodajSeans" /></a></li>
 												
 											</ul></li>
 									</security:authorize>

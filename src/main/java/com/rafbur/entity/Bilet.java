@@ -21,6 +21,10 @@ public class Bilet implements Serializable{
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Integer idBiletu;
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "seans_id")
 	private Seans seans;

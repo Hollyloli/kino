@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.rafbur.service.text" />
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -13,25 +17,25 @@ label {
 </style>
 <div class="col-sm-12">
 
-	<h1>Dane użytkownika:</h1>
+	<h1><fmt:message key="edycjaKonta.daneUzytkownika" />:</h1>
 	<br>
 
 	<form:form commandName="polaczone" class="form-horizontal">
 		<div class="form-group">
 			<div class="col-sm-4">
-				<label for="labelImie"><strong>Imię:</strong></label> <label
+				<label for="labelImie"><strong><fmt:message key="rejestracja.imie" />:</strong></label> <label
 					for="labelImie">${uzytkownik.imie}</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-4">
-				<label for="labelImie"><strong>Nazwisko:</strong></label> <label
+				<label for="labelImie"><strong><fmt:message key="rejestracja.nazwisko" />:</strong></label> <label
 					for="labelImie">${uzytkownik.nazwisko}</label>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-1">
-				<label for="labelImie"><strong>Hasło:</strong></label>
+				<label for="labelImie"><strong><fmt:message key="rejestracja.haslo" />:</strong></label>
 			</div>
 			<div class="col-sm-2">
 				<form:password path="haslo" cssClass="form-control" />
@@ -42,7 +46,7 @@ label {
 
 		<div class="form-group ">
 			<div class="col-sm-4">
-				<label for="labelImie"><strong>Adresy:</strong></label>
+				<label for="labelImie"><strong><fmt:message key="rejestracja.adres" />:</strong></label>
 			</div>
 		</div>
 		<c:forEach items="${uzytkownik.adresy}" var="adres" varStatus="loop">
@@ -50,8 +54,7 @@ label {
 			<div class="form-group">
 				<label for="adres" class="col-sm-2 control-label">Adres</label>
 				<div class="col-sm-2">
-					<form:input path="adresy[${loop.index}].miasto"
-						cssClass="form-control" value="${adres.miasto}" />
+					<form:input path="adresy[${loop.index}].miasto"	cssClass="form-control" value="${adres.miasto}" />
 					<form:errors path="adresy[${loop.index}].miasto" />
 				</div>
 				<div class="col-sm-3">
@@ -71,24 +74,23 @@ label {
 				</div>
 				<a
 					href="<spring2:url value="/adres/remove/${adres.idAdresy}.html"  /> "
-					class="btn btn-danger">Usuniecie adresu</a>
+					class="btn btn-danger"><fmt:message key="edycjaKonta.usuniecieAdresu" /></a>
 			</div>
 		</c:forEach>
 		<div class="form-group" align="center">
 			<button type="button" class="btn btn-primary" data-toggle="modal"
-				data-target="#myModal">Dodaj Adres</button>
+				data-target="#myModal"><fmt:message key="edycjaKonta.dodajAdres" /></button>
 		</div>
 		<br>
 		<div class="form-group">
 			<div class="col-sm-4">
-				<label for="labelImie"><strong>Kontakty:</strong></label>
+				<label for="labelImie"><strong><fmt:message key="edycjaKonta.kontakty" />:</strong></label>
 			</div>
 		</div>
 		<c:forEach items="${uzytkownik.kontakty}" var="kontakt"
 			varStatus="loop">
 			<div class="form-group">
-				<label for="daneKontaktowe" class="col-sm-2 control-label">Dane
-					kontaktowe</label>
+				<label for="daneKontaktowe" class="col-sm-2 control-label"><fmt:message key="rejestracja.daneKontaktowe" /></label>
 				<div class="col-sm-4">
 					<form:input path="kontakty[${loop.index}].email"
 						cssClass="form-control" value="${kontakt.email}" />
@@ -101,19 +103,19 @@ label {
 				</div>
 				<a
 					href="<spring2:url value="/kontakty/remove/${kontakt.idKontaktu}.html"  /> "
-					class="btn btn-danger">Usuniecie kontaktu</a>
+					class="btn btn-danger"><fmt:message key="edycjaKonta.usuniecieKontaktu" /></a>
 			</div>
 
 		</c:forEach>
 		<br>
 		<div class="form-group" align="center">
 			<button type="button" class="btn btn-primary" data-toggle="modal"
-				data-target="#myModal2">Dodaj kontakt</button>
+				data-target="#myModal2"><fmt:message key="edycjaKonta.dodajKontakt" /></button>
 		</div>
 		<div class="form-group">
 
 			<div class="col-sm-2">
-				<input type="submit" value="Zapisz zmiany"
+				<input type="submit" value="<fmt:message key="edycjaKonta.zapiszZmiany" />"
 					class="btn btn-lg btn-primary" />
 			</div>
 		</div>

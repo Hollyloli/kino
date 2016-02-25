@@ -47,22 +47,19 @@
 	<div class="form-group">
 		<label for="nazwisko" class="col-sm-2 control-label"><fmt:message key="rejestracja.adres" /></label>
 		<div class="col-sm-3">
-			<form:input path="adresy[0].miasto" cssClass="form-control"	placeholder="<fmt:message key="rejestracja.adres" />" />
+			<input type ="text" name="adresy[0].miasto" class="form-control"	placeholder=<fmt:message key="rejestracja.miasto" /> />
 			<form:errors path="adresy[0].miasto" />
 		</div>
 		<div class="col-sm-3">
-			<form:input path="adresy[0].ulica" cssClass="form-control"
-				placeholder=<fmt:message key="rejestracja.ulica" /> />
+			<input type="text" name="adresy[0].ulica" class="form-control"	placeholder="<fmt:message key="rejestracja.ulica" />" />
 			<form:errors path="adresy[0].ulica" />
 		</div>
 		<div class="col-sm-2">
-			<form:input path="adresy[0].numerMieszkania" cssClass="form-control"
-				placeholder=<fmt:message key="rejestracja.nrMieszkania" /> />
+			<input type="text" name="adresy[0].numerMieszkania" class="form-control" placeholder="<fmt:message key="rejestracja.nrMieszkania" />" />
 			<form:errors path="adresy[0].numerMieszkania" />
 		</div>
 		<div class="col-sm-2">
-			<form:input path="adresy[0].kodPocztowy" cssClass="form-control"
-				placeholder=<fmt:message key="rejestracja.kodPocztowy" /> />
+			<input type="text" name="adresy[0].kodPocztowy" class="form-control" placeholder="<fmt:message key="rejestracja.kodPocztowy" />" />
 			<form:errors path="adresy[0].kodPocztowy" />
 		</div>
 
@@ -70,13 +67,11 @@
 	<div class="form-group">
 		<label for="nazwisko" class="col-sm-2 control-label"><fmt:message key="rejestracja.daneKontaktowe" /></label>
 		<div class="col-sm-5">
-			<form:input path="kontakty[0].email" cssClass="form-control"
-				placeholder=<fmt:message key="rejestracja.email" /> />
+			<input type="text" name="kontakty[0].email" class="form-control" placeholder="<fmt:message key="rejestracja.email" />" />
 			<form:errors path="kontakty[0].email" />
 		</div>
 		<div class="col-sm-5">
-			<form:input path="kontakty[0].telefon" cssClass="form-control"
-				placeholder="<fmt:message key="rejestracja.numerTel" />" />
+			<input type ="text" name="kontakty[0].telefon" class="form-control"	placeholder="<fmt:message key="rejestracja.numerTel" />" />
 			<form:errors path="kontakty[0].telefon" />
 		</div>
 	</div>

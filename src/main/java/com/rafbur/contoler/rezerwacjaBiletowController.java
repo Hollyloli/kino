@@ -102,19 +102,9 @@ public class rezerwacjaBiletowController {
 	{
 		if(result.hasErrors()) {
 //			System.out.println("ten przedmiot juz istnieje");
-			return "dodanieFilmu";
+			return "wyborMiejsca";
 		}
-//		System.out.println(seans.getFilm().getTytulFilmu());
-//		String zmienna = seans.getFilm().getTytulFilmu().substring(7);
-//		System.out.println(rzad.getNumerRzedu());
-//		String[] tablica = rzad.get.split(" ");
-//		for (String zmienna2 : tablica) 
-//		System.out.println(zmienna2);
-//		System.out.println("wypisuje dlogosc" +seans.getFilm().getDlugsc());
-		//		filmyService.dodajFilm(film.getTytulFilmu(),film.getDlugsc());
-//		sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
-//		return "redirect:/wyborRzedu-"+salaService.znajdzIdSaliPoNazwie(tablica[tablica.length-1])+".html";
-//		sesja.setAttribute("miejsca", rzadService.znajdzMiejsca(rzad.getIdRzedu()));
+
 		Integer idSali = (Integer) sesja.getAttribute("idSesji");
 		Integer numerRzedu =  (Integer) sesja.getAttribute("numerRzedu");
 		
@@ -122,7 +112,8 @@ public class rezerwacjaBiletowController {
 		
 		biletyService.zarezerwujBilet(idSeansu, idSali, numerRzedu, miejsce.getNumerMiejsca(), user.getName());
 		
-		return "redirect:/wyborMiejsca.html";
+		return "redirect:/wyborSeansu.html?success=true";
+
 	}
 	
 	
