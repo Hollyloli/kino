@@ -49,11 +49,9 @@ public class AdminControler {
 	}
 	
 	@RequestMapping("dodanieSeansu")
-	public String dodanieSeansu(Model model) {
+	public String dodanieSeansu() {
 		return "dodanieSeansu";
 	}
-	
-	
 	
 	@ModelAttribute("seans")
 	public Seans constructSeans() {
@@ -72,21 +70,17 @@ public class AdminControler {
 	
 	
 	@RequestMapping(value="/formularzDodaniaFilmu", method=RequestMethod.POST)
-	public String dodanieFilmu(@Valid @ModelAttribute("film") Filmy film, BindingResult result,HttpSession sesja)
-	{
+	public String dodanieFilmu(@Valid @ModelAttribute("film") Filmy film, BindingResult result)	{
 		if(result.hasErrors()) {
 			return "dodanieFilmu";
 		}
 		filmyService.dodajFilm(film.getTytulFilmu(),film.getDlugsc());
-//		sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
 		return "redirect:/dodanieFilmu.html?success=true";
 	}
 	
 	@RequestMapping(value="/formularzZnalezieniaSali", method=RequestMethod.POST)
-	public String formularzznalezieniaSali(@Valid @ModelAttribute("seans") Seans seans, BindingResult result,HttpSession sesja)
-	{
+	public String formularzznalezieniaSali(@Valid @ModelAttribute("seans") Seans seans, BindingResult result,HttpSession sesja) {
 		if(result.hasErrors()) {
-		//	System.out.println("ten przedmiot juz istnieje "+ result.getAllErrors());
 			return "dodanieSeansu";
 		}
 		sesja.setAttribute("sale", seansService.znajdzSale(seans));
@@ -94,27 +88,22 @@ public class AdminControler {
 		return "redirect:/dodanieSeansu.html";
 	}
 	@RequestMapping(value="/formularzDodaniaSeansu", method=RequestMethod.POST)
-	public String formularzDodaniaSeansu(@Valid @ModelAttribute("sala") Sala sala, BindingResult result,HttpSession sesja)
-	{
-	
+	public String formularzDodaniaSeansu(@Valid @ModelAttribute("sala") Sala sala, BindingResult result,HttpSession sesja) {
+		if(result.hasErrors()) {
+			return "dodanieSeansu";
+		}
 		Seans seans = (Seans) sesja.getAttribute("seans");
-		System.out.println(((Filmy)seans.getFilm()).getTytulFilmu());
 		seansService.dodajSeans(sala.getNazwaSali(),seans);
-		
-//		sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
 		return "redirect:/dodanieSeansu.html?success=true";
 	}
 	
 	
 	@RequestMapping(value="/formularzDodaniaSali", method=RequestMethod.POST)
-	public String formularzDodaniaSali(@Valid @ModelAttribute("sala") Sala sala, BindingResult result,HttpSession sesja)
-	{
+	public String formularzDodaniaSali(@Valid @ModelAttribute("sala") Sala sala, BindingResult result) {
 		if(result.hasErrors()) {
 			return "dodanieSali";
 		}
 		salaService.dodajSale(sala);
-//		sesja.setAttribute("przedmioty", przedmiotyService.znajdzPrzedmioty());
 		return "redirect:/dodanieSali.html?success=true";
 	}
-	
 }

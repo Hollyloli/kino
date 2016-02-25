@@ -42,7 +42,7 @@ public class InitDbService {
 	private UzytkownicyRepository uzytkownicyRepository;	
 	
 	@Autowired
-	private KontaktyRepository KontaktyRepository;
+	private KontaktyRepository kontaktyRepository;
 	
 	@Autowired
 	private AdresyRepository adresyRepository;
@@ -71,20 +71,9 @@ public class InitDbService {
 		roleUser.setTypRoli("ROLE_ADMIN");
 		roleRepository.save(roleUser);
 		
-//		Role roleUser2 = new Role();
-//		roleUser2.setTypRoli("ROLE_NAUCZYCIEL");
-//		roleRepository.save(roleUser2);
-//		
-//		Role roleUser3 = new Role();
-//		roleUser3.setTypRoli("ROLE_OPIEKUN");
-//		roleRepository.save(roleUser3);
-		
-		
 		Role roleUser4 = new Role();
 		roleUser4.setTypRoli("ROLE_USER");
 		roleRepository.save(roleUser4);
-		
-	
 		
 		Uzytkownicy admin = new Uzytkownicy();
 		admin.setImie("Rafal");
@@ -97,14 +86,14 @@ public class InitDbService {
 		admin.setRole(role);
 		
 		Adresy adres1 = new Adresy();
-		adres1.setUlica("Retkinska");;
+		adres1.setUlica("Retkinska");
 		adres1.setKodPocztowy("94-004");
 		adres1.setMiasto("Lodz");
 		adres1.setNumerMieszkania(new Integer(5));
 		adresyRepository.save(adres1);
 		
 		Adresy adres2 = new Adresy();
-		adres2.setUlica("Bratyslawska");;
+		adres2.setUlica("Bratyslawska");
 		adres2.setKodPocztowy("94-004");
 		adres2.setMiasto("Lodz");
 		adres2.setNumerMieszkania(new Integer(17));
@@ -114,7 +103,7 @@ public class InitDbService {
 		Kontakty kontakt1 = new Kontakty();
 		kontakt1.setEmail("rafal@email.pl");
 		kontakt1.setTelefon("510389421");
-		KontaktyRepository.save(kontakt1);
+		kontaktyRepository.save(kontakt1);
 		
 		
 		List<Adresy> adresy= new ArrayList<Adresy>();
@@ -156,14 +145,9 @@ public class InitDbService {
 		Seans seans = new Seans();
 		seans.setFilm(film);
 		seans.setSala(sala);
-		seans.setPoczatekFilmu(new Date(135, 2, 25, 9, 00));
-		seans.setKoniecFilmu(new Date(135, 2, 25, 10, 00));
-		
-//		seans.setData(new Date(135, 2, 25, 8, 53));
+		seans.setPoczatekFilmu(new Date(135, 2, 25, 9, 0));
+		seans.setKoniecFilmu(new Date(135, 2, 25, 10, 0));
 		seansRepository.save(seans);
-		
-		
-		
 		
 	
 		Bilet bilet = new Bilet();

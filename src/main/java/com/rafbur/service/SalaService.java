@@ -27,10 +27,10 @@ public class SalaService {
 	public void dodajSale(Sala sala) {
 		salaRepository.save(sala);
 		
-		int iloœæRzedow = sala.getRzedy().get(0).getNumerRzedu();
+		int iloscRzedow = sala.getRzedy().get(0).getNumerRzedu();
 		int iloscMiejsc = sala.getRzedy().get(0).getMiejsca().get(0).getNumerMiejsca();
 		
-		for(int i = 0; i < iloœæRzedow; i++) {
+		for(int i = 0; i < iloscRzedow; i++) {
 			Rzad rzad = new Rzad();
 			rzad.setNumerRzedu(i+1);
 			rzad.setZajetoscRzedu(false);

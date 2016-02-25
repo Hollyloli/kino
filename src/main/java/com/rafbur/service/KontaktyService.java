@@ -24,8 +24,7 @@ public class KontaktyService {
 		List<Kontakty> kontakty = kontaktyRepository.findByUzytkownicy(uzytkownik);
 		Kontakty kontaktDousuniecia = kontaktyRepository.findOne(id);
 		int indeksKontaktuDoUsuniecia = 0;
-		for(int i=0; i<kontakty.size(); i++)
-		{
+		for(int i=0; i<kontakty.size(); i++) {
 			if(kontakty.get(i).getIdKontaktu()==kontaktDousuniecia.getIdKontaktu()) {
 				indeksKontaktuDoUsuniecia=i;
 				break;

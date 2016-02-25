@@ -37,8 +37,15 @@ public class Filmy implements Serializable{
 	@OneToMany(mappedBy="film")
 	private List<Seans> seanse;
 	
-//	@Value(Min=1, Max=400, message="Dlugosc filmu o 10 min do 400 min")
 	
+	public List<Seans> getSeanse() {
+		return seanse;
+	}
+
+	public void setSeanse(List<Seans> seanse) {
+		this.seanse = seanse;
+	}
+
 	public Integer getIdFilmu() {
 		return idFilmu;
 	}

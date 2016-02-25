@@ -27,24 +27,13 @@ public class SeansService {
 	private SalaRepository salaRepository;
 	
 	public List<Sala> znajdzSale(Seans seans) {
-		
-		ArrayList<Sala> wszystkieSale = (ArrayList<Sala>) salaRepository.findAll();
-		System.out.println("wypisuje wszyskie sale " + wszystkieSale.size());
-		
-		ArrayList<Seans> seanse = seansRepository.findByPoczatekFilmuAndKoniecFilmu(seans.getPoczatekFilmu(), seans.getKoniecFilmu());
-		System.out.println("wypisuje seanse  " +seanse.size());
-		
-		ArrayList<Sala> sale = new ArrayList<Sala>();
-		
-//		for (Seans seans1 : seanse) {
-//			sale.add(seans1.getSala());
-//		}
-		
+		List<Sala> wszystkieSale = (ArrayList<Sala>) salaRepository.findAll();
+		List<Seans> seanse = seansRepository.findByPoczatekFilmuAndKoniecFilmu(seans.getPoczatekFilmu(), seans.getKoniecFilmu());
+		List<Sala> sale = new ArrayList<Sala>();		
 		for(Sala sala : wszystkieSale) {
-			if(seanse.size()==0) {
+			if(seanse.isEmpty()) {
 				sale.add(sala);
-			}
-			else {
+			} else {
 				for(Seans seans1 : seanse) {
 					if(!sala.getIdSali().equals(seans1.getSala().getIdSali())) {
 						sale.add(sala);
@@ -52,54 +41,28 @@ public class SeansService {
 				}
 			}
 		}
-		
 		return sale;
-		
-		//ArrayList<Sala> sale = salaRepository.findBySeanse(seans);
-		
-		
-		
-
 	}
 
 	public void dodajSeans(String nazwaSali, Seans seans) {
 		Sala sala = salaRepository.findByNazwaSali(nazwaSali);
-		
 		Filmy film = filmyRepository.findByTytulFilmu(((Filmy)seans.getFilm()).getTytulFilmu());
-		
-		System.out.println("film " + film.getTytulFilmu());
 		Seans seans1 = new Seans();
 		seans1.setPoczatekFilmu(seans.getPoczatekFilmu());
 		seans1.setKoniecFilmu(seans.getKoniecFilmu());
 		seans1.setFilm(film);
 		seans1.setSala(sala);
 		seansRepository.save(seans1);
-		
 	}
 
 	public List<Seans> znajdzWszystkieSeanse() {
 		return seansRepository.findAll();
 	}
 
-	public Integer znajdzIdSeansu(Seans seans) {
-		
-		return null;
-	}
+
 
 	public Integer znajdzIdSeansu(Date obiektData, String nazwaSali) {
-		System.out.println(obiektData.getYear() + " " + obiektData.getMonth() + " " + obiektData.getDate() + " " + obiektData.getHours() + " " + obiektData.getMinutes());
 		Sala sala = salaRepository.findByNazwaSali(nazwaSali);
-		System.out.println("wypisuje sale " + sala.getIdSali());
-//		System.out.println("idSeansu " +seansRepository.findBySala(sala).getIdSeansu());
-		System.out.println(obiektData.getYear() + " " + obiektData.getMonth() + " " + obiektData.getDate() + " " + obiektData.getHours() + " " + obiektData.getMinutes());
-		
-		Date data = new Date(135, 2, 25, 9, 00);
-		System.out.println(data.getYear() + " " + data.getMonth() + " " + data.getDate() + " " + data.getHours() + " " + data.getMinutes());
-		
-		
-		System.out.println("data " + data.getYear());
-		System.out.println("szukanie daty " + seansRepository.findByPoczatekFilmu(data));
-		
 		return seansRepository.findByPoczatekFilmuAndSala(obiektData,sala).getIdSeansu();
 	}
 

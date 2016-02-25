@@ -38,36 +38,16 @@ public class BiletyService {
 	private SeansRepository seansRepository;
 	
 	public void zarezerwujBilet(Integer idSeansu,Integer idSali, Integer numerRzedu,Integer numerMiejsca,  String login) {
-		System.out.println("wypisuje login " + login);
-		
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
-		System.out.println("wypisuje numer miejsca " + uzytkownik);
-		
-		
 		Sala sala = salaRepository.findByIdSali(idSali);
-		
-		System.out.println("wypisuje numer miejsca " + sala);
-		
 		Rzad rzad = rzadRepository.findBySalaAndNumerRzedu(sala, numerRzedu);
-
-		System.out.println("wypisuje numer miejsca " + rzad);
-		
 		Miejsce miejsce =  miejsceRepository.findByRzadAndNumerMiejsca(rzad, numerMiejsca);
-		
-		System.out.println("wypisuje numer miejsca " + miejsce);
-		
 		miejsce.setZajetoscMiejsca(true);
-		
 		miejsceRepository.saveAndFlush(miejsce);
-		
 		Seans seans = seansRepository.findByIdSeansu(idSeansu);
-		
-		
 		Bilet bilet = new Bilet();
 		bilet.setSeans(seans);
 		bilet.setUzytkownik(uzytkownik);
 		biletRepository.save(bilet);
-		
 	}
-
 }

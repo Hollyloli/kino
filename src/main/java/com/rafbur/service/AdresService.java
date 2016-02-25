@@ -25,8 +25,7 @@ public class AdresService {
 		List<Adresy> adresy = adresyRepository.findByUzytkownicy(uzytkownik);
 		Adresy adresDousuniecia = adresyRepository.findOne(id);
 		int zmienna=0;
-		for(int i=0; i<adresy.size(); i++)
-		{
+		for(int i=0; i<adresy.size(); i++) {
 			if(adresy.get(i).getIdAdresy()==adresDousuniecia.getIdAdresy()) {
 				zmienna=i;
 				break;

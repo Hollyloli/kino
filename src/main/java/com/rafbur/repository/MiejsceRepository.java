@@ -1,6 +1,6 @@
 package com.rafbur.repository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,10 +9,8 @@ import com.rafbur.entity.Rzad;
 
 public interface MiejsceRepository extends JpaRepository<Miejsce, Integer>{
 
-	ArrayList<Miejsce> findByRzad(Rzad rzad);
-
-	ArrayList<Miejsce> findByRzadAndZajetoscMiejsca(Rzad rzad, boolean b);
-
+	List<Miejsce> findByRzad(Rzad rzad);
+	List<Miejsce> findByRzadAndZajetoscMiejsca(Rzad rzad, boolean b);
 	Miejsce findByRzadAndNumerMiejsca(Rzad rzad, Integer numerMiejsca);
 
 }

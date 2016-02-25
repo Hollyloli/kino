@@ -54,8 +54,7 @@ public class UserService {
 		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(login);
 		List<Adresy> adresy = adresyRepository.findByUzytkownicy(uzytkownik);
 		List<Kontakty> kontakty = kontaktyRepository.findByUzytkownicy(uzytkownik);
-		for(int i = 0; i<uzytkownikDane.getAdresy().size(); i++)
-		{
+		for(int i = 0; i<uzytkownikDane.getAdresy().size(); i++) {
 			adresy.get(i).setMiasto(uzytkownikDane.getAdresy().get(i).getMiasto());
 			adresy.get(i).setUlica(uzytkownikDane.getAdresy().get(i).getUlica());
 			adresy.get(i).setNumerMieszkania(uzytkownikDane.getAdresy().get(i).getNumerMieszkania());
@@ -82,7 +81,6 @@ public class UserService {
 		adresyRepository.save(uzytkownik.getAdresy());
 		List<Adresy> adresy= new ArrayList<Adresy>();
 		adresy.add(uzytkownik.getAdresy().get(0));
-		
 		kontaktyRepository.save(uzytkownik.getKontakty());
 		List<Kontakty> kontakty = new ArrayList<Kontakty>();
 		kontakty.add(uzytkownik.getKontakty().get(0));
@@ -90,7 +88,6 @@ public class UserService {
 		uzytkownik.setHaslo(encoder.encode("1234"));
 		uzytkownik.setKontakty(kontakty);
 		uzytkownik.setAdresy(adresy);
-	
 		uzytkownik.setRole(znajdzTypRoliUzytkownika(uzytkownik.getLogin()));
 		uzytkownicyRepository.save(uzytkownik);
 	}
@@ -99,52 +96,13 @@ public class UserService {
 		List<Uzytkownicy> uzytkownicy = uzytkownicyRepository.findAll();
 		List<Uzytkownicy> uzytkownicyBezRoli = new ArrayList<Uzytkownicy>();
 		for (Uzytkownicy uzytkownik : uzytkownicy) {
-			if(uzytkownik.getRole().size()==0) {
+			if(uzytkownik.getRole().isEmpty()) {
 				uzytkownicyBezRoli.add(uzytkownik);
 			}
-			
 		}
-		System.out.println("wypisuje uzytkownikow bez roli " +uzytkownicyBezRoli.size());
 		return uzytkownicyBezRoli;
 	}
 
-//	public void dodajRole(Uzytkownicy uzytkownik) {
-//		String[] imieINazwisko = uzytkownik.getImie().split(" ");
-//		Uzytkownicy uzytkownikBaza = uzytkownicyRepository.findByImieAndNazwisko(imieINazwisko[0], imieINazwisko[1]);
-//		Role rola=null;
-//		if(uzytkownik.getRole().get(0).getTypRoli().equals("Nauczyciel")) {
-//			rola = roleRepository.findByTypRoli("ROLE_NAUCZYCIEL");
-//			Nauczyciele nauczyciel = new Nauczyciele();
-//			nauczyciel.setLogin(uzytkownikBaza.getLogin());
-//			nauczycieleRepository.save(nauczyciel);
-//		}
-//		if(uzytkownik.getRole().get(0).getTypRoli().equals("Uczen")) {
-//			rola = roleRepository.findByTypRoli("ROLE_UCZEN");
-//			Uczniowie uczen = new Uczniowie();
-//			uczen.setImie(uzytkownikBaza.getImie());
-//			uczen.setNazwisko(uzytkownikBaza.getNazwisko());
-//			uczen.setLogin(uzytkownikBaza.getLogin());
-//			uczniowieRepository.save(uczen);
-//		}
-//		if(uzytkownik.getRole().get(0).getTypRoli().equals("Opiekun")) {
-//			rola = roleRepository.findByTypRoli("ROLE_OPIEKUN");
-//			Opiekunowie opiekun = new Opiekunowie();
-//			opiekun.setLogin(uzytkownikBaza.getLogin());
-//			opiekunowieRepository.save(opiekun);
-//		}
-//		List<Role> role = new ArrayList<Role>();
-//		role.add(rola);
-//		uzytkownikBaza.setRole(role);
-//		uzytkownikBaza.setAktywny(true);
-//		uzytkownicyRepository.saveAndFlush(uzytkownikBaza);
-//		
-//	}
-
-	public void znajdzRole(String name) {
-		Uzytkownicy uzytkownik = uzytkownicyRepository.findByLogin(name);
-		List<Role> role = roleRepository.findByUzytkownicy(uzytkownik);
-		System.out.println(role.get(0).getTypRoli());
-	}
 
 	public List<Uzytkownicy> znajdzNauczycieli() {
 		Role rola = roleRepository.findByTypRoli("ROLE_NAUCZYCIEL");

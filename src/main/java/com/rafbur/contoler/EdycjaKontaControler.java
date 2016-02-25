@@ -41,14 +41,13 @@ public class EdycjaKontaControler {
 	}
 	
 	@RequestMapping("edycjaKonta")
-	public String EdycjaKonta(Model model,Principal principal) {
+	public String edycjaKonta(Model model,Principal principal) {
 		model.addAttribute("uzytkownik",userService.znajdUzytkownika(principal.getName()));
 		return "edycjaKonta";
 	}
 	
 	@RequestMapping(value="/edycjaKonta", method=RequestMethod.POST)
-	public String rejestrowanie(@Valid @ModelAttribute("polaczone") Uzytkownicy uzytkownik, BindingResult result, Model model,Principal principal)
-	{
+	public String rejestrowanie(@Valid @ModelAttribute("polaczone") Uzytkownicy uzytkownik, BindingResult result, Model model,Principal principal) {
 		if(result.hasErrors()) {
 			model.addAttribute("uzytkownik",userService.znajdUzytkownika(principal.getName()));
 			return "edycjaKonta";
@@ -66,9 +65,8 @@ public class EdycjaKontaControler {
 	
 	@RequestMapping(value="/edycjaKonta2", method=RequestMethod.POST)
 	public String dodajAdres(@Valid @ModelAttribute("polaczone2") Uzytkownicy uzytkownik,BindingResult result, Model model,Principal principal) {
-		if(result.hasErrors())
-		{
-			EdycjaKonta(model, principal);
+		if(result.hasErrors()) {
+			edycjaKonta(model, principal);
 			return "edycjaKonta";
 		}
 		adresService.save(uzytkownik,principal.getName());
@@ -83,9 +81,8 @@ public class EdycjaKontaControler {
 	
 	@RequestMapping(value="/edycjaKonta3", method=RequestMethod.POST)
 	public String dodajKontakt(@Valid @ModelAttribute("polaczone") Uzytkownicy uzytkownik,BindingResult result, Model model,Principal principal) {
-		if(result.hasErrors())
-		{
-			EdycjaKonta(model, principal);
+		if(result.hasErrors()) {
+			edycjaKonta(model, principal);
 			return "edycjaKonta";
 		}
 		kontaktyService.save(uzytkownik,principal.getName());

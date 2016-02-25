@@ -46,6 +46,14 @@ public class Uzytkownicy implements Serializable{
 	@JoinTable
 	private List<Role> role;
 	
+	public List<Bilet> getBilety() {
+		return bilety;
+	}
+
+	public void setBilety(List<Bilet> bilety) {
+		this.bilety = bilety;
+	}
+
 	@OneToMany(mappedBy="uzytkownik")
 	private List<Bilet> bilety;
 	
